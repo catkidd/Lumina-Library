@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
   Search, BookOpen, Users, Globe, BookMarked, 
-  MapPin, Clock, Calendar, ArrowRight, ChevronDown, 
+  Clock, Calendar, ArrowRight, ChevronDown, 
   ChevronUp, Star, GraduationCap, Award, HelpCircle,
   Library, Mail, Phone, CalendarDays, ArrowUp
 } from 'lucide-react';

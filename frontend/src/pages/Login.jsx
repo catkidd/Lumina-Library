@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Mail, Lock, Eye, EyeOff, Library, AlertTriangle, CheckCircle } from 'lucide-react';
@@ -14,18 +14,16 @@ const Login = () => {
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [info, setInfo] = useState('');
+  const [info, setInfo] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('expired') === 'true' ? 'Session expired. Please log in again to continue.' : '';
+  });
 
   useEffect(() => {
     if (user) {
       navigate('/catalog');
     }
-
-    const params = new URLSearchParams(location.search);
-    if (params.get('expired') === 'true') {
-      setInfo('Session expired. Please log in again to continue.');
-    }
-  }, [user, navigate, location]);
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

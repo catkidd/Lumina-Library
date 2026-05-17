@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
-import { Clock, Calendar, CheckSquare, AlertTriangle, RefreshCw, BookOpen, User, CheckCircle } from 'lucide-react';
+import { Calendar, CheckSquare, AlertTriangle, RefreshCw, BookOpen, User, CheckCircle } from 'lucide-react';
 
 const BorrowHistory = () => {
   const [transactions, setTransactions] = useState([]);

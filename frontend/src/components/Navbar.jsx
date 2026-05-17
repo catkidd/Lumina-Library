@@ -26,7 +26,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between w-full">
         
         {/* CLASSIC ACADEMIC LOGO */}
-        <Link to={user ? "/catalog" : "/"} className="flex items-center gap-2.5 group">
+        <Link to="/" className="flex items-center gap-2.5 group">
           <div className="p-2 bg-gradient-to-br from-indigo-600 to-indigo-800 text-white rounded-xl shadow-md shadow-indigo-600/30 group-hover:scale-105 active:scale-95 transition-all duration-300 border border-indigo-400/20">
             <Library className="w-5 h-5 text-indigo-100" />
           </div>
@@ -50,7 +50,7 @@ const Navbar = () => {
               {user.role === 'STUDENT' && (
                 <Link to="/history" className={linkClass('/history')}>
                   <Clock className="w-4 h-4 text-indigo-600" />
-                  <span>Borrowing Logs</span>
+                  <span>Borrowing History</span>
                 </Link>
               )}
 
@@ -115,7 +115,7 @@ const Navbar = () => {
               className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold rounded-xl border border-indigo-400/20 shadow-md hover:shadow-indigo-500/10 active:scale-97 transition-all duration-300 text-xs uppercase tracking-wider font-body"
             >
               <User className="w-3.5 h-3.5" />
-              <span>Portal Access</span>
+              <span>Portal Login</span>
             </Link>
           )}
         </div>

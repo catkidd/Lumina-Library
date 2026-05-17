@@ -21,7 +21,7 @@ const BorrowHistory = () => {
       const res = await api.get('/api/transactions/my');
       setTransactions(res.data);
     } catch {
-      showToast('error', 'Failed to retrieve borrowing logs');
+      showToast('error', 'Failed to retrieve borrowing history');
     } finally {
       setLoading(false);
     }
@@ -85,7 +85,7 @@ const BorrowHistory = () => {
           <div className="flex flex-col gap-3">
             <span className="text-amber-800 text-[9px] font-bold uppercase tracking-[0.25em]">Borrowing History</span>
             <h1 className="font-serif font-extrabold text-4xl tracking-tight text-stone-900 leading-none">
-              My Borrowing Logs
+              My Borrowing History
             </h1>
             <p className="text-stone-605 text-sm font-medium leading-relaxed">
               Monitor active checkouts, overdue dates, and past transaction records.
@@ -115,7 +115,7 @@ const BorrowHistory = () => {
               <BookOpen className="w-10 h-10 text-stone-400 mx-auto stroke-[1.2]" />
               <h3 className="text-base font-bold text-stone-850 uppercase tracking-wider">No Transactions Found</h3>
               <p className="text-stone-600 text-xs leading-relaxed font-medium">
-                You haven't borrowed any books from our catalog yet. Go to the Catalog tab to choose your first volume!
+                You haven't borrowed any books from our catalog yet. Go to the Catalog tab to choose your first book!
               </p>
             </div>
           </div>

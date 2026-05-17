@@ -7,6 +7,7 @@ import {
   Library, Mail, Phone, CalendarDays, ArrowUp
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import api from '../services/api';
 
 const Home = () => {
   const { user } = useAuth();
@@ -19,7 +20,51 @@ const Home = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Dynamic Scroll Listeners for scroll bar & back to top button
+  // Fallback seed books matching the backend DataSeeder exactly
+  const [books, setBooks] = useState([
+    { id: 1, title: "Introduction to Algorithms", author: "Thomas H. Cormen", category: "Technology", year: "2022", rating: 4.8, status: "Available", desc: "The standard academic reference for modern algorithms.", gradient: "from-stone-850 to-stone-900" },
+    { id: 2, title: "Clean Code", author: "Robert C. Martin", category: "Technology", year: "2008", rating: 4.9, status: "Available", desc: "A craftsman's guide to software structure and design.", gradient: "from-stone-900 to-stone-950" },
+    { id: 3, title: "The Hobbit", author: "J.R.R. Tolkien", category: "Fantasy", year: "1937", rating: 4.8, status: "Available", desc: "A classical fantasy adventure following Bilbo Baggins.", gradient: "from-stone-850 to-stone-900" },
+    { id: 4, title: "A Brief History of Time", author: "Stephen Hawking", category: "Science", year: "1988", rating: 4.7, status: "Available", desc: "An exploration of cosmology, black holes, and the universe.", gradient: "from-stone-900 to-stone-950" },
+    { id: 5, title: "1984", author: "George Orwell", category: "Dystopian", year: "1949", rating: 4.9, status: "Available", desc: "A classic dystopian novel exploring totalitarian surveillance.", gradient: "from-stone-800 to-stone-900" }
+  ]);
+
+  // Sync with live database catalog if user is logged in
+  useEffect(() => {
+    if (user) {
+      api.get('/api/books')
+        .then((res) => {
+          const gradients = [
+            "from-stone-850 to-stone-900",
+            "from-stone-900 to-stone-950",
+            "from-stone-850 to-stone-900",
+            "from-stone-900 to-stone-950",
+            "from-stone-800 to-stone-900"
+          ];
+          const descriptions = {
+            "Introduction to Algorithms": "The standard academic reference for modern algorithms.",
+            "Clean Code": "A craftsman's guide to software structure and design.",
+            "The Hobbit": "A classical fantasy adventure following Bilbo Baggins.",
+            "A Brief History of Time": "An exploration of cosmology, black holes, and the universe.",
+            "1984": "A classic dystopian novel exploring totalitarian surveillance."
+          };
+          const mapped = res.data.map((b, idx) => ({
+            ...b,
+            rating: b.title === "Clean Code" || b.title === "1984" ? 4.9 : 4.8,
+            desc: descriptions[b.title] || "An excellent indexed academic publication.",
+            gradient: gradients[idx % gradients.length],
+            status: b.availableCopies > 0 ? "Available" : "Borrowed",
+            category: b.genre
+          }));
+          setBooks(mapped);
+        })
+        .catch(() => {
+          // Keep mock fallback if request fails
+        });
+    }
+  }, [user]);
+
+  // Dynamic Scroll Progress Listeners
   useEffect(() => {
     const handleScroll = () => {
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -37,23 +82,13 @@ const Home = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // High-fidelity local database of library books
-  const catalogDatabase = useMemo(() => [
-    { id: 1, title: "The Art of Computer Programming", author: "Donald Knuth", category: "Computer Science", year: "2021", rating: 5, status: "Available", desc: "The definitive guide to classical computer science algorithms.", gradient: "from-stone-850 to-stone-950" },
-    { id: 2, title: "Clean Architecture", author: "Robert C. Martin", category: "Software Engineering", year: "2017", rating: 5, status: "Available", desc: "A craftsman's guide to software structure and design.", gradient: "from-stone-900 to-stone-950" },
-    { id: 3, title: "Introduction to Algorithms", author: "Thomas H. Cormen", category: "Algorithms", year: "2022", rating: 4.8, status: "Borrowed", desc: "The standard academic reference for modern algorithms.", gradient: "from-stone-850 to-stone-900" },
-    { id: 4, title: "Designing Data-Intensive Applications", author: "Martin Kleppmann", category: "Systems Design", year: "2017", rating: 4.9, status: "Available", desc: "An exhaustive guide to data systems architecture.", gradient: "from-stone-900 to-stone-950" },
-    { id: 5, title: "Quantum Computing: A Gentle Introduction", author: "Eleanor Rieffel", category: "Emerging Tech", year: "2011", rating: 4.6, status: "Available", desc: "A mathematical introduction to quantum information science.", gradient: "from-stone-800 to-stone-900" },
-    { id: 6, title: "Artificial Intelligence: A Modern Approach", author: "Stuart Russell", category: "AI / ML", year: "2020", rating: 4.9, status: "Available", desc: "The global gold standard textbook for AI.", gradient: "from-stone-900 to-stone-955" }
-  ], []);
-
   // Filter recommendations based on active categories
   const recommendedBooks = useMemo(() => {
-    if (activeCategory === 'All') return catalogDatabase.slice(0, 4);
-    return catalogDatabase.filter(b => b.category === activeCategory).slice(0, 4);
-  }, [activeCategory, catalogDatabase]);
+    if (activeCategory === 'All') return books.slice(0, 4);
+    return books.filter(b => b.category === activeCategory).slice(0, 4);
+  }, [activeCategory, books]);
 
-  // Global search redirect or actions
+  // Global search redirect
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (user) {
@@ -113,7 +148,7 @@ const Home = () => {
             
             <div className="w-max flex items-center gap-2 rounded-full px-3.5 py-1 text-[9px] font-bold uppercase tracking-[0.25em] border border-amber-900/10 bg-amber-50/60 text-amber-900">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-ping" />
-              <span>University Research Repository</span>
+              <span>University Library Portal</span>
             </div>
 
             <h1 className="font-serif font-extrabold text-5xl md:text-7xl tracking-tight text-stone-900 leading-[1.02] pr-4">
@@ -132,10 +167,10 @@ const Home = () => {
                 <Search className="w-5 h-5 text-stone-450 absolute left-5 group-focus-within:text-stone-900 transition-colors" />
                 <input
                   type="text"
-                  placeholder="Search books, journals, authors, systems..."
+                  placeholder="Search books, journals, authors..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-white border border-transparent text-stone-900 rounded-[calc(1.8rem-0.5rem)] pl-12 pr-44 py-4 text-sm focus:outline-none transition-all font-semibold shadow-inner"
+                  className="w-full bg-white border border-transparent text-stone-900 rounded-[calc(1.8rem-0.5rem)] pl-12 pr-32 py-4 text-sm focus:outline-none transition-all font-semibold shadow-inner"
                 />
                 
                 {/* BUTTON IN BUTTON Pattern */}
@@ -143,20 +178,20 @@ const Home = () => {
                   type="submit"
                   className="absolute right-3.5 px-5 py-3 bg-stone-900 hover:bg-stone-850 text-stone-100 hover:text-white rounded-[calc(1.8rem-0.5rem)] text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.97]"
                 >
-                  Query Engine
+                  Search
                 </button>
               </div>
 
               {/* QUICK RECOM TAGS */}
               <div className="flex flex-wrap gap-2.5 mt-4 items-center">
-                <span className="text-stone-500 text-[10px] uppercase font-bold tracking-wider">Trending Fields:</span>
-                {['Algorithms', 'Systems Design', 'AI / ML'].map((tag) => (
+                <span className="text-stone-500 text-[10px] uppercase font-bold tracking-wider">Trending Genres:</span>
+                {['Technology', 'Fantasy', 'Science', 'Dystopian'].map((tag) => (
                   <button
                     key={tag}
                     type="button"
                     onClick={() => {
                       setSearchQuery(tag);
-                      setActiveCategory(tag === 'Systems Design' ? 'Systems Design' : tag === 'Algorithms' ? 'Algorithms' : 'AI / ML');
+                      setActiveCategory(tag);
                     }}
                     className="text-[9px] font-bold uppercase tracking-wider text-stone-750 hover:text-stone-950 bg-stone-100 hover:bg-stone-200/60 px-3 py-1 border border-stone-200 rounded-lg transition-colors"
                   >
@@ -181,12 +216,12 @@ const Home = () => {
                   <div className="w-[190px] h-[260px] bg-gradient-to-br from-stone-900 to-stone-950 rounded-[calc(2.2rem-0.5rem)] text-stone-100 p-6 flex flex-col justify-between relative overflow-hidden shadow-inner">
                     <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-white/5 rounded-full blur-xl pointer-events-none" />
                     <div className="flex justify-between items-start">
-                      <span className="text-[8px] font-bold uppercase tracking-widest bg-white/10 text-white px-2 py-0.5 rounded border border-white/15">Volume I</span>
+                      <span className="text-[8px] font-bold uppercase tracking-widest bg-white/10 text-white px-2 py-0.5 rounded border border-white/15">Academic Reference</span>
                       <BookOpen className="w-3.5 h-3.5 text-stone-300" />
                     </div>
                     <div className="space-y-1.5">
-                      <h4 className="font-serif font-bold text-xs text-stone-100 leading-tight uppercase">THE ART OF PROGRAMMING</h4>
-                      <p className="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Donald Knuth</p>
+                      <h4 className="font-serif font-bold text-xs text-stone-100 leading-tight uppercase">THE HOBBIT</h4>
+                      <p className="text-[9px] text-amber-400 font-bold uppercase tracking-wider">J.R.R. Tolkien</p>
                     </div>
                   </div>
                 </div>
@@ -197,12 +232,12 @@ const Home = () => {
                   <div className="w-[190px] h-[260px] bg-gradient-to-br from-stone-950 to-stone-900 rounded-[calc(2.2rem-0.5rem)] text-stone-100 p-6 flex flex-col justify-between relative overflow-hidden shadow-inner">
                     <div className="absolute bottom-0 left-0 w-[120px] h-[120px] bg-white/5 rounded-full blur-lg pointer-events-none" />
                     <div className="flex justify-between items-start">
-                      <span className="text-[8px] font-bold uppercase tracking-widest bg-white/10 text-white px-2 py-0.5 rounded border border-white/15">Core Manual</span>
+                      <span className="text-[8px] font-bold uppercase tracking-widest bg-white/10 text-white px-2 py-0.5 rounded border border-white/15">Standard Edition</span>
                       <Globe className="w-3.5 h-3.5 text-stone-300" />
                     </div>
                     <div className="space-y-1.5">
-                      <h4 className="font-serif font-bold text-xs text-stone-100 leading-tight uppercase">ARTIFICIAL INTELLIGENCE</h4>
-                      <p className="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Stuart Russell</p>
+                      <h4 className="font-serif font-bold text-xs text-stone-100 leading-tight uppercase">CLEAN CODE</h4>
+                      <p className="text-[9px] text-amber-400 font-bold uppercase tracking-wider">Robert C. Martin</p>
                     </div>
                   </div>
                 </div>
@@ -213,9 +248,9 @@ const Home = () => {
                 <div className="bg-white p-4 rounded-[calc(1.5rem-0.375rem)] space-y-2">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[8px] font-bold uppercase tracking-wider text-emerald-600">Live Operations</span>
+                    <span className="text-[8px] font-bold uppercase tracking-wider text-emerald-600">System Status</span>
                   </div>
-                  <p className="text-[10px] font-bold text-stone-600 leading-normal">Overdue check automated job completed successfully.</p>
+                  <p className="text-[10px] font-bold text-stone-600 leading-normal">Automatic catalog sync completed successfully.</p>
                 </div>
               </div>
 
@@ -230,7 +265,7 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { label: 'Book Catalog', count: '14,280+', desc: 'Indexed physical books & e-resources', icon: BookMarked },
-            { label: 'Active Scholars', count: '3,850+', desc: 'Registered student and faculty members', icon: Users },
+            { label: 'Active Members', count: '3,850+', desc: 'Registered student and faculty members', icon: Users },
             { label: 'Scientific Sources', count: '9,420+', desc: 'Accessible e-journals & publications', icon: Globe }
           ].map((stat, i) => (
             <div 
@@ -250,7 +285,7 @@ const Home = () => {
                   <h3 className="font-serif font-extrabold text-4xl text-stone-900 tracking-tight leading-none">
                     {stat.count}
                   </h3>
-                  <h4 className="font-bold text-[10px] uppercase tracking-wider text-stone-700">
+                  <h4 className="font-bold text-[10px] uppercase tracking-wider text-stone-770">
                     {stat.label}
                   </h4>
                   <p className="text-xs text-stone-550 leading-relaxed pt-1">
@@ -280,7 +315,7 @@ const Home = () => {
 
           {/* Category Capsule Triggers (Concentric Border Pill) */}
           <div className="flex flex-wrap gap-1.5 bg-[#f2efe8]/80 p-1.5 rounded-full border border-stone-250/60 w-full lg:w-auto shadow-sm max-w-full lg:max-w-3xl">
-            {['All', 'Computer Science', 'AI / ML', 'Software Engineering', 'Systems Design'].map((cat) => (
+            {['All', 'Technology', 'Fantasy', 'Science', 'Dystopian'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
@@ -325,7 +360,7 @@ const Home = () => {
                 <div className="p-6 space-y-4 flex-grow flex flex-col justify-between bg-white">
                   <div className="space-y-2">
                     <div className="flex justify-between items-center text-[8px] font-bold uppercase tracking-widest">
-                      <span className="text-stone-400">System Catalog</span>
+                      <span className="text-stone-400">Availability</span>
                       <span className={book.status === 'Available' ? 'text-emerald-600 font-bold' : 'text-amber-700 font-bold'}>
                         ● {book.status}
                       </span>
@@ -344,7 +379,7 @@ const Home = () => {
                       onClick={handleBookClick}
                       className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-stone-900 hover:text-stone-750 group-hover:translate-x-0.5 transition-transform"
                     >
-                      <span>Borrow Queue</span>
+                      <span>Borrow Book</span>
                       <ArrowRight className="w-3 h-3" />
                     </button>
                   </div>
@@ -408,7 +443,7 @@ const Home = () => {
                     to="/login"
                     className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-stone-900 hover:text-stone-750"
                   >
-                    <span>Access Terminal</span>
+                    <span>View Details</span>
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
@@ -436,7 +471,7 @@ const Home = () => {
         <div className="space-y-8 relative before:absolute before:left-8 before:top-2 before:bottom-2 before:w-px before:bg-stone-200 pl-2">
           {[
             { date: "May 24, 2026", title: "Symposium: Machine Learning and Big Data Architectures", desc: "Guest speakers from the engineering department host a guest seminar in Media Room 3. Reservation required.", tag: "Academics", icon: Calendar },
-            { date: "June 02, 2026", title: "Scheduled Database and System Maintenance", desc: "The catalog search system will undergo scheduled maintenance from 2:00 AM to 4:00 AM.", tag: "Systems Ops", icon: Clock },
+            { date: "June 02, 2026", title: "Scheduled Database and System Maintenance", desc: "The catalog search system will undergo scheduled maintenance from 2:00 AM to 4:00 AM.", tag: "Operations", icon: Clock },
             { date: "June 10, 2026", title: "Historical Archives Preservation Additions", desc: "Lumina has added a new collection containing classic computing manuscripts.", tag: "Books", icon: BookMarked }
           ].map((event, i) => (
             <div key={i} className="flex gap-8 relative items-start group pl-0">
@@ -478,9 +513,9 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           <div className="lg:col-span-1 space-y-4 pr-6 flex flex-col justify-center text-left">
-            <span className="text-amber-800 text-[9px] font-bold uppercase tracking-[0.25em]">Campus Reviews</span>
+            <span className="text-amber-800 text-[9px] font-bold uppercase tracking-[0.25em]">Reviews</span>
             <h2 className="font-serif font-extrabold text-4xl md:text-5xl text-stone-900 tracking-tight leading-tight">
-              Scholars Voice
+              Student Testimonials
             </h2>
             <p className="text-stone-600 text-sm leading-relaxed font-medium">
               Find out how academic researchers, doctorate candidates, and students experience Lumina's platform operations every single day.
@@ -547,13 +582,13 @@ const Home = () => {
               <div className="bg-white rounded-[calc(1.8rem-0.375rem)] overflow-hidden">
                 <button
                   onClick={() => toggleFaq(i)}
-                  className="w-full px-6 py-5 text-left flex items-center justify-between text-stone-850 hover:text-stone-950 transition-colors"
+                  className="w-full px-6 py-5 text-left flex items-center justify-between text-stone-855 hover:text-stone-950 transition-colors"
                 >
                   <span className="font-bold text-base pr-4 font-serif">{faq.q}</span>
                   {openFaq === i ? (
                     <ChevronUp className="w-4.5 h-4.5 text-stone-900 shrink-0" />
                   ) : (
-                    <ChevronDown className="w-4.5 h-4.5 text-stone-400 shrink-0" />
+                    <ChevronDown className="w-4.5 h-4.5 text-stone-450 shrink-0" />
                   )}
                 </button>
                 
@@ -586,11 +621,11 @@ const Home = () => {
               </div>
               
               <h2 className="font-serif text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight leading-tight">
-                Subscribe to the <span className="italic font-normal text-stone-600">Lumina Gazette</span>
+                Subscribe to the <span className="italic font-normal text-stone-600">Lumina Newsletter</span>
               </h2>
               
               <p className="text-stone-600 text-sm md:text-base leading-relaxed max-w-lg font-medium">
-                Get direct intelligence on monthly resource acquisitions, specialized research tutorials, guest lectures, and holiday scheduling adjustments sent to your mailbox.
+                Get updates on monthly resource acquisitions, specialized research tutorials, guest lectures, and holiday scheduling adjustments sent to your mailbox.
               </p>
 
               <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 w-full max-w-lg">
@@ -607,7 +642,7 @@ const Home = () => {
                 <button
                   type="submit"
                   disabled={subscribed}
-                  className="px-6 py-4 bg-stone-900 hover:bg-stone-850 text-stone-100 hover:text-white font-bold rounded-xl border border-stone-800 shadow-md transition-all duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-3 active:scale-[0.98]"
+                  className="px-6 py-4 bg-stone-900 hover:bg-stone-855 text-stone-100 hover:text-white font-bold rounded-xl border border-stone-800 shadow-md transition-all duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-3 active:scale-[0.98]"
                 >
                   <span>{subscribed ? 'Subscribed' : 'Subscribe Now'}</span>
                   <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0">
@@ -618,7 +653,7 @@ const Home = () => {
 
               {subscribed && (
                 <p className="text-xs text-emerald-700 font-bold mt-2 animate-pulse">
-                  ✓ Registration successful. Welcome to the Lumina Academic broadcast list!
+                  ✓ Registration successful. Welcome to the Lumina Library newsletter list!
                 </p>
               )}
             </div>
@@ -638,7 +673,7 @@ const Home = () => {
                 <div className="p-2 bg-stone-100 text-stone-700 rounded-xl border border-stone-200/50">
                   <Library className="w-5 h-5 text-stone-800" />
                 </div>
-                <span className="font-serif font-extrabold text-xl tracking-wide text-stone-950">
+                <span className="font-serif font-extrabold text-xl tracking-wide text-stone-955">
                   Lumina Library Portal
                 </span>
               </div>

@@ -162,9 +162,9 @@ const BookCatalog = () => {
           <div className="bg-[#f2efe8]/80 p-2 rounded-[2.2rem] border border-stone-200/50 max-w-xl mx-auto w-full mt-10">
             <div className="bg-white p-12 text-center rounded-[calc(2.2rem-0.5rem)] shadow-inner space-y-4">
               <Book className="w-10 h-10 text-stone-400 mx-auto stroke-[1.2]" />
-              <h3 className="text-base font-bold text-stone-850 uppercase tracking-wider">No Books Found</h3>
+              <h3 className="text-base font-bold text-stone-855 uppercase tracking-wider">No Books Found</h3>
               <p className="text-stone-600 text-xs leading-relaxed font-medium">
-                We couldn't find any books matching your current search parameters. Try expanding your query!
+                We couldn't find any books matching your current search parameters. Try expanding your search terms!
               </p>
             </div>
           </div>
@@ -213,7 +213,7 @@ const BookCatalog = () => {
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[8px] text-stone-450">
-                            <Layers className="w-3.5 h-3.5 text-stone-400 stroke-[1.5]" /> Total Inventory
+                            <Layers className="w-3.5 h-3.5 text-stone-400 stroke-[1.5]" /> Total Copies
                           </span>
                           <span className="text-stone-750 font-bold">{b.totalCopies} copies</span>
                         </div>

@@ -1,4 +1,4 @@
-import { ShieldCheck, HardDrive, Cpu, Terminal, FileText, CheckCircle } from 'lucide-react';
+import { ShieldCheck, HardDrive, Terminal, FileText, CheckCircle } from 'lucide-react';
 
 const Compliance = () => {
   const sections = [

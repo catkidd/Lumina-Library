@@ -64,30 +64,30 @@ const BorrowHistory = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10 relative">
+    <div className="max-w-6xl mx-auto px-6 py-10 relative font-body select-none">
       {toast && (
         <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 border rounded-2xl shadow-2xl transition-all duration-300 ${
           toast.type === 'success' 
-            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
-            : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
+            ? 'bg-emerald-50 border border-emerald-200/60 text-emerald-600' 
+            : 'bg-rose-50 border border-rose-200/60 text-rose-600'
         }`}>
           {toast.type === 'success' ? <CheckCircle className="w-5 h-5 flex-shrink-0" /> : <AlertTriangle className="w-5 h-5 flex-shrink-0" />}
-          <span className="text-sm font-medium">{toast.text}</span>
+          <span className="text-sm font-bold">{toast.text}</span>
         </div>
       )}
 
-      <div className="flex items-center justify-between mb-10 pb-6 border-b border-slate-800/40">
+      <div className="flex items-center justify-between mb-10 pb-6 border-b border-slate-200/60">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-200 via-indigo-100 to-indigo-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 font-serif">
             My Borrowing Logs
           </h1>
-          <p className="text-slate-400 mt-1.5 text-sm">
+          <p className="text-slate-600 mt-1.5 text-sm">
             Monitor active checkouts, overdue dates, and past transaction records.
           </p>
         </div>
         <button
           onClick={fetchHistory}
-          className="p-3 bg-slate-900/30 hover:bg-slate-800/40 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700/60 rounded-xl transition-all"
+          className="p-3 bg-white hover:bg-slate-100/50 text-slate-600 hover:text-indigo-600 border border-slate-200 rounded-xl shadow-sm transition-all"
           title="Refresh History"
         >
           <RefreshCw className="w-4 h-4" />
@@ -97,14 +97,14 @@ const BorrowHistory = () => {
       {loading ? (
         <div className="space-y-4">
           {[1, 2].map((n) => (
-            <div key={n} className="glass-panel p-6 rounded-3xl h-36 animate-pulse"></div>
+            <div key={n} className="bg-slate-200/40 border border-slate-200/60 p-6 rounded-3xl h-36 animate-pulse"></div>
           ))}
         </div>
       ) : transactions.length === 0 ? (
-        <div className="glass-panel p-12 text-center rounded-3xl border border-dashed border-slate-800 max-w-xl mx-auto">
-          <BookOpen className="w-12 h-12 text-slate-600 mx-auto mb-4" />
-          <h3 className="text-lg font-bold text-slate-300">No Transactions Found</h3>
-          <p className="text-slate-500 text-sm mt-1">
+        <div className="bg-white border border-dashed border-slate-200 p-12 text-center rounded-3xl max-w-xl mx-auto shadow-md">
+          <BookOpen className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+          <h3 className="text-lg font-bold text-slate-800">No Transactions Found</h3>
+          <p className="text-slate-600 text-sm mt-1">
             You haven't borrowed any books from our catalog yet. Go to the Catalog tab to choose your first volume!
           </p>
         </div>
@@ -121,49 +121,49 @@ const BorrowHistory = () => {
             return (
               <div
                 key={t.id}
-                className="glass-panel p-6 rounded-3xl hover:border-slate-700/40 transition-all duration-200 flex flex-col md:flex-row md:items-center justify-between gap-6"
+                className="bg-white/80 border border-slate-200/80 p-6 rounded-3xl hover:border-slate-355 transition-all duration-200 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-md"
               >
                 <div className="flex-grow min-w-0">
                   <div className="flex flex-wrap items-center gap-3.5 mb-3">
-                    <h3 className="text-lg font-bold text-slate-100 line-clamp-1">{t.bookTitle}</h3>
-                    <span className={`px-2.5 py-0.5 text-[10px] font-bold border rounded-md ${
+                    <h3 className="text-lg font-extrabold text-slate-900 line-clamp-1 font-serif">{t.bookTitle}</h3>
+                    <span className={`px-2.5 py-0.5 text-[10px] font-bold border rounded-md uppercase tracking-wider ${
                       t.status === 'RETURNED'
-                        ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+                        ? 'bg-emerald-50 border border-emerald-200/60 text-emerald-600'
                         : isOverdue
-                        ? 'bg-rose-500/10 border-rose-500/20 text-rose-400'
-                        : 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'
+                        ? 'bg-rose-50 border border-rose-200/60 text-rose-600'
+                        : 'bg-indigo-50 border border-indigo-200/60 text-indigo-600'
                     }`}>
                       {t.status === 'RETURNED' ? 'RETURNED' : isOverdue ? 'OVERDUE' : 'ACTIVE'}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-slate-400 text-sm mb-4">
-                    <User className="w-4 h-4 text-slate-500" />
+                  <div className="flex items-center gap-1.5 text-slate-600 text-sm mb-4 font-medium">
+                    <User className="w-4 h-4 text-slate-400" />
                     <span>{t.bookAuthor}</span>
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
                     <div>
-                      <span className="block text-slate-500 mb-0.5">Checkout Date</span>
-                      <span className="flex items-center gap-1 text-slate-300">
-                        <Calendar className="w-3.5 h-3.5 text-indigo-400/80" />
+                      <span className="block text-slate-500 font-bold uppercase tracking-wider text-[10px] mb-0.5">Checkout Date</span>
+                      <span className="flex items-center gap-1 text-slate-750 font-bold">
+                        <Calendar className="w-3.5 h-3.5 text-indigo-600" />
                         {formatDate(t.checkoutDate)}
                       </span>
                     </div>
 
                     <div>
-                      <span className="block text-slate-500 mb-0.5">Due Date</span>
-                      <span className="flex items-center gap-1 text-slate-300">
-                        <Calendar className="w-3.5 h-3.5 text-indigo-400/80" />
+                      <span className="block text-slate-500 font-bold uppercase tracking-wider text-[10px] mb-0.5">Due Date</span>
+                      <span className="flex items-center gap-1 text-slate-750 font-bold">
+                        <Calendar className="w-3.5 h-3.5 text-indigo-600" />
                         {formatDate(t.dueDate)}
                       </span>
                     </div>
 
                     {t.returnDate && (
                       <div>
-                        <span className="block text-slate-500 mb-0.5">Returned Date</span>
-                        <span className="flex items-center gap-1 text-slate-300">
-                          <CheckCircle className="w-3.5 h-3.5 text-emerald-400/80" />
+                        <span className="block text-slate-500 font-bold uppercase tracking-wider text-[10px] mb-0.5">Returned Date</span>
+                        <span className="flex items-center gap-1 text-slate-750 font-bold">
+                          <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
                           {formatDate(t.returnDate)}
                         </span>
                       </div>
@@ -175,14 +175,14 @@ const BorrowHistory = () => {
                   {t.status !== 'RETURNED' && (
                     <div className="w-full">
                       <div className="flex items-center justify-between text-xs mb-1.5">
-                        <span className="text-slate-500">Borrow Period</span>
-                        <span className={`font-semibold ${isOverdue ? 'text-rose-400' : 'text-slate-300'}`}>
+                        <span className="text-slate-500 font-semibold">Borrow Period</span>
+                        <span className={`font-bold ${isOverdue ? 'text-rose-600 animate-pulse' : 'text-slate-750'}`}>
                           {daysRemaining < 0
                             ? `Overdue by ${Math.abs(daysRemaining)} days`
                             : `${daysRemaining} days remaining`}
                         </span>
                       </div>
-                      <div className="w-full h-1.5 bg-slate-950/40 border border-slate-800 rounded-full overflow-hidden">
+                      <div className="w-full h-1.5 bg-slate-100 border border-slate-200 rounded-full overflow-hidden">
                         <div
                           className={`h-full rounded-full transition-all duration-300 ${
                             isOverdue ? 'bg-rose-500' : 'bg-indigo-500'
@@ -197,13 +197,13 @@ const BorrowHistory = () => {
                     <button
                       onClick={() => handleReturn(t.id)}
                       disabled={returningId === t.id}
-                      className="px-6 py-2.5 bg-slate-900 hover:bg-slate-800/80 text-slate-200 border border-slate-800 hover:border-slate-700/60 text-xs md:text-sm font-semibold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] w-full"
+                      className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-700 hover:text-indigo-600 border border-slate-200 hover:border-indigo-300 text-xs font-bold uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] w-full shadow-sm"
                     >
                       {returningId === t.id ? (
-                        <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                        <div className="w-4 h-4 border-2 border-slate-200 border-t-indigo-600 rounded-full animate-spin"></div>
                       ) : (
                         <>
-                          <CheckSquare className="w-4 h-4 text-emerald-400" />
+                          <CheckSquare className="w-4 h-4 text-emerald-600" />
                           <span>Return Book</span>
                         </>
                       )}

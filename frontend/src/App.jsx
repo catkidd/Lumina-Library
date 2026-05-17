@@ -16,7 +16,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="min-h-screen bg-[#0b0f19] text-slate-100 font-sans flex flex-col animate-fade-in">
+        <div className="min-h-screen bg-[#f6f8fb] text-slate-800 font-sans flex flex-col animate-fade-in">
           <Navbar />
           <main className="flex-grow">
             <Routes>

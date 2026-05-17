@@ -102,7 +102,7 @@ const Home = () => {
       
       {/* SCROLL PROGRESS BAR */}
       <div 
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 via-indigo-600 to-indigo-700 z-[100] transition-all duration-100" 
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 via-indigo-600 to-indigo-700 z-[100] transition-[width] duration-300 ease-out shadow-sm" 
         style={{ width: `${scrollProgress}%` }}
       />
 
@@ -636,7 +636,26 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Column 2: Hours */}
+            {/* Column 2: Institutional Links (Center) */}
+            <div className="md:col-span-3">
+              <h3 className="font-bold text-xs uppercase tracking-widest text-indigo-600 mb-6 font-body">Quick Navigation</h3>
+              <ul className="space-y-3 text-xs text-slate-600 font-body">
+                <li>
+                  <Link to="/catalog" className="hover:text-indigo-600 transition-colors font-bold">Book Catalog</Link>
+                </li>
+                <li>
+                  <Link to="/login" className="hover:text-indigo-600 transition-colors font-bold">Study Booth Booking</Link>
+                </li>
+                <li>
+                  <Link to="/login" className="hover:text-indigo-600 transition-colors font-bold">Research Support</Link>
+                </li>
+                <li>
+                  <Link to="/compliance" className="hover:text-indigo-600 transition-colors font-bold">Compliance Audit</Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3: Hours (Right) */}
             <div className="md:col-span-3">
               <h3 className="font-bold text-xs uppercase tracking-widest text-indigo-600 mb-6 font-body">Operational Hours</h3>
               <ul className="space-y-3 text-xs text-slate-600">
@@ -654,25 +673,6 @@ const Home = () => {
                 </li>
                 <li className="text-[10px] text-slate-500 italic mt-2">
                   * Note: E-catalog is active 24/7. Holiday schedule shifts are broadcasted via announcements.
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 3: Institutional Links */}
-            <div className="md:col-span-3">
-              <h3 className="font-bold text-xs uppercase tracking-widest text-indigo-600 mb-6 font-body">Quick Navigation</h3>
-              <ul className="space-y-3 text-xs text-slate-600 font-body">
-                <li>
-                  <Link to="/catalog" className="hover:text-indigo-600 transition-colors font-bold">Book Catalog</Link>
-                </li>
-                <li>
-                  <Link to="/login" className="hover:text-indigo-600 transition-colors font-bold">Study Booth Booking</Link>
-                </li>
-                <li>
-                  <Link to="/login" className="hover:text-indigo-600 transition-colors font-bold">Research Support</Link>
-                </li>
-                <li>
-                  <Link to="/compliance" className="hover:text-indigo-600 transition-colors font-bold">Compliance Audit</Link>
                 </li>
               </ul>
             </div>

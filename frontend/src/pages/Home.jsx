@@ -1,10 +1,10 @@
-import { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useMemo, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { 
   Search, BookOpen, Users, Globe, BookMarked, 
   MapPin, Clock, Calendar, ArrowRight, ChevronDown, 
   ChevronUp, Star, GraduationCap, Award, HelpCircle,
-  Library, Mail, Phone, CalendarDays
+  Library, Mail, Phone, CalendarDays, ArrowUp
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -16,6 +16,25 @@ const Home = () => {
   const [openFaq, setOpenFaq] = useState(null);
   const [subscriberEmail, setSubscriberEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress((window.scrollY / totalScroll) * 100);
+      }
+      setShowBackToTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // High-fidelity local database of library books for instantaneous, satisfying search interactions
   const catalogDatabase = useMemo(() => [
@@ -90,6 +109,12 @@ const Home = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#0b0f19] text-slate-100 flex flex-col font-sans select-none pb-0">
       
+      {/* SCROLL PROGRESS BAR */}
+      <div 
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600 z-[100] transition-all duration-100" 
+        style={{ width: `${scrollProgress}%` }}
+      />
+
       {/* GLOWING AMBIENT BACKGROUND ORBS */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-600/10 blur-[120px] pointer-events-none" />
       <div className="absolute top-[35%] right-[-10%] w-[600px] h-[600px] rounded-full bg-violet-600/5 blur-[150px] pointer-events-none" />
@@ -556,6 +581,53 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ================= NEWSLETTER FULL SECTION ================= */}
+      <section className="relative px-6 max-w-7xl mx-auto w-full mb-32 z-40 animate-fade-in">
+        <div className="glass-panel p-10 md:p-16 rounded-[40px] border border-slate-800/80 shadow-2xl relative overflow-hidden text-center gradient-bg">
+          {/* Decorative glowing gradient spheres */}
+          <div className="absolute top-[-100px] right-[-100px] w-[250px] h-[250px] rounded-full bg-indigo-600/20 blur-[50px] pointer-events-none" />
+          <div className="absolute bottom-[-100px] left-[-100px] w-[250px] h-[250px] rounded-full bg-violet-600/10 blur-[50px] pointer-events-none" />
+          
+          <div className="max-w-2xl mx-auto relative z-10 font-sans">
+            <div className="w-14 h-14 bg-indigo-500/10 text-indigo-400 rounded-2xl flex items-center justify-center border border-indigo-500/20 mb-8 mx-auto shadow-inner">
+              <Mail className="w-7 h-7 animate-bounce" />
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">
+              Subscribe to the <span className="bg-gradient-to-r from-indigo-400 to-indigo-100 bg-clip-text text-transparent animate-pulse">Lumina Gazette</span>
+            </h2>
+            
+            <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-10 max-w-lg mx-auto">
+              Get direct intelligence on monthly resource acquisitions, specialized research tutorials, guest lectures, and holiday scheduling adjustments sent to your mailbox.
+            </p>
+
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+              <input
+                type="email"
+                placeholder="Enter academic email address"
+                required
+                value={subscriberEmail}
+                onChange={(e) => setSubscriberEmail(e.target.value)}
+                className="flex-grow bg-slate-950/80 border border-slate-800 text-slate-100 rounded-xl px-5 py-4 text-sm focus:border-indigo-500/60 outline-none shadow-inner transition-colors"
+              />
+              <button
+                type="submit"
+                disabled={subscribed}
+                className="px-6 py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold rounded-xl border border-indigo-400/20 shadow-lg hover:shadow-indigo-500/20 active:scale-97 transition-all duration-200"
+              >
+                {subscribed ? 'Subscribed Successfully' : 'Subscribe Now'}
+              </button>
+            </form>
+
+            {subscribed && (
+              <p className="text-xs text-emerald-400 font-semibold mt-4 animate-pulse">
+                ✓ Registration successful. Welcome to the Lumina Academic broadcast list!
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* ================= FOOTER ================= */}
       <footer className="w-full relative z-40 bg-[#070b13] border-t border-slate-800/80 pt-16 pb-8 px-6">
         <div className="max-w-7xl mx-auto w-full">
@@ -563,7 +635,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
             
             {/* Column 1: Brand & Desc */}
-            <div className="md:col-span-5">
+            <div className="md:col-span-6">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 bg-indigo-600/20 text-indigo-400 rounded-xl border border-indigo-500/20">
                   <Library className="w-5 h-5" />
@@ -609,36 +681,23 @@ const Home = () => {
               </ul>
             </div>
 
-            {/* Column 3: Newsletter & Actions */}
-            <div className="md:col-span-4">
-              <h3 className="font-bold text-xs uppercase tracking-widest text-indigo-400 mb-6">Library Newsletter</h3>
-              <p className="text-slate-400 text-xs leading-relaxed mb-4">
-                Subscribe to receive hot updates on new acquisitions, guest speaker workshops, and holiday operating hours.
-              </p>
-              
-              <form onSubmit={handleSubscribe} className="relative mb-3">
-                <input
-                  type="email"
-                  placeholder="Enter academic email address"
-                  required
-                  value={subscriberEmail}
-                  onChange={(e) => setSubscriberEmail(e.target.value)}
-                  className="w-full bg-slate-900/60 border border-slate-800 text-slate-100 rounded-xl px-4 py-3 text-xs focus:border-indigo-500/60 outline-none pr-28 transition-colors"
-                />
-                <button
-                  type="submit"
-                  disabled={subscribed}
-                  className="absolute right-1.5 top-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg text-xs tracking-wider border border-indigo-400/20 active:scale-95 transition-all"
-                >
-                  {subscribed ? 'Subscribed!' : 'Subscribe'}
-                </button>
-              </form>
-              
-              {subscribed && (
-                <p className="text-[10px] text-emerald-400 font-semibold animate-pulse">
-                  ✓ Successful subscription. Welcome to Lumina's updates list!
-                </p>
-              )}
+            {/* Column 3: Institutional Links */}
+            <div className="md:col-span-3">
+              <h3 className="font-bold text-xs uppercase tracking-widest text-indigo-400 mb-6">Quick Navigation</h3>
+              <ul className="space-y-3 text-xs text-slate-400">
+                <li>
+                  <Link to="/catalog" className="hover:text-indigo-400 transition-colors">Book Catalog</Link>
+                </li>
+                <li>
+                  <Link to="/login" className="hover:text-indigo-400 transition-colors">Study Booth Booking</Link>
+                </li>
+                <li>
+                  <Link to="/login" className="hover:text-indigo-400 transition-colors">Research Support</Link>
+                </li>
+                <li>
+                  <Link to="/compliance" className="hover:text-indigo-400 transition-colors">Compliance Audit</Link>
+                </li>
+              </ul>
             </div>
 
           </div>
@@ -649,14 +708,25 @@ const Home = () => {
               © 2026 Lumina Academic Library Systems. All rights reserved.
             </div>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-indigo-400 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-indigo-400 transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-indigo-400 transition-colors">Compliance</a>
+              <Link to="/privacy" className="hover:text-indigo-400 transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-indigo-400 transition-colors">Terms of Service</Link>
+              <Link to="/compliance" className="hover:text-indigo-400 transition-colors">Compliance</Link>
             </div>
           </div>
 
         </div>
       </footer>
+
+      {/* BACK TO TOP BUTTON */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-8 right-8 p-3.5 bg-indigo-600/90 hover:bg-indigo-500 text-white rounded-2xl border border-indigo-400/30 shadow-2xl shadow-indigo-500/20 hover:scale-105 active:scale-95 transition-all duration-300 z-50 backdrop-blur-md ${
+          showBackToTop ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0 pointer-events-none'
+        }`}
+        aria-label="Back to top"
+      >
+        <ArrowUp className="w-5 h-5" />
+      </button>
 
     </div>
   );

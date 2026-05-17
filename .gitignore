@@ -1,19 +1,18 @@
 # ==============================================================================
-# PROFESSIONAL JAVA & SPRING BOOT PROJECT GITIGNORE
+# PROFESSIONAL JAVA, SPRING BOOT & REACT JS GITIGNORE
 # ==============================================================================
-# Market standard Git ignore patterns tailored for Java development, popular IDEs,
-# build tools, containerization, local development, and front-end workspaces.
-# Author: Antigravity AI Pair Programmer
-# Standard: Enterprise Java Standards & Technical Writing Guidelines Compliant
+# Tailored for Java & Node.js workspaces, IDE configurations, build systems,
+# local database properties, logs, environment variables, and secure keys.
+# Standard: Enterprise Standards & Technical Writing Guidelines Compliant
 
 # ------------------------------------------------------------------------------
-# 1. Compiled Class Files and Binaries
+# 1. Compiled Binary and Class Files
 # ------------------------------------------------------------------------------
 *.class
 *.vars
 *.pyc
 
-# Java Mobile Tools for Java (J2ME)
+# Java Mobile Tools (J2ME)
 .mtj.tmp/
 
 # Package Files (JAR, WAR, EAR, NAR)
@@ -26,12 +25,11 @@
 *.rar
 
 # ------------------------------------------------------------------------------
-# 2. Build Tools (Maven & Gradle)
+# 2. Build Tools & Dependencies (Maven & Gradle)
 # ------------------------------------------------------------------------------
 # Maven
 target/
 pom.xml.tag
-pom.xml.releaseBackup
 pom.xml.next
 pom.xml.releaseBackup
 release.properties
@@ -39,8 +37,6 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
-# If you check in Maven wrapper, you would uncomment the line below:
-# !.mvn/wrapper/maven-wrapper.jar
 
 # Gradle
 bin/
@@ -50,17 +46,16 @@ gradle-app.setting
 !gradle-wrapper.jar
 
 # ------------------------------------------------------------------------------
-# 3. Integrated Development Environments (IDEs) & Editors
+# 3. IDEs, Editors & Project Settings
 # ------------------------------------------------------------------------------
-
-### IntelliJ IDEA ###
+# IntelliJ IDEA
 .idea/
 *.iws
 *.iml
 *.ipr
 out/
 
-### Spring Tool Suite (STS) & Eclipse ###
+# Spring Tool Suite (STS) & Eclipse
 .metadata
 .classpath
 .project
@@ -71,20 +66,20 @@ out/
 *.launch
 .apt_generated
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-### Visual Studio Code ###
+# Visual Studio Code
 .vscode/
 !.vscode/extensions.json
 *.code-workspace
 .history/
 
-### Sublime Text / TextMate / Generic Editors ###
+# Generic Editors
 *.sublime-project
 *.sublime-workspace
 .tmproj
@@ -124,14 +119,11 @@ $RECYCLE.BIN/
 .nfs*
 
 # ------------------------------------------------------------------------------
-# 5. Frontend & Node.js (Monorepo and Local Support)
+# 5. Frontend & Node.js Workspaces
 # ------------------------------------------------------------------------------
 node_modules/
-/frontend/node_modules/
 /frontend/dist/
 /frontend/dist-ssr/
-frontend/node_modules/
-frontend/dist/
 *.local
 npm-debug.log*
 yarn-debug.log*
@@ -140,7 +132,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # ------------------------------------------------------------------------------
-# 6. Logging and Performance Tracing
+# 6. Logging, Auditing & Performance Tracing
 # ------------------------------------------------------------------------------
 *.log
 *.log.*
@@ -150,7 +142,7 @@ lerna-debug.log*
 # ------------------------------------------------------------------------------
 # 7. Environment Configurations & Secrets
 # ------------------------------------------------------------------------------
-# Never commit credentials, local system paths, or API keys
+# Never check in credentials, local paths, or environment secrets
 .env
 .env.local
 .env.development.local

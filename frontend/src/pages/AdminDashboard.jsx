@@ -142,111 +142,129 @@ const AdminDashboard = () => {
   const uniqueReaders = new Set(transactions.map(t => t.userEmail)).size;
 
   return (
-    <div className="relative min-h-[100dvh] bg-[#FFFFFF] text-[#111111] font-sans py-16 px-6 md:px-12 select-none">
+    <div className="relative min-h-[100dvh] bg-[#030303] text-stone-100 font-sans py-24 px-6 md:px-12 select-none overflow-hidden">
       
+      {/* Cinematic Radial Mesh Background Glows */}
+      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-indigo-500/10 blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
+
       {/* Dynamic Toast System */}
       {toast && (
-        <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 border rounded-lg transition-all duration-300 ${
+        <div className={`fixed bottom-8 right-8 z-50 flex items-center gap-3 px-6 py-4 border rounded-[calc(1.5rem-4px)] shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] animate-bounce ${
           toast.type === 'success' 
-            ? 'bg-[#EDF3EC] border-[#cce3cb] text-[#346538]' 
-            : 'bg-[#FDEBEC] border-[#f5c6c6] text-[#9F2F2D]'
+            ? 'bg-stone-900/90 border-emerald-500/30 text-emerald-400 backdrop-blur-md' 
+            : 'bg-stone-900/90 border-rose-500/30 text-rose-400 backdrop-blur-md'
         }`}>
-          {toast.type === 'success' ? <CheckSquare className="w-4 h-4 flex-shrink-0" /> : <AlertTriangle className="w-4 h-4 flex-shrink-0" />}
-          <span className="text-xs font-bold tracking-wide">{toast.text}</span>
+          {toast.type === 'success' ? <CheckSquare className="w-4 h-4 stroke-[1.5] flex-shrink-0" /> : <AlertTriangle className="w-4 h-4 stroke-[1.5] flex-shrink-0" />}
+          <span className="text-xs font-bold tracking-wider">{toast.text}</span>
         </div>
       )}
 
-      {/* Main Container constrained to Max width */}
-      <div className="max-w-7xl mx-auto flex flex-col gap-12">
+      {/* Main Layout Container */}
+      <div className="max-w-7xl mx-auto flex flex-col gap-16 relative z-10">
         
-        {/* Header Block - Meticulous Spacing */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#EAEAEA]">
-          <div className="flex flex-col gap-2">
-            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#787774]">Administrative Console</span>
-            <h1 className="text-3xl font-bold tracking-tight text-[#111111] font-serif leading-tight">
+        {/* Header Block - Spatial Rhythm & Eyebrow Badge */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-white/5">
+          <div className="flex flex-col">
+            <span className="rounded-full px-3 py-1 text-[9px] uppercase tracking-[0.2em] font-semibold bg-white/5 text-stone-400 border border-white/10 w-max mb-4">
+              Administrative Console
+            </span>
+            <h1 className="text-4xl font-extrabold tracking-tight text-white font-sans leading-tight">
               Control Panel
             </h1>
-            <p className="text-[#787774] text-xs font-medium max-w-[65ch]">
+            <p className="text-stone-400 text-sm font-medium mt-3 max-w-[65ch] leading-relaxed">
               Overview active inventory, manage title metadata catalogs, and supervise global checkout transactions.
             </p>
           </div>
           
           <button
             onClick={fetchData}
-            className="p-2.5 bg-white hover:bg-stone-50 border border-[#EAEAEA] text-[#787774] hover:text-[#111111] rounded-lg transition-all active:scale-[0.98]"
+            className="p-3.5 bg-stone-950 hover:bg-stone-900 border border-white/10 hover:border-white/20 text-stone-400 hover:text-white rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
             title="Refresh Logs"
           >
-            <RefreshCw className="w-4 h-4" />
+            <RefreshCw className="w-4 h-4 stroke-[1.5]" />
           </button>
         </div>
 
-        {/* Bento Grid Metrics Panels - flat crisp boxes, no heavy shadows */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Double-Bezel Bento Grid Metrics Panels */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           
-          <div className="bg-[#FBFBFA] border border-[#EAEAEA] p-6 rounded-xl flex flex-col gap-4">
-            <div className="flex justify-between items-center">
-              <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#787774]">Total Cataloged</span>
-              <BookOpen className="w-4 h-4 text-[#787774]" />
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-3xl font-bold tracking-tight font-serif">{totalBooks}</span>
-              <span className="text-[10px] text-[#787774] font-medium">Distinct digital & physical titles</span>
-            </div>
-          </div>
-
-          <div className="bg-[#FBFBFA] border border-[#EAEAEA] p-6 rounded-xl flex flex-col gap-4">
-            <div className="flex justify-between items-center">
-              <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#787774]">Circulation Out</span>
-              <ShoppingBag className="w-4 h-4 text-[#787774]" />
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-3xl font-bold tracking-tight font-serif">{activeBorrows}</span>
-              <span className="text-[10px] text-[#787774] font-medium">Active loans in campus registry</span>
+          {/* Panel 1: Cataloged */}
+          <div className="group bg-white/5 p-1.5 rounded-2xl border border-white/5 shadow-xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/10 hover:scale-[1.01]">
+            <div className="bg-stone-950/80 backdrop-blur-md p-6 rounded-[calc(1rem-0.125rem)] border border-white/5 flex flex-col gap-5">
+              <div className="flex justify-between items-center">
+                <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-stone-400">Total Cataloged</span>
+                <BookOpen className="w-4 h-4 stroke-[1.5] text-stone-400 group-hover:text-indigo-400 transition-colors" />
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-3.5xl font-black tracking-tight text-white font-mono">{totalBooks}</span>
+                <span className="text-[10px] text-stone-500 font-medium">Distinct cataloged volumes</span>
+              </div>
             </div>
           </div>
 
-          <div className="bg-[#FBFBFA] border border-[#EAEAEA] p-6 rounded-xl flex flex-col gap-4">
-            <div className="flex justify-between items-center">
-              <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#787774]">Overdue Logs</span>
-              <AlertTriangle className="w-4 h-4 text-[#787774]" />
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-3xl font-bold tracking-tight font-serif text-[#9F2F2D]">{overdueBorrows}</span>
-              <span className="text-[10px] text-[#787774] font-medium">Requires immediate return alerts</span>
+          {/* Panel 2: Circulation */}
+          <div className="group bg-white/5 p-1.5 rounded-2xl border border-white/5 shadow-xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/10 hover:scale-[1.01]">
+            <div className="bg-stone-950/80 backdrop-blur-md p-6 rounded-[calc(1rem-0.125rem)] border border-white/5 flex flex-col gap-5">
+              <div className="flex justify-between items-center">
+                <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-stone-400">Circulation Out</span>
+                <ShoppingBag className="w-4 h-4 stroke-[1.5] text-stone-400 group-hover:text-amber-400 transition-colors" />
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-3.5xl font-black tracking-tight text-white font-mono">{activeBorrows}</span>
+                <span className="text-[10px] text-stone-500 font-medium">Active borrowings register</span>
+              </div>
             </div>
           </div>
 
-          <div className="bg-[#FBFBFA] border border-[#EAEAEA] p-6 rounded-xl flex flex-col gap-4">
-            <div className="flex justify-between items-center">
-              <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#787774]">Registered Readers</span>
-              <Users className="w-4 h-4 text-[#787774]" />
+          {/* Panel 3: Overdue */}
+          <div className="group bg-white/5 p-1.5 rounded-2xl border border-white/5 shadow-xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/10 hover:scale-[1.01]">
+            <div className="bg-stone-950/80 backdrop-blur-md p-6 rounded-[calc(1rem-0.125rem)] border border-white/5 flex flex-col gap-5">
+              <div className="flex justify-between items-center">
+                <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-stone-400">Overdue Logs</span>
+                <AlertTriangle className="w-4 h-4 stroke-[1.5] text-stone-400 group-hover:text-rose-400 transition-colors" />
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-3.5xl font-black tracking-tight text-rose-400 font-mono">{overdueBorrows}</span>
+                <span className="text-[10px] text-stone-500 font-medium">Requires immediate recovery</span>
+              </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-3xl font-bold tracking-tight font-serif">{uniqueReaders}</span>
-              <span className="text-[10px] text-[#787774] font-medium">Unique active student accounts</span>
+          </div>
+
+          {/* Panel 4: Registered Readers */}
+          <div className="group bg-white/5 p-1.5 rounded-2xl border border-white/5 shadow-xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/10 hover:scale-[1.01]">
+            <div className="bg-stone-950/80 backdrop-blur-md p-6 rounded-[calc(1rem-0.125rem)] border border-white/5 flex flex-col gap-5">
+              <div className="flex justify-between items-center">
+                <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-stone-400">Registered Readers</span>
+                <Users className="w-4 h-4 stroke-[1.5] text-stone-400 group-hover:text-emerald-400 transition-colors" />
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-3.5xl font-black tracking-tight text-white font-mono">{uniqueReaders}</span>
+                <span className="text-[10px] text-stone-500 font-medium">Verified reader catalog profiles</span>
+              </div>
             </div>
           </div>
 
         </div>
 
-        {/* Tab Controls */}
-        <div className="flex gap-6 border-b border-[#EAEAEA] pb-px">
+        {/* Tab Controls - Smooth Glass Navigation Pill */}
+        <div className="flex p-1.5 bg-stone-950/90 border border-white/5 rounded-full w-max backdrop-blur-md self-center md:self-start">
           <button
             onClick={() => setActiveTab('inventory')}
-            className={`py-3.5 px-1.5 border-b-2 font-bold text-xs uppercase tracking-wider transition-all ${
+            className={`py-2.5 px-6 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
               activeTab === 'inventory'
-                ? 'border-[#111111] text-[#111111]'
-                : 'border-transparent text-[#787774] hover:text-[#111111]'
+                ? 'bg-white text-black shadow-lg shadow-white/5'
+                : 'text-stone-400 hover:text-white'
             }`}
           >
             Manage Inventory
           </button>
           <button
             onClick={() => setActiveTab('transactions')}
-            className={`py-3.5 px-1.5 border-b-2 font-bold text-xs uppercase tracking-wider transition-all ${
+            className={`py-2.5 px-6 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
               activeTab === 'transactions'
-                ? 'border-[#111111] text-[#111111]'
-                : 'border-transparent text-[#787774] hover:text-[#111111]'
+                ? 'bg-white text-black shadow-lg shadow-white/5'
+                : 'text-stone-400 hover:text-white'
             }`}
           >
             Transaction Logs
@@ -255,148 +273,159 @@ const AdminDashboard = () => {
 
         {/* Core Workspace Sections */}
         {loading ? (
-          <div className="bg-stone-50 border border-[#EAEAEA] rounded-xl h-96 animate-pulse"></div>
+          <div className="bg-stone-950/40 p-2 rounded-2xl border border-white/5 animate-pulse">
+            <div className="bg-stone-950 h-96 rounded-[calc(1rem-0.125rem)]"></div>
+          </div>
         ) : activeTab === 'inventory' ? (
           
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-8">
             
             {/* Catalog Subheading & Add Action */}
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col gap-0.5">
-                <h3 className="text-base font-bold text-[#111111] font-serif">Cataloged Library Titles</h3>
-                <span className="text-[10px] text-[#787774] font-medium">Verify available inventory quantities below.</span>
+            <div className="flex justify-between items-center px-2">
+              <div className="flex flex-col gap-1">
+                <h3 className="text-lg font-bold text-white">Cataloged Library Titles</h3>
+                <span className="text-xs text-stone-450 font-medium">Verify available inventory quantities below.</span>
               </div>
+              
+              {/* Button-in-Button CTA Architecture */}
               <button
                 onClick={openAddModal}
-                className="flex items-center gap-2 px-4 py-2.5 bg-[#111111] hover:bg-[#2A2A2A] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all active:scale-[0.98] border border-[#111111]"
+                className="group pl-6 pr-2 py-2 bg-white text-black hover:bg-stone-100 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] flex items-center gap-4 active:scale-[0.98] border border-white"
               >
-                <Plus className="w-3.5 h-3.5" />
                 <span>Add Title</span>
+                <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                  <Plus className="w-4 h-4 stroke-[2]" />
+                </span>
               </button>
             </div>
 
-            {/* Crisp Flat Table Container */}
-            <div className="bg-white border border-[#EAEAEA] rounded-xl overflow-hidden shadow-sm shadow-slate-100/10">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse text-xs">
-                  <thead>
-                    <tr className="bg-[#FBFBFA] border-b border-[#EAEAEA] text-[#787774] font-bold uppercase tracking-wider text-[9px]">
-                      <th className="py-4 px-6">Book Title</th>
-                      <th className="py-4 px-6">Author Name</th>
-                      <th className="py-4 px-6">Genre / Tag</th>
-                      <th className="py-4 px-6">ISBN Registry</th>
-                      <th className="py-4 px-6 text-center">Circulation Stock</th>
-                      <th className="py-4 px-6 text-right">Metadata Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#EAEAEA] text-[#111111] font-medium">
-                    {books.map((b) => (
-                      <tr key={b.id} className="hover:bg-[#FBFBFA]/50 transition-colors">
-                        <td className="py-4 px-6 font-bold text-[#111111] text-sm font-serif">{b.title}</td>
-                        <td className="py-4 px-6 text-[#2F3437]">{b.author}</td>
-                        <td className="py-4 px-6">
-                          <span className="px-2.5 py-1 text-[9px] font-bold bg-[#FBF3DB] border border-[#f0dfb8] text-[#956400] rounded uppercase tracking-wider">
-                            {b.genre}
-                          </span>
-                        </td>
-                        <td className="py-4 px-6 font-mono text-[10px] text-[#787774]">{b.isbn}</td>
-                        <td className="py-4 px-6 text-center font-mono font-bold">
-                          <span className={b.availableCopies === 0 ? 'text-[#9F2F2D] bg-[#FDEBEC] px-2 py-0.5 rounded border border-[#f5c6c6]' : 'text-[#111111]'}>
-                            {b.availableCopies}
-                          </span>
-                          <span className="text-[#787774] font-normal mx-1">/</span>
-                          <span className="text-[#787774]">{b.totalCopies}</span>
-                        </td>
-                        <td className="py-4 px-6 text-right">
-                          <div className="flex justify-end gap-2">
-                            <button
-                              onClick={() => openEditModal(b)}
-                              className="p-2 bg-white hover:bg-stone-50 border border-[#EAEAEA] text-[#787774] hover:text-[#111111] rounded-lg transition-colors shadow-none"
-                              title="Edit Entry"
-                            >
-                              <Edit2 className="w-3.5 h-3.5" />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(b.id, b.title)}
-                              className="p-2 bg-white hover:bg-[#FDEBEC]/40 border border-[#EAEAEA] hover:border-[#f5c6c6] text-[#787774] hover:text-[#9F2F2D] rounded-lg transition-colors shadow-none"
-                              title="Delete Entry"
-                            >
-                              <Trash2 className="w-3.5 h-3.5" />
-                            </button>
-                          </div>
-                        </td>
+            {/* Premium Double-Bezel Table Wrapper */}
+            <div className="bg-white/5 p-2 rounded-2xl border border-white/5 shadow-2xl">
+              <div className="bg-stone-950 rounded-[calc(1rem-0.25rem)] border border-white/5 overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse text-xs">
+                    <thead>
+                      <tr className="bg-stone-900/60 border-b border-white/5 text-stone-400 font-bold uppercase tracking-[0.15em] text-[9px]">
+                        <th className="py-5 px-6">Book Title</th>
+                        <th className="py-5 px-6">Author Name</th>
+                        <th className="py-5 px-6">Genre / Tag</th>
+                        <th className="py-5 px-6">ISBN Registry</th>
+                        <th className="py-5 px-6 text-center">Circulation Stock</th>
+                        <th className="py-5 px-6 text-right">Metadata Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-white/5 text-stone-200 font-medium">
+                      {books.map((b) => (
+                        <tr key={b.id} className="hover:bg-white/[0.02] transition-colors duration-300 group">
+                          <td className="py-5 px-6 font-bold text-white text-sm font-sans">{b.title}</td>
+                          <td className="py-5 px-6 text-stone-300">{b.author}</td>
+                          <td className="py-5 px-6">
+                            <span className="px-3 py-1 text-[9px] font-bold bg-white/5 border border-white/10 text-stone-300 rounded-full uppercase tracking-wider">
+                              {b.genre}
+                            </span>
+                          </td>
+                          <td className="py-5 px-6 font-mono text-[10px] text-stone-500">{b.isbn}</td>
+                          <td className="py-5 px-6 text-center font-mono font-bold">
+                            <span className={b.availableCopies === 0 ? 'text-rose-400 bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20' : 'text-white'}>
+                              {b.availableCopies}
+                            </span>
+                            <span className="text-stone-600 font-normal mx-1.5">/</span>
+                            <span className="text-stone-500">{b.totalCopies}</span>
+                          </td>
+                          <td className="py-5 px-6 text-right">
+                            <div className="flex justify-end gap-3 opacity-80 group-hover:opacity-100 transition-opacity">
+                              <button
+                                onClick={() => openEditModal(b)}
+                                className="p-2 bg-stone-900 hover:bg-stone-850 border border-white/5 text-stone-400 hover:text-white rounded-full transition-all duration-500 active:scale-[0.94]"
+                                title="Edit Entry"
+                              >
+                                <Edit2 className="w-3.5 h-3.5 stroke-[1.5]" />
+                              </button>
+                              <button
+                                onClick={() => handleDelete(b.id, b.title)}
+                                className="p-2 bg-stone-900 hover:bg-rose-950/20 border border-white/5 hover:border-rose-500/30 text-stone-450 hover:text-rose-400 rounded-full transition-all duration-500 active:scale-[0.94]"
+                                title="Delete Entry"
+                              >
+                                <Trash2 className="w-3.5 h-3.5 stroke-[1.5]" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
 
           </div>
         ) : (
           
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-8">
             
-            <div className="flex flex-col gap-0.5">
-              <h3 className="text-base font-bold text-[#111111] font-serif">Global Circulation Logs</h3>
-              <span className="text-[10px] text-[#787774] font-medium">Verify structural borrow logs across student files.</span>
+            <div className="flex flex-col gap-1 px-2">
+              <h3 className="text-lg font-bold text-white">Global Circulation Logs</h3>
+              <span className="text-xs text-stone-450 font-medium">Verify structural borrow logs across student files.</span>
             </div>
 
-            <div className="bg-white border border-[#EAEAEA] rounded-xl overflow-hidden shadow-sm shadow-slate-100/10">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse text-xs">
-                  <thead>
-                    <tr className="bg-[#FBFBFA] border-b border-[#EAEAEA] text-[#787774] font-bold uppercase tracking-wider text-[9px]">
-                      <th className="py-4 px-6">Student Account</th>
-                      <th className="py-4 px-6">Book Title</th>
-                      <th className="py-4 px-6">Checkout Date</th>
-                      <th className="py-4 px-6">Due Registry Date</th>
-                      <th className="py-4 px-6">Return Logged Date</th>
-                      <th className="py-4 px-6 text-right">Circulation Status</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#EAEAEA] text-[#111111] font-medium">
-                    {transactions.map((t) => (
-                      <tr key={t.id} className="hover:bg-[#FBFBFA]/50 transition-colors">
-                        <td className="py-4 px-6 font-bold text-[#111111]">{t.userEmail}</td>
-                        <td className="py-4 px-6 font-bold text-[#111111] text-sm font-serif">{t.bookTitle}</td>
-                        <td className="py-4 px-6 text-[#787774] font-mono text-[10px]">
-                          <span className="flex items-center gap-1.5">
-                            <Calendar className="w-3.5 h-3.5 text-[#787774]" />
-                            {formatDate(t.checkoutDate)}
-                          </span>
-                        </td>
-                        <td className="py-4 px-6 text-[#787774] font-mono text-[10px]">
-                          <span className="flex items-center gap-1.5">
-                            <Calendar className="w-3.5 h-3.5 text-[#787774]" />
-                            {formatDate(t.dueDate)}
-                          </span>
-                        </td>
-                        <td className="py-4 px-6 text-[#787774] font-mono text-[10px]">
-                          {t.returnDate ? (
-                            <span className="flex items-center gap-1.5 text-[#346538] font-bold bg-[#EDF3EC] px-2 py-0.5 rounded border border-[#cce3cb] w-max">
-                              <Calendar className="w-3.5 h-3.5" />
-                              {formatDate(t.returnDate)}
-                            </span>
-                          ) : (
-                            <span className="text-[#787774] font-bold">-</span>
-                          )}
-                        </td>
-                        <td className="py-4 px-6 text-right">
-                          <span className={`px-2.5 py-0.5 text-[9px] font-bold border rounded uppercase tracking-wider ${
-                            t.status === 'RETURNED'
-                              ? 'bg-[#EDF3EC] border-[#cce3cb] text-[#346538]'
-                              : t.status === 'OVERDUE'
-                              ? 'bg-[#FDEBEC] border-[#f5c6c6] text-[#9F2F2D]'
-                              : 'bg-[#E1F3FE] border-[#bce3fc] text-[#1F6C9F]'
-                          }`}>
-                            {t.status}
-                          </span>
-                        </td>
+            {/* Premium Double-Bezel Transactions Table Wrapper */}
+            <div className="bg-white/5 p-2 rounded-2xl border border-white/5 shadow-2xl">
+              <div className="bg-stone-950 rounded-[calc(1rem-0.25rem)] border border-white/5 overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse text-xs">
+                    <thead>
+                      <tr className="bg-stone-900/60 border-b border-white/5 text-stone-400 font-bold uppercase tracking-[0.15em] text-[9px]">
+                        <th className="py-5 px-6">Student Account</th>
+                        <th className="py-5 px-6">Book Title</th>
+                        <th className="py-5 px-6">Checkout Date</th>
+                        <th className="py-5 px-6">Due Registry Date</th>
+                        <th className="py-5 px-6">Return Logged Date</th>
+                        <th className="py-5 px-6 text-right">Circulation Status</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-white/5 text-stone-200 font-medium">
+                      {transactions.map((t) => (
+                        <tr key={t.id} className="hover:bg-white/[0.02] transition-colors duration-300">
+                          <td className="py-5 px-6 font-bold text-white">{t.userEmail}</td>
+                          <td className="py-5 px-6 font-bold text-stone-200 text-sm font-sans">{t.bookTitle}</td>
+                          <td className="py-5 px-6 text-stone-400 font-mono text-[10px]">
+                            <span className="flex items-center gap-1.5">
+                              <Calendar className="w-3.5 h-3.5 stroke-[1.5] text-stone-500" />
+                              {formatDate(t.checkoutDate)}
+                            </span>
+                          </td>
+                          <td className="py-5 px-6 text-stone-400 font-mono text-[10px]">
+                            <span className="flex items-center gap-1.5">
+                              <Calendar className="w-3.5 h-3.5 stroke-[1.5] text-stone-500" />
+                              {formatDate(t.dueDate)}
+                            </span>
+                          </td>
+                          <td className="py-5 px-6 text-stone-400 font-mono text-[10px]">
+                            {t.returnDate ? (
+                              <span className="flex items-center gap-1.5 text-emerald-400 font-bold bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 w-max">
+                                <Calendar className="w-3.5 h-3.5 stroke-[1.5]" />
+                                {formatDate(t.returnDate)}
+                              </span>
+                            ) : (
+                              <span className="text-stone-600 font-bold">-</span>
+                            )}
+                          </td>
+                          <td className="py-5 px-6 text-right">
+                            <span className={`px-3 py-1 text-[9px] font-bold border rounded-full uppercase tracking-wider ${
+                              t.status === 'RETURNED'
+                                ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+                                : t.status === 'OVERDUE'
+                                ? 'bg-rose-500/10 border-rose-500/20 text-rose-400'
+                                : 'bg-sky-500/10 border-sky-500/20 text-sky-400'
+                            }`}>
+                              {t.status}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
 
@@ -405,119 +434,125 @@ const AdminDashboard = () => {
 
       </div>
 
-      {/* POPUP MODAL OVERLAY - Flat clean boxes, crisp buttons */}
+      {/* POPUP MODAL OVERLAY - Double Bezel & Glassmorphism */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/20 backdrop-blur-sm p-4">
-          <div className="bg-white border border-[#EAEAEA] w-full max-w-lg rounded-xl p-6 relative shadow-lg">
-            
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 p-2 text-[#787774] hover:text-[#111111] transition-colors"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <h3 className="text-lg font-bold text-[#111111] font-serif border-b border-[#EAEAEA] pb-3 mb-6">
-              {modalMode === 'add' ? 'Add New Catalog Title' : 'Edit Catalog Title Metadata'}
-            </h3>
-
-            <form onSubmit={handleSubmit} className="space-y-4 text-xs font-semibold">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/70 backdrop-blur-xl p-4">
+          
+          <div className="bg-white/5 p-1.5 w-full max-w-lg rounded-[2rem] border border-white/5 shadow-2xl relative">
+            <div className="bg-stone-950 p-8 rounded-[calc(2rem-0.125rem)] border border-white/5 flex flex-col gap-6">
               
-              <div>
-                <label htmlFor="book-title" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">Book Title</label>
-                <input
-                  id="book-title"
-                  name="title"
-                  type="text"
-                  required
-                  placeholder="e.g. Systems Design"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-sm font-medium shadow-none"
-                  value={formTitle}
-                  onChange={(e) => setFormTitle(e.target.value)}
-                />
-                {formErrors.title && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.title}</span>}
-              </div>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-6 right-6 p-2 bg-stone-900 border border-white/10 text-stone-400 hover:text-white rounded-full transition-colors duration-300"
+              >
+                <X className="w-4 h-4 stroke-[1.5]" />
+              </button>
 
-              <div>
-                <label htmlFor="book-author" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">Author Name</label>
-                <input
-                  id="book-author"
-                  name="author"
-                  type="text"
-                  required
-                  placeholder="e.g. Martin Kleppmann"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-sm font-medium shadow-none"
-                  value={formAuthor}
-                  onChange={(e) => setFormAuthor(e.target.value)}
-                />
-                {formErrors.author && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.author}</span>}
-              </div>
+              <h3 className="text-xl font-bold text-white border-b border-white/5 pb-4 mb-2">
+                {modalMode === 'add' ? 'Add New Catalog Title' : 'Edit Catalog Title Metadata'}
+              </h3>
 
-              <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-5 text-xs font-semibold">
+                
                 <div>
-                  <label htmlFor="book-isbn" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">ISBN Registry</label>
+                  <label htmlFor="book-title" className="block text-stone-400 uppercase tracking-widest mb-2.5 text-[9px]">Book Title</label>
                   <input
-                    id="book-isbn"
-                    name="isbn"
+                    id="book-title"
+                    name="title"
                     type="text"
                     required
-                    placeholder="e.g. 978-1449373320"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-xs font-mono shadow-none"
-                    value={formIsbn}
-                    onChange={(e) => setFormIsbn(e.target.value)}
+                    placeholder="e.g. Systems Design"
+                    className="w-full px-4 py-3 bg-stone-900/50 border border-white/5 focus:border-indigo-500/50 rounded-xl text-white placeholder-stone-600 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-indigo-500/30"
+                    value={formTitle}
+                    onChange={(e) => setFormTitle(e.target.value)}
                   />
-                  {formErrors.isbn && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.isbn}</span>}
+                  {formErrors.title && <span className="text-[10px] text-rose-450 mt-1 block">{formErrors.title}</span>}
                 </div>
 
                 <div>
-                  <label htmlFor="book-genre" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">Genre / Classification</label>
+                  <label htmlFor="book-author" className="block text-stone-400 uppercase tracking-widest mb-2.5 text-[9px]">Author Name</label>
                   <input
-                    id="book-genre"
-                    name="genre"
+                    id="book-author"
+                    name="author"
                     type="text"
                     required
-                    placeholder="e.g. Distributed Systems"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-sm font-medium shadow-none"
-                    value={formGenre}
-                    onChange={(e) => setFormGenre(e.target.value)}
+                    placeholder="e.g. Martin Kleppmann"
+                    className="w-full px-4 py-3 bg-stone-900/50 border border-white/5 focus:border-indigo-500/50 rounded-xl text-white placeholder-stone-600 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-indigo-500/30"
+                    value={formAuthor}
+                    onChange={(e) => setFormAuthor(e.target.value)}
                   />
-                  {formErrors.genre && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.genre}</span>}
+                  {formErrors.author && <span className="text-[10px] text-rose-450 mt-1 block">{formErrors.author}</span>}
                 </div>
-              </div>
 
-              <div>
-                <label htmlFor="book-copies" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">Total Stock Copies</label>
-                <input
-                  id="book-copies"
-                  name="totalCopies"
-                  type="number"
-                  required
-                  min="0"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-sm font-medium shadow-none"
-                  value={formTotalCopies}
-                  onChange={(e) => setFormTotalCopies(e.target.value)}
-                />
-                {formErrors.totalCopies && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.totalCopies}</span>}
-              </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="book-isbn" className="block text-stone-400 uppercase tracking-widest mb-2.5 text-[9px]">ISBN Registry</label>
+                    <input
+                      id="book-isbn"
+                      name="isbn"
+                      type="text"
+                      required
+                      placeholder="e.g. 978-1449373320"
+                      className="w-full px-4 py-3 bg-stone-900/50 border border-white/5 focus:border-indigo-500/50 rounded-xl text-white placeholder-stone-600 focus:outline-none transition-all text-xs font-mono focus:ring-1 focus:ring-indigo-500/30"
+                      value={formIsbn}
+                      onChange={(e) => setFormIsbn(e.target.value)}
+                    />
+                    {formErrors.isbn && <span className="text-[10px] text-rose-450 mt-1 block">{formErrors.isbn}</span>}
+                  </div>
 
-              <div className="flex gap-4 mt-8 pt-4 border-t border-[#EAEAEA]">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="w-1/2 py-2.5 bg-white hover:bg-stone-50 text-[#787774] hover:text-[#111111] border border-[#EAEAEA] rounded-lg font-bold uppercase tracking-wider transition-all active:scale-[0.98]"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="w-1/2 py-2.5 bg-[#111111] hover:bg-[#2A2A2A] text-white border border-[#111111] rounded-lg font-bold uppercase tracking-wider transition-all active:scale-[0.98]"
-                >
-                  Confirm Registry
-                </button>
-              </div>
+                  <div>
+                    <label htmlFor="book-genre" className="block text-stone-400 uppercase tracking-widest mb-2.5 text-[9px]">Genre / Classification</label>
+                    <input
+                      id="book-genre"
+                      name="genre"
+                      type="text"
+                      required
+                      placeholder="e.g. Distributed Systems"
+                      className="w-full px-4 py-3 bg-stone-900/50 border border-white/5 focus:border-indigo-500/50 rounded-xl text-white placeholder-stone-600 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-indigo-500/30"
+                      value={formGenre}
+                      onChange={(e) => setFormGenre(e.target.value)}
+                    />
+                    {formErrors.genre && <span className="text-[10px] text-rose-450 mt-1 block">{formErrors.genre}</span>}
+                  </div>
+                </div>
 
-            </form>
+                <div>
+                  <label htmlFor="book-copies" className="block text-stone-400 uppercase tracking-widest mb-2.5 text-[9px]">Total Stock Copies</label>
+                  <input
+                    id="book-copies"
+                    name="totalCopies"
+                    type="number"
+                    required
+                    min="0"
+                    className="w-full px-4 py-3 bg-stone-900/50 border border-white/5 focus:border-indigo-500/50 rounded-xl text-white placeholder-stone-600 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-indigo-500/30"
+                    value={formTotalCopies}
+                    onChange={(e) => setFormTotalCopies(e.target.value)}
+                  />
+                  {formErrors.totalCopies && <span className="text-[10px] text-rose-450 mt-1 block">{formErrors.totalCopies}</span>}
+                </div>
+
+                {/* Confirm / Cancel Actions */}
+                <div className="flex gap-4 mt-8 pt-4 border-t border-white/5">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="w-1/2 py-3 bg-stone-900 hover:bg-stone-850 text-stone-450 hover:text-white border border-white/5 rounded-full font-bold uppercase tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="w-1/2 py-3 bg-white hover:bg-stone-100 text-black border border-white rounded-full font-bold uppercase tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
+                  >
+                    Confirm Registry
+                  </button>
+                </div>
+
+              </form>
+
+            </div>
           </div>
+
         </div>
       )}
     </div>

@@ -1,0 +1,164 @@
+# ==============================================================================
+# PROFESSIONAL JAVA & SPRING BOOT PROJECT GITIGNORE
+# ==============================================================================
+# Market standard Git ignore patterns tailored for Java development, popular IDEs,
+# build tools, containerization, local development, and front-end workspaces.
+# Author: Antigravity AI Pair Programmer
+# Standard: Enterprise Java Standards & Technical Writing Guidelines Compliant
+
+# ------------------------------------------------------------------------------
+# 1. Compiled Class Files and Binaries
+# ------------------------------------------------------------------------------
+*.class
+*.vars
+*.pyc
+
+# Java Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files (JAR, WAR, EAR, NAR)
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# ------------------------------------------------------------------------------
+# 2. Build Tools (Maven & Gradle)
+# ------------------------------------------------------------------------------
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+pom.xml.releaseBackup
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+# If you check in Maven wrapper, you would uncomment the line below:
+# !.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+bin/
+build/
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# ------------------------------------------------------------------------------
+# 3. Integrated Development Environments (IDEs) & Editors
+# ------------------------------------------------------------------------------
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+### Spring Tool Suite (STS) & Eclipse ###
+.metadata
+.classpath
+.project
+.settings/
+.factorypath
+.springBeans
+.sts4-cache
+*.launch
+.apt_generated
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### Visual Studio Code ###
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+### Sublime Text / TextMate / Generic Editors ###
+*.sublime-project
+*.sublime-workspace
+.tmproj
+.esproj
+*.swp
+*.swo
+*~
+
+# ------------------------------------------------------------------------------
+# 4. Operating System Specific Files
+# ------------------------------------------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.lnk
+*.cab
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ------------------------------------------------------------------------------
+# 5. Frontend & Node.js (Monorepo and Local Support)
+# ------------------------------------------------------------------------------
+node_modules/
+/frontend/node_modules/
+/frontend/dist/
+/frontend/dist-ssr/
+frontend/node_modules/
+frontend/dist/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ------------------------------------------------------------------------------
+# 6. Logging and Performance Tracing
+# ------------------------------------------------------------------------------
+*.log
+*.log.*
+/logs/
+/log/
+
+# ------------------------------------------------------------------------------
+# 7. Environment Configurations & Secrets
+# ------------------------------------------------------------------------------
+# Never commit credentials, local system paths, or API keys
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+*.jks
+*.p12
+*.keystore
+secrets/

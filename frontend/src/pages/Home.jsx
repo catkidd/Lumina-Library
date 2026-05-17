@@ -26,7 +26,22 @@ const Home = () => {
     { id: 2, title: "Clean Code", author: "Robert C. Martin", category: "Technology", year: "2008", rating: 4.9, status: "Available", desc: "A craftsman's guide to software structure and design.", gradient: "from-stone-900 to-stone-950" },
     { id: 3, title: "The Hobbit", author: "J.R.R. Tolkien", category: "Fantasy", year: "1937", rating: 4.8, status: "Available", desc: "A classical fantasy adventure following Bilbo Baggins.", gradient: "from-stone-800 to-stone-900" },
     { id: 4, title: "A Brief History of Time", author: "Stephen Hawking", category: "Science", year: "1988", rating: 4.7, status: "Available", desc: "An exploration of cosmology, black holes, and the universe.", gradient: "from-stone-900 to-stone-950" },
-    { id: 5, title: "1984", author: "George Orwell", category: "Dystopian", year: "1949", rating: 4.9, status: "Available", desc: "A classic dystopian novel exploring totalitarian surveillance.", gradient: "from-stone-800 to-stone-900" }
+    { id: 5, title: "1984", author: "George Orwell", category: "Dystopian", year: "1949", rating: 4.9, status: "Available", desc: "A classic dystopian novel exploring totalitarian surveillance.", gradient: "from-stone-800 to-stone-900" },
+    { id: 6, title: "Design Patterns", author: "Erich Gamma", category: "Technology", year: "1994", rating: 4.8, status: "Available", desc: "The foundational handbook on reusable object-oriented software engineering structures.", gradient: "from-stone-900 to-stone-950" },
+    { id: 7, title: "The Pragmatic Programmer", author: "Andrew Hunt", category: "Technology", year: "1999", rating: 4.9, status: "Available", desc: "A classic developer handbook detailing modular architecture, clean tests, and software engineering discipline.", gradient: "from-stone-800 to-stone-950" },
+    { id: 8, title: "The Art of Computer Programming", author: "Donald E. Knuth", category: "Technology", year: "2011", rating: 4.9, status: "Available", desc: "An authoritative, comprehensive volume on mathematical algorithms and data structures.", gradient: "from-stone-900 to-stone-950" },
+    { id: 9, title: "Compilers: Principles, Techniques, and Tools", author: "Alfred V. Aho", category: "Technology", year: "2006", rating: 4.8, status: "Available", desc: "The standard university text on lexical analysis, parsing, and code generation.", gradient: "from-stone-800 to-stone-900" },
+    { id: 10, title: "Structure and Interpretation of Computer Programs", author: "Harold Abelson", category: "Technology", year: "1996", rating: 4.9, status: "Available", desc: "A classic textbook on programming languages, abstractions, and modular systems.", gradient: "from-stone-800 to-stone-950" },
+    { id: 11, title: "Cosmos", author: "Carl Sagan", category: "Science", year: "1980", rating: 4.8, status: "Available", desc: "An eloquent scientific journey exploring cosmic evolution, astronomy, and planetary science.", gradient: "from-stone-900 to-stone-950" },
+    { id: 12, title: "The Selfish Gene", author: "Richard Dawkins", category: "Science", year: "1976", rating: 4.8, status: "Available", desc: "A groundbreaking scientific analysis of evolutionary biology and biological gene-centered theories.", gradient: "from-stone-800 to-stone-900" },
+    { id: 13, title: "Gödel, Escher, Bach", author: "Douglas R. Hofstadter", category: "Science", year: "1979", rating: 4.9, status: "Available", desc: "A Pulitzer-winning masterpiece connecting mathematics, symmetry, cognition, and artificial intelligence.", gradient: "from-stone-900 to-stone-950" },
+    { id: 14, title: "The Elegant Universe", author: "Brian Greene", category: "Science", year: "1999", rating: 4.7, status: "Available", desc: "A fascinating dive into superstrings, hidden dimensions, and the quest for the ultimate theory of physics.", gradient: "from-stone-800 to-stone-950" },
+    { id: 15, title: "Sapiens: A Brief History of Humankind", author: "Yuval Noah Harari", category: "History", year: "2011", rating: 4.8, status: "Available", desc: "A compelling historical analysis of the evolutionary milestones of humanity.", gradient: "from-stone-900 to-stone-950" },
+    { id: 16, title: "Guns, Germs, and Steel", author: "Jared Diamond", category: "History", year: "1997", rating: 4.8, status: "Available", desc: "A comprehensive study on the environmental factors shaping global historical developments.", gradient: "from-stone-800 to-stone-900" },
+    { id: 17, title: "The Fellowship of the Ring", author: "J.R.R. Tolkien", category: "Fantasy", year: "1954", rating: 4.9, status: "Available", desc: "A legendary fantasy adventure exploring friendship, sacrifice, and the war for Middle-earth.", gradient: "from-stone-900 to-stone-950" },
+    { id: 18, title: "The Silmarillion", author: "J.R.R. Tolkien", category: "Fantasy", year: "1977", rating: 4.8, status: "Available", desc: "The legendary mythological background and ancient history of Arda and Middle-earth.", gradient: "from-stone-800 to-stone-950" },
+    { id: 19, title: "Brave New World", author: "Aldous Huxley", category: "Dystopian", year: "1932", rating: 4.8, status: "Available", desc: "A chilling dystopian vision of a genetically engineered and technologically controlled future society.", gradient: "from-stone-900 to-stone-950" },
+    { id: 20, title: "Fahrenheit 451", author: "Ray Bradbury", category: "Dystopian", year: "1953", rating: 4.8, status: "Available", desc: "A powerful classic warning against cultural censorship, social isolation, and book burning.", gradient: "from-stone-800 to-stone-900" }
   ]);
 
   // Sync with live database catalog if user is logged in
@@ -46,7 +61,22 @@ const Home = () => {
             "Clean Code": "A craftsman's guide to software structure and design.",
             "The Hobbit": "A classical fantasy adventure following Bilbo Baggins.",
             "A Brief History of Time": "An exploration of cosmology, black holes, and the universe.",
-            "1984": "A classic dystopian novel exploring totalitarian surveillance."
+            "1984": "A classic dystopian novel exploring totalitarian surveillance.",
+            "Design Patterns": "The foundational handbook on reusable object-oriented software engineering structures.",
+            "The Pragmatic Programmer": "A classic developer handbook detailing modular architecture, clean tests, and software engineering discipline.",
+            "The Art of Computer Programming": "An authoritative, comprehensive volume on mathematical algorithms and data structures.",
+            "Compilers: Principles, Techniques, and Tools": "The standard university text on lexical analysis, parsing, and code generation.",
+            "Structure and Interpretation of Computer Programs": "A classic textbook on programming languages, abstractions, and modular systems.",
+            "Cosmos": "An eloquent scientific journey exploring cosmic evolution, astronomy, and planetary science.",
+            "The Selfish Gene": "A groundbreaking scientific analysis of evolutionary biology and biological gene-centered theories.",
+            "Gödel, Escher, Bach": "A Pulitzer-winning masterpiece connecting mathematics, symmetry, cognition, and artificial intelligence.",
+            "The Elegant Universe": "A fascinating dive into superstrings, hidden dimensions, and the quest for the ultimate theory of physics.",
+            "Sapiens: A Brief History of Humankind": "A compelling historical analysis of the evolutionary milestones of humanity.",
+            "Guns, Germs, and Steel": "A comprehensive study on the environmental factors shaping global historical developments.",
+            "The Fellowship of the Ring": "A legendary fantasy adventure exploring friendship, sacrifice, and the war for Middle-earth.",
+            "The Silmarillion": "The legendary mythological background and ancient history of Arda and Middle-earth.",
+            "Brave New World": "A chilling dystopian vision of a genetically engineered and technologically controlled future society.",
+            "Fahrenheit 451": "A powerful classic warning against cultural censorship, social isolation, and book burning."
           };
           const mapped = res.data.map((b, idx) => ({
             ...b,
@@ -315,7 +345,7 @@ const Home = () => {
 
           {/* Category Capsule Triggers (Concentric Border Pill) */}
           <div className="flex flex-wrap gap-1.5 bg-[#f2efe8]/80 p-1.5 rounded-full border border-stone-250/60 w-full lg:w-auto shadow-sm max-w-full lg:max-w-3xl">
-            {['All', 'Technology', 'Fantasy', 'Science', 'Dystopian'].map((cat) => (
+            {['All', 'Technology', 'Fantasy', 'Science', 'Dystopian', 'History'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}

@@ -181,14 +181,115 @@ To trigger these systems during collaborative engineering turns, combine the **n
 
 ### 📈 System Contrast Matrix: Which Skill to Choose?
 
-| Metric | `@/soft-skill` | `@/minimalist-skill` |
-| :--- | :--- | :--- |
-| **Aesthetic Personality** | Ethereal Glass / Luxury Agency | Editorial Workspace / Clean Print |
-| **Border Radii** | Exaggerated (`rounded-[2.5rem]`) | Crisp (`rounded-xl` / `8px-12px`) |
-| **Motion Signature** | Spring-based haptic acceleration | Silent, invisible ease Reveals |
-| **Canvas Palette** | OLED Dark / Rich Creams | `#FFFFFF` White / `#F7F6F3` Bone |
-| **Color Highlights** | Radial gradients, neon accents | Muted desaturated spot pastels |
-| **Ideal For** | Landing pages, interactive portfolios, SaaS headers | Data tables, administrative feeds, utility settings |
+| Metric | `@/soft-skill` | `@/minimalist-skill` | `@/brutalist-skill` |
+| :--- | :--- | :--- | :--- |
+| **Aesthetic Personality** | Ethereal Glass / Luxury Agency | Editorial Workspace / Clean Print | Swiss Industrial Print / CRT Terminal |
+| **Border Radii** | Exaggerated (`rounded-[2.5rem]`) | Crisp (`rounded-xl` / `8px-12px`) | Absolute Zero (Exactly 90° Sharp) |
+| **Motion Signature** | Spring-based haptic acceleration | Silent, invisible ease Reveals | Low-refresh, telemetry scan updates |
+| **Canvas Palette** | OLED Dark / Rich Creams | `#FFFFFF` White / `#F7F6F3` Bone | `#F4F4F0` Paper / `#0A0A0A` CRT |
+| **Color Highlights** | Radial gradients, neon accents | Muted desaturated spot pastels | `#FF2A2A` Aviation/Hazard Red |
+| **Ideal For** | Landing pages, interactive dashboards | Settings page, logs, text guides | Technical telemetry feeds, database maps |
+
+---
+
+## 🦾 SECTION 5: Sibling Design System: `@/brutalist-skill` (Industrial Brutalism & Tactical Telemetry)
+
+For highly technical components (like log outputs, database telemetry monitors, or system health grids), we have a third sibling design style: **`@/brutalist-skill` (Industrial Brutalism)**. It merges raw functional mid-century Swiss graphic print with retro-futuristic tactical CRT terminals.
+
+### 🚫 Banned Elements (Anti-Patterns)
+* NO rounded corners (`border-radius: 0px` is strictly enforced).
+* NO translucent blurs or glass cards.
+* NO shadows or multi-color pastel grids.
+
+### 🛠️ Key Signature Components & Implementing Code
+
+#### A. The Blueprint Grid & compartment dividers
+We outline distinct grid modules with solid `1px` or `2px` black/white structural ink lines and mark intersections with technical coordinate crosshairs.
+
+```jsx
+// Swiss Brutalist Compartment Module
+const BrutalistTelemetryCard = ({ unitId, status, data }) => {
+  return (
+    <div className="bg-[#F4F4F0] border-2 border-[#111111] p-6 font-mono text-[#111111] relative flex flex-col gap-4">
+      {/* Structural Crosshair decoration */}
+      <span className="absolute -top-3.5 -left-1 text-xs font-bold text-stone-400 font-sans">+</span>
+      
+      <div className="flex items-center justify-between border-b border-[#111111]/30 pb-2">
+        <span className="text-[10px] font-black uppercase tracking-wider">[ MODULE / {unitId} ]</span>
+        <span className="px-2 py-0.5 bg-[#FF2A2A] text-white text-[9px] font-black uppercase">
+          {status}
+        </span>
+      </div>
+      
+      <div className="flex flex-col gap-2 font-mono text-[11px] font-semibold leading-relaxed">
+        <p className="tracking-tight">{data}</p>
+        <div className="mt-4 text-[9px] text-[#FF2A2A] font-black tracking-widest">
+          SYSTEM_VERIFIED // REV_4.0.6
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+## 🗃️ SECTION 6: The Global Antigravity Skill Registry
+
+In addition to visual frameworks, our ecosystem contains specialized technical and engineering pipelines. Here is your full global registry:
+
+### 1. 🖼️ Visual Refactoring & Styling
+* **`@/redesign-skill` (Redesign Existing Projects):** Use this to audit and upscale existing functional code bases to high-end design standards without breaking routing or database features.
+* **`ckm:ui-styling` (shadcn/ui styling integration):** Automates the inclusion of accessible Radix UI primitives and shadcn setups under consistent theme profiles.
+* **`frontend-design`:** Produces beautiful, high-quality production code from scratch that avoids standard boring AI template patterns.
+
+### 2. 🗂️ Asset Generation & Mocking
+* **`brandkit`:** Generates high-end logo systems, brand guideline boards, and product world presentations.
+* **`ckm:design`:** Generates SVG icons, social banners, and corporate identity program mockups.
+* **`ckm:banner-design`:** Automates banner creations across website heroes, YouTube, X/Twitter, and prints.
+
+### 3. 🔍 Multimodal Reference & Automation
+* **`image-to-code`:** An elite pipeline where the AI generates visual design mockups, analyzes structural wireframes, and compiles complete functional frontends matching them perfectly.
+* **`git-automator`:** Automatically scans active repository workspace diffs and compiles perfect Conventional Commit messages on behalf of the developer.
+* **`full-output-enforcement`:** A truncation-prevention protocol. When writing massive files, this ensures the AI delivers comprehensive, complete code without placeholders or lazy `// rest of code` blocks.
+
+---
+
+## 🎯 SECTION 7: Master Step-by-Step Invocation Guide
+
+Follow this 5-step checklist to achieve flawless visual and operational execution with specialized skills:
+
+```mermaid
+graph TD
+    S1[Step 1: Choose Your Directives] --> S2[Step 2: Calibrate Density & Canvas]
+    S2 --> S3[Step 3: Define Functional Constraints]
+    S3 --> S4[Step 4: Request Truncation Protection]
+    S4 --> S5[Step 5: Code Audit & Verification]
+```
+
+### 1️⃣ Step 1: Choose Your Skill Directives
+Explicitly invoke the skill alias inside brackets (`[]`) or as tags (`@`) to trigger specialized instruction folders:
+* *For luxury SaaS and kinetic animation:* Use `@/soft-skill`.
+* *For clean, documentation-tier bento setups:* Use `@/minimalist-skill`.
+* *For high-density logs and terminal screens:* Use `@/brutalist-skill`.
+
+### 2️⃣ Step 2: Calibrate Your Density & Canvas
+Explicitly provide a **VISUAL_DENSITY** value (1 to 5 scale, where 1 is compact and 5 is massive macro-whitespace) and declare light/dark preferences:
+* *Example prompt:* `"Refactor the User Profile using @/soft-skill with a VISUAL_DENSITY of 3 and Ethereal Glass dark mode textures."`
+
+### 3️⃣ Step 3: Define Functional Constraints
+Inform the agent about critical system parameters to protect state integrity:
+* State that the database structure, API syncs, and routing layers must remain **fully untouched and intact**.
+* *Example prompt:* `"Modernize the cards using @/minimalist-skill without altering the active dynamic state, useEffect endpoints, or API integrations."`
+
+### 4️⃣ Step 4: Request Truncation Protection
+To prevent the model from leaving placeholders inside large pages, append the `full-output-enforcement` directive:
+* *Example prompt:* `"Provide the complete React page. Keep imports and layout fully intact. Apply full-output-enforcement to deliver complete, unabridged code."`
+
+### 5️⃣ Step 5: Code Audit & Verification
+Once the code is generated:
+1. Run local builds (`npm run build` or `mvnw compile`) to ensure zero packaging warnings.
+2. Confirm there are no banned elements (like Inter/Roboto text classes or transparent color shades like `850`) that break rendering.
 
 ---
 

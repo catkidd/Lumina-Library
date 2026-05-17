@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Search, BookOpen, Users, Globe, BookMarked, 
   MapPin, Clock, Calendar, ArrowRight, ChevronDown, 
   ChevronUp, Star, GraduationCap, Award, HelpCircle,
-  MessageSquare, Library, Mail, Phone, CalendarDays
+  Library, Mail, Phone, CalendarDays
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -55,7 +55,7 @@ const Home = () => {
     }
   };
 
-  const handleBookClick = (book) => {
+  const handleBookClick = () => {
     if (user) {
       navigate('/catalog');
     } else {

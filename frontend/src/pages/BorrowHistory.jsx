@@ -64,157 +64,173 @@ const BorrowHistory = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10 relative font-body select-none">
+    <div className="relative min-h-[100dvh] bg-[#fbfaf6] text-stone-800 font-sans selection:bg-amber-100/80 select-none py-20 px-6 after:fixed after:inset-0 after:z-40 after:opacity-[0.02] after:pointer-events-none after:bg-[url('data:image/svg+xml,%3Csvg%20viewBox=%220%200%20200%20200%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter%20id=%22noise%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.8%22%20numOctaves=%224%22%20stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23noise)%22/%3E%3C/svg%3E')]">
+      
+      {/* TOAST SYSTEM (Double Bezel Aesthetic) */}
       {toast && (
-        <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 border rounded-2xl shadow-2xl transition-all duration-300 ${
-          toast.type === 'success' 
-            ? 'bg-emerald-50 border border-emerald-200/60 text-emerald-600' 
-            : 'bg-rose-50 border border-rose-200/60 text-rose-600'
-        }`}>
-          {toast.type === 'success' ? <CheckCircle className="w-5 h-5 flex-shrink-0" /> : <AlertTriangle className="w-5 h-5 flex-shrink-0" />}
-          <span className="text-sm font-bold">{toast.text}</span>
+        <div className="fixed bottom-8 right-8 z-[100] bg-[#f2efe8]/90 p-1 rounded-[1.5rem] border border-stone-200/50 shadow-2xl backdrop-blur-md animate-slide-up">
+          <div className={`px-5 py-4 rounded-[calc(1.5rem-0.25rem)] flex items-center gap-3 bg-white font-bold text-xs uppercase tracking-wider ${
+            toast.type === 'success' ? 'text-emerald-700' : 'text-amber-850'
+          }`}>
+            {toast.type === 'success' ? <CheckCircle className="w-4 h-4 text-emerald-600" /> : <AlertTriangle className="w-4 h-4 text-amber-705" />}
+            <span>{toast.text}</span>
+          </div>
         </div>
       )}
 
-      <div className="flex items-center justify-between mb-10 pb-6 border-b border-slate-200/60">
-        <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 font-serif">
-            My Borrowing Logs
-          </h1>
-          <p className="text-slate-600 mt-1.5 text-sm">
-            Monitor active checkouts, overdue dates, and past transaction records.
-          </p>
+      <div className="max-w-6xl mx-auto w-full flex flex-col gap-12 relative z-10">
+        
+        {/* HEADER BLOCK */}
+        <div className="flex items-center justify-between pb-8 border-b border-stone-200/50 gap-6">
+          <div className="flex flex-col gap-3">
+            <span className="text-amber-800 text-[9px] font-bold uppercase tracking-[0.25em]">Borrowing History</span>
+            <h1 className="font-serif font-extrabold text-4xl tracking-tight text-stone-900 leading-none">
+              My Borrowing Logs
+            </h1>
+            <p className="text-stone-605 text-sm font-medium leading-relaxed">
+              Monitor active checkouts, overdue dates, and past transaction records.
+            </p>
+          </div>
+          <button
+            onClick={fetchHistory}
+            className="p-3 bg-white hover:bg-stone-50 text-stone-605 hover:text-stone-900 border border-stone-200 rounded-2xl shadow-sm transition-colors active:scale-[0.97]"
+            title="Refresh History"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
         </div>
-        <button
-          onClick={fetchHistory}
-          className="p-3 bg-white hover:bg-slate-100/50 text-slate-600 hover:text-indigo-600 border border-slate-200 rounded-xl shadow-sm transition-all"
-          title="Refresh History"
-        >
-          <RefreshCw className="w-4 h-4" />
-        </button>
-      </div>
 
-      {loading ? (
-        <div className="space-y-4">
-          {[1, 2].map((n) => (
-            <div key={n} className="bg-slate-200/40 border border-slate-200/60 p-6 rounded-3xl h-36 animate-pulse"></div>
-          ))}
-        </div>
-      ) : transactions.length === 0 ? (
-        <div className="bg-white border border-dashed border-slate-200 p-12 text-center rounded-3xl max-w-xl mx-auto shadow-md">
-          <BookOpen className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-          <h3 className="text-lg font-bold text-slate-800">No Transactions Found</h3>
-          <p className="text-slate-600 text-sm mt-1">
-            You haven't borrowed any books from our catalog yet. Go to the Catalog tab to choose your first volume!
-          </p>
-        </div>
-      ) : (
-        <div className="space-y-6">
-          {transactions.map((t) => {
-            const daysRemaining = calculateDaysRemaining(t.dueDate, t.status);
-            const isOverdue = t.status === 'OVERDUE' || (t.status === 'ACTIVE' && daysRemaining < 0);
-            
-            const progressPercent = t.status === 'RETURNED'
-              ? 100
-              : Math.max(0, Math.min(100, ((14 - Math.max(0, daysRemaining)) / 14) * 100));
-
-            return (
-              <div
-                key={t.id}
-                className="bg-white/80 border border-slate-200/80 p-6 rounded-3xl hover:border-slate-355 transition-all duration-200 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-md"
-              >
-                <div className="flex-grow min-w-0">
-                  <div className="flex flex-wrap items-center gap-3.5 mb-3">
-                    <h3 className="text-lg font-extrabold text-slate-900 line-clamp-1 font-serif">{t.bookTitle}</h3>
-                    <span className={`px-2.5 py-0.5 text-[10px] font-bold border rounded-md uppercase tracking-wider ${
-                      t.status === 'RETURNED'
-                        ? 'bg-emerald-50 border border-emerald-200/60 text-emerald-600'
-                        : isOverdue
-                        ? 'bg-rose-50 border border-rose-200/60 text-rose-600'
-                        : 'bg-indigo-50 border border-indigo-200/60 text-indigo-600'
-                    }`}>
-                      {t.status === 'RETURNED' ? 'RETURNED' : isOverdue ? 'OVERDUE' : 'ACTIVE'}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 text-slate-600 text-sm mb-4 font-medium">
-                    <User className="w-4 h-4 text-slate-400" />
-                    <span>{t.bookAuthor}</span>
-                  </div>
-
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
-                    <div>
-                      <span className="block text-slate-500 font-bold uppercase tracking-wider text-[10px] mb-0.5">Checkout Date</span>
-                      <span className="flex items-center gap-1 text-slate-750 font-bold">
-                        <Calendar className="w-3.5 h-3.5 text-indigo-600" />
-                        {formatDate(t.checkoutDate)}
-                      </span>
-                    </div>
-
-                    <div>
-                      <span className="block text-slate-500 font-bold uppercase tracking-wider text-[10px] mb-0.5">Due Date</span>
-                      <span className="flex items-center gap-1 text-slate-750 font-bold">
-                        <Calendar className="w-3.5 h-3.5 text-indigo-600" />
-                        {formatDate(t.dueDate)}
-                      </span>
-                    </div>
-
-                    {t.returnDate && (
-                      <div>
-                        <span className="block text-slate-500 font-bold uppercase tracking-wider text-[10px] mb-0.5">Returned Date</span>
-                        <span className="flex items-center gap-1 text-slate-750 font-bold">
-                          <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-                          {formatDate(t.returnDate)}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row md:flex-col items-stretch sm:items-center md:items-end justify-between gap-6 md:w-64 flex-shrink-0">
-                  {t.status !== 'RETURNED' && (
-                    <div className="w-full">
-                      <div className="flex items-center justify-between text-xs mb-1.5">
-                        <span className="text-slate-500 font-semibold">Borrow Period</span>
-                        <span className={`font-bold ${isOverdue ? 'text-rose-600 animate-pulse' : 'text-slate-750'}`}>
-                          {daysRemaining < 0
-                            ? `Overdue by ${Math.abs(daysRemaining)} days`
-                            : `${daysRemaining} days remaining`}
-                        </span>
-                      </div>
-                      <div className="w-full h-1.5 bg-slate-100 border border-slate-200 rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full transition-all duration-300 ${
-                            isOverdue ? 'bg-rose-500' : 'bg-indigo-500'
-                          }`}
-                          style={{ width: `${progressPercent}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  )}
-
-                  {t.status !== 'RETURNED' && (
-                    <button
-                      onClick={() => handleReturn(t.id)}
-                      disabled={returningId === t.id}
-                      className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-700 hover:text-indigo-600 border border-slate-200 hover:border-indigo-300 text-xs font-bold uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] w-full shadow-sm"
-                    >
-                      {returningId === t.id ? (
-                        <div className="w-4 h-4 border-2 border-slate-200 border-t-indigo-600 rounded-full animate-spin"></div>
-                      ) : (
-                        <>
-                          <CheckSquare className="w-4 h-4 text-emerald-600" />
-                          <span>Return Book</span>
-                        </>
-                      )}
-                    </button>
-                  )}
-                </div>
+        {/* LOG LIST */}
+        {loading ? (
+          <div className="space-y-6">
+            {[1, 2].map((n) => (
+              <div key={n} className="bg-[#f2efe8]/50 p-2 rounded-[2.2rem] h-36 animate-pulse">
+                <div className="bg-white rounded-[calc(2.2rem-0.5rem)] h-full w-full"></div>
               </div>
-            );
-          })}
-        </div>
-      )}
+            ))}
+          </div>
+        ) : transactions.length === 0 ? (
+          <div className="bg-[#f2efe8]/80 p-2 rounded-[2.2rem] border border-stone-200/50 max-w-xl mx-auto w-full mt-10">
+            <div className="bg-white p-12 text-center rounded-[calc(2.2rem-0.5rem)] shadow-inner space-y-4">
+              <BookOpen className="w-10 h-10 text-stone-400 mx-auto stroke-[1.2]" />
+              <h3 className="text-base font-bold text-stone-850 uppercase tracking-wider">No Transactions Found</h3>
+              <p className="text-stone-600 text-xs leading-relaxed font-medium">
+                You haven't borrowed any books from our catalog yet. Go to the Catalog tab to choose your first volume!
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {transactions.map((t) => {
+              const daysRemaining = calculateDaysRemaining(t.dueDate, t.status);
+              const isOverdue = t.status === 'OVERDUE' || (t.status === 'ACTIVE' && daysRemaining < 0);
+              
+              const progressPercent = t.status === 'RETURNED'
+                ? 100
+                : Math.max(0, Math.min(100, ((14 - Math.max(0, daysRemaining)) / 14) * 100));
+
+              return (
+                <div
+                  key={t.id}
+                  className="bg-[#f2efe8]/80 p-2 rounded-[2.2rem] border border-stone-200/50 shadow-[0_8px_30px_rgba(0,0,0,0.01)] transition-transform duration-700 hover:scale-[1.005]"
+                >
+                  <div className="bg-white p-7 rounded-[calc(2.2rem-0.5rem)] flex flex-col lg:flex-row lg:items-center justify-between gap-8 shadow-[0_20px_40px_-15px_rgba(139,120,95,0.05)]">
+                    
+                    <div className="flex-grow min-w-0 space-y-4">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <h3 className="text-xl font-serif font-extrabold text-stone-900 leading-tight">{t.bookTitle}</h3>
+                        <span className={`px-2.5 py-0.5 text-[8px] font-bold border rounded-md uppercase tracking-wider ${
+                          t.status === 'RETURNED'
+                            ? 'bg-emerald-50 border border-emerald-200/60 text-emerald-700'
+                            : isOverdue
+                            ? 'bg-amber-50 border border-amber-200/60 text-amber-800'
+                            : 'bg-stone-50 border border-stone-200 text-stone-700'
+                        }`}>
+                          {t.status === 'RETURNED' ? 'RETURNED' : isOverdue ? 'OVERDUE' : 'ACTIVE'}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 text-stone-605 text-xs font-semibold">
+                        <User className="w-3.5 h-3.5 text-stone-400 stroke-[1.5]" />
+                        <span>{t.bookAuthor}</span>
+                      </div>
+
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs font-medium">
+                        <div>
+                          <span className="block text-stone-400 font-bold uppercase tracking-wider text-[8px] mb-0.5">Checkout Date</span>
+                          <span className="flex items-center gap-1.5 text-stone-750 font-bold">
+                            <Calendar className="w-3.5 h-3.5 text-stone-400 stroke-[1.5]" />
+                            {formatDate(t.checkoutDate)}
+                          </span>
+                        </div>
+
+                        <div>
+                          <span className="block text-stone-400 font-bold uppercase tracking-wider text-[8px] mb-0.5">Due Date</span>
+                          <span className="flex items-center gap-1.5 text-stone-750 font-bold">
+                            <Calendar className="w-3.5 h-3.5 text-stone-400 stroke-[1.5]" />
+                            {formatDate(t.dueDate)}
+                          </span>
+                        </div>
+
+                        {t.returnDate && (
+                          <div>
+                            <span className="block text-stone-400 font-bold uppercase tracking-wider text-[8px] mb-0.5">Returned Date</span>
+                            <span className="flex items-center gap-1.5 text-stone-750 font-bold">
+                              <CheckCircle className="w-3.5 h-3.5 text-emerald-600 stroke-[1.5]" />
+                              {formatDate(t.returnDate)}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end justify-between gap-6 lg:w-64 flex-shrink-0">
+                      {t.status !== 'RETURNED' && (
+                        <div className="w-full">
+                          <div className="flex items-center justify-between text-xs mb-1.5 font-medium">
+                            <span className="text-stone-450 font-bold uppercase tracking-wider text-[8px]">Borrow Period</span>
+                            <span className={`font-bold ${isOverdue ? 'text-amber-800 animate-pulse' : 'text-stone-750'}`}>
+                              {daysRemaining < 0
+                                ? `Overdue by ${Math.abs(daysRemaining)} days`
+                                : `${daysRemaining} days remaining`}
+                            </span>
+                          </div>
+                          <div className="w-full h-1 bg-stone-100 rounded-full overflow-hidden border border-stone-200/50">
+                            <div
+                              className={`h-full rounded-full transition-all duration-300 ${
+                                isOverdue ? 'bg-amber-700' : 'bg-stone-900'
+                              }`}
+                              style={{ width: `${progressPercent}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
+
+                      {t.status !== 'RETURNED' && (
+                        <button
+                          onClick={() => handleReturn(t.id)}
+                          disabled={returningId === t.id}
+                          className="px-6 py-3.5 bg-white hover:bg-stone-50 text-stone-750 hover:text-stone-950 border border-stone-200 hover:border-stone-300 text-xs font-bold uppercase tracking-widest rounded-full flex items-center justify-center gap-2 transition-all active:scale-[0.98] w-full shadow-sm"
+                        >
+                          {returningId === t.id ? (
+                            <div className="w-4 h-4 border-2 border-stone-200 border-t-stone-900 rounded-full animate-spin"></div>
+                          ) : (
+                            <>
+                              <CheckSquare className="w-3.5 h-3.5 text-stone-500" />
+                              <span>Return Book</span>
+                            </>
+                          )}
+                        </button>
+                      )}
+                    </div>
+
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

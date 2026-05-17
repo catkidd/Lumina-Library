@@ -89,7 +89,7 @@ const PrivacyPolicy = () => {
                 <span>Information We Collect</span>
               </h2>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Our database indexes restricted categories of academic metadata to facilitate authentication, transaction integrity, and automated loan auditing.
+                Our database indexes restricted categories of academic metadata to facilitate authentication, transaction integrity, and automated loan checking.
               </p>
               
               {/* TABLE */}
@@ -111,7 +111,7 @@ const PrivacyPolicy = () => {
                     <tr>
                       <td className="p-4 font-bold text-slate-900">Transaction History</td>
                       <td className="p-4">Checkout timestamps, Return check-in logs, Book IDs, Overdue flags</td>
-                      <td className="p-4">To audit library asset movements and calculate limits.</td>
+                      <td className="p-4">To track library book checkouts and calculate limits.</td>
                     </tr>
                     <tr>
                       <td className="p-4 font-bold text-slate-900">Browser Metadata</td>
@@ -181,7 +181,7 @@ const PrivacyPolicy = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div className="bg-slate-50 p-4 border border-slate-200/80 rounded-xl">
                   <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide mb-1 font-body">Right of Access</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">You can audit your full active record, profile data, and checkouts live inside the Student Portal.</p>
+                  <p className="text-xs text-slate-600 leading-relaxed">You can view your full active record, profile data, and checkouts live inside the Student Portal.</p>
                 </div>
                 <div className="bg-slate-50 p-4 border border-slate-200/80 rounded-xl">
                   <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide mb-1 font-body">Right of Correction</h4>

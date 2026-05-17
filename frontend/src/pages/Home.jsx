@@ -86,11 +86,11 @@ const Home = () => {
 
   // FAQ Database
   const faqs = [
-    { q: "How do I register for a digital library card?", a: "Click the 'Portal Access' button in the top navigation. Once registered, an academic student profile is dynamically provisioned with checkout rights." },
-    { q: "What are the active borrowing limits and fine structures?", a: "Standard members can borrow up to 5 physical volumes simultaneously for a period of 14 calendar days. Fines accrue at a rate of $0.50 USD per day for overdue assets." },
+    { q: "How do I register for a digital library card?", a: "Click the 'Sign In / Register' button in the top navigation. Once registered, you will be able to check out books and resources." },
+    { q: "What are the active borrowing limits and fine structures?", a: "Standard members can borrow up to 5 books at a time for up to 14 days. Fines accumulate at $0.50 per day for overdue books." },
     { q: "How do I access electronic research databases?", a: "Log into the portal using your verified academic email. Navigate to the catalog page and filter by 'E-Resources' to access indexed publications, scientific papers, and journals." },
     { q: "Can I reserve study booths and research media rooms?", a: "Absolutely. Logged-in students can book research booths and group study rooms dynamically through the dashboard or by requesting assistance at the center counter." },
-    { q: "Does Lumina support Interlibrary Loans?", a: "Yes. If we do not possess a specific volume, our network allows us to request catalog assets from cooperating partner university systems at zero cost to you." }
+    { q: "Does Lumina support Interlibrary Loans?", a: "Yes. If we do not have a specific book, our system allows us to request it from partner libraries at no cost to you." }
   ];
 
   const toggleFaq = (i) => {
@@ -123,13 +123,13 @@ const Home = () => {
             </div>
 
             <h1 className="font-display font-extrabold text-5xl md:text-7xl tracking-tight text-slate-900 leading-[1.02] drop-shadow-sm font-serif">
-              Curating the <br />
+              Discovering the <br />
               <span className="gradient-text-indigo">World's Finest</span> <br />
               Academic Archives
             </h1>
 
             <p className="text-slate-600 text-base md:text-lg leading-relaxed max-w-xl font-normal">
-              Empowering research excellence through structured digital repositories, advanced media booth logistics, and seamless catalog management since 1998.
+              Empowering research excellence through structured digital catalogs, easy study booth bookings, and seamless book inventory management since 1998.
             </p>
 
             {/* EXPANSIVE SEARCH BAR */}
@@ -214,7 +214,7 @@ const Home = () => {
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 font-body">Live Operations</span>
                 </div>
-                <p className="text-xs font-bold text-slate-600">Overdue checked daemon ran successfully at 00:00.</p>
+                <p className="text-xs font-bold text-slate-600">Overdue check automated job completed successfully at 00:00.</p>
               </div>
 
             </div>
@@ -227,8 +227,8 @@ const Home = () => {
       <section className="relative px-6 max-w-7xl mx-auto w-full mb-32 z-40">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { label: 'Asset Collections', count: '14,280+', desc: 'Indexed monographic & digital volumes', icon: BookMarked, color: 'text-indigo-600' },
-            { label: 'Active Scholars', count: '3,850+', desc: 'Registered student & faculty credentials', icon: Users, color: 'text-indigo-600' },
+            { label: 'Book Catalog', count: '14,280+', desc: 'Indexed physical books & e-resources', icon: BookMarked, color: 'text-indigo-600' },
+            { label: 'Active Scholars', count: '3,850+', desc: 'Registered student and faculty members', icon: Users, color: 'text-indigo-600' },
             { label: 'Scientific Sources', count: '9,420+', desc: 'Accessible e-journals & publications', icon: Globe, color: 'text-indigo-600' }
           ].map((stat, i) => (
             <div 
@@ -363,15 +363,15 @@ const Home = () => {
             Core Academic Services
           </h2>
           <p className="text-slate-600 text-sm leading-relaxed font-body">
-            Optimized infrastructure components designed to satisfy rigorous scientific workflows and resource requirements.
+            Optimized tools and services designed to support rigorous academic research and study requirements.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { title: "Study Booth Logistics", desc: "Reserve silent study pods, media rooms, and research stations directly connected to power backups and secure campus networks.", icon: Clock, label: "Logistics" },
-            { title: "Interlibrary Sourcing", desc: "If our local inventories do not host your target volume, our global ILL daemon registers sourcing queries to partner universities.", icon: Globe, label: "ILL" },
-            { title: "Research Intelligence", desc: "Engage with specialized reference libraries and AI-driven literature research systems to accelerate dissertation processes.", icon: GraduationCap, label: "Consultation" }
+            { title: "Study Room Booking", desc: "Reserve quiet study booths, media rooms, and individual research desks with full campus network connectivity.", icon: Clock, label: "Booking" },
+            { title: "Interlibrary Sourcing", desc: "If our local collection does not contain your target book, our global interlibrary loan system requests it from partner universities.", icon: Globe, label: "ILL" },
+            { title: "Research Support", desc: "Engage with specialized reference libraries and literature search systems to help with your academic papers and research.", icon: GraduationCap, label: "Consultation" }
           ].map((service, i) => (
             <div 
               key={i} 
@@ -419,17 +419,17 @@ const Home = () => {
             <CalendarDays className="w-6 h-6" />
           </div>
           <h2 className="font-display font-extrabold text-4xl md:text-5xl text-slate-900 tracking-tight mb-4 font-serif">
-            Library Broadcasters
+            Library Announcements
           </h2>
-          <p className="text-slate-600 text-sm font-body">Upcoming academic convocations, infrastructure updates, and research forums.</p>
+          <p className="text-slate-600 text-sm font-body">Upcoming library events, facilities updates, and research seminars.</p>
         </div>
 
         {/* Timeline */}
         <div className="space-y-6 relative before:absolute before:left-8 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200 z-10">
           {[
-            { date: "May 24, 2026", title: "Symposium: Machine Learning and Big Data Architectures", desc: "Chief researchers from the Systems Design Core host a guest seminar inside Media Room 3. Access requires profile reservation.", tag: "Academics", icon: Calendar },
-            { date: "June 02, 2026", title: "Scheduled Database Schema & Maintenance Restructure", desc: "The portal catalogue search endpoints will undergo performance tuning from 02:00 to 04:00 AM. Access tokens will temporarily reset.", tag: "Systems Ops", icon: Clock },
-            { date: "June 10, 2026", title: "Historical Archives Preservation Acquisitions", desc: "Lumina has secured a licensed digital catalog set containing classical computing manuscripts from the ACM collections.", tag: "Assets", icon: BookMarked }
+            { date: "May 24, 2026", title: "Symposium: Machine Learning and Big Data Architectures", desc: "Guest speakers from the engineering department host a guest seminar in Media Room 3. Reservation required.", tag: "Academics", icon: Calendar },
+            { date: "June 02, 2026", title: "Scheduled Database and System Maintenance", desc: "The catalog search system will undergo scheduled maintenance from 2:00 AM to 4:00 AM.", tag: "Systems Ops", icon: Clock },
+            { date: "June 10, 2026", title: "Historical Archives Preservation Additions", desc: "Lumina has added a new collection containing classic computing manuscripts.", tag: "Books", icon: BookMarked }
           ].map((event, i) => (
             <div key={i} className="flex gap-8 relative items-start group pl-2">
               
@@ -479,8 +479,8 @@ const Home = () => {
 
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { text: "Lumina's microsecond catalog indexing and stateless borrowing queue saves substantial research hours during database audits. A standard of modern library execution.", author: "Dr. Adrian Vance", role: "Quantum Research Fellow", initial: "AV" },
-              { text: "The scholarly responsive interface is exceptionally visually satisfying, while the underlying automated return notifications prevent overdue debts effortlessly.", author: "Eleanor Martinez", role: "Postgrad Systems Candidate", initial: "EM" }
+              { text: "Lumina's fast catalog search and automated borrowing system save substantial research time. A great standard of modern library management.", author: "Dr. Adrian Vance", role: "Quantum Research Fellow", initial: "AV" },
+              { text: "The modern responsive interface is exceptionally clean, and the automated email notifications make returning books simple.", author: "Eleanor Martinez", role: "Postgrad Systems Candidate", initial: "EM" }
             ].map((test, i) => (
               <div 
                 key={i} 

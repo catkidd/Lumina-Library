@@ -5,7 +5,7 @@ const Compliance = () => {
     { id: 'overview', label: '1. Regulatory Frameworks' },
     { id: 'cryptographic', label: '2. Cryptographic Protocols' },
     { id: 'db-compliance', label: '3. Database Integrity Standards' },
-    { id: 'cron-auditing', label: '4. Automated System Audits' },
+    { id: 'cron-auditing', label: '4. Automated System Checks' },
     { id: 'wcag-access', label: '5. Accessibility (WCAG 2.1)' },
     { id: 'admin-contact', label: '6. Compliance Verification' }
   ];
@@ -93,7 +93,7 @@ const Compliance = () => {
                 <li className="flex gap-2.5 items-start">
                   <CheckCircle className="w-4.5 h-4.5 text-indigo-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-800">HECC (Higher Education Compliance Guidelines):</strong> Our library workflows align with administrative record keeping, automated logging, and transaction auditing requirements.
+                    <strong className="text-slate-800">HECC (Higher Education Compliance Guidelines):</strong> Our library workflows align with administrative record keeping, automated logging, and transaction verification requirements.
                   </div>
                 </li>
               </ul>
@@ -170,16 +170,16 @@ const Compliance = () => {
             <section id="cron-auditing" className="scroll-mt-28 space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2.5 font-display font-serif">
                 <span className="text-indigo-600 font-body text-lg font-bold">4.0</span>
-                <span>Automated System Audits</span>
+                <span>Automated System Checks</span>
               </h2>
               <p className="text-slate-600 text-sm leading-relaxed">
-                The Spring Boot Java backend runs automated compliance audit loops in the background using `@EnableScheduling` and automated quartz-like task triggers:
+                The Spring Boot Java backend runs automated compliance checking loops in the background using `@EnableScheduling` and automated scheduled task triggers:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div className="bg-slate-50 p-5 border border-slate-200/80 rounded-xl flex gap-3">
                   <Terminal className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5 animate-pulse" />
                   <div>
-                    <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide mb-1 font-body">Overdue Checking Daemon</h4>
+                    <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide mb-1 font-body">Overdue Checking System</h4>
                     <p className="text-xs text-slate-600 leading-relaxed">Runs daily at midnight. Scans active borrowings, updates overdue status, and triggers system notice emails automatically.</p>
                   </div>
                 </div>
@@ -216,7 +216,7 @@ const Compliance = () => {
                 <span>Compliance Verification</span>
               </h2>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Any compliance inquiries regarding databases, audit files, or FERPA validation requests must be routed to our Central Systems Administrator:
+                Any compliance inquiries regarding databases, checking records, or FERPA validation requests must be routed to our Central Systems Administrator:
               </p>
               <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 max-w-fit">
                 <p className="text-xs text-slate-900 font-bold mb-1 font-body">Office of Compliance &amp; Security</p>

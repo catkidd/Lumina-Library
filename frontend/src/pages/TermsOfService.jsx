@@ -4,7 +4,7 @@ const TermsOfService = () => {
   const sections = [
     { id: 'acceptance', label: '1. Acceptance of Terms' },
     { id: 'eligibility', label: '2. User Accounts & Eligibility' },
-    { id: 'circulation-rules', label: '3. Circulation & Asset Management' },
+    { id: 'circulation-rules', label: '3. Circulation & Book Management' },
     { id: 'copyright-rules', label: '4. Copyright & E-Resources' },
     { id: 'termination', label: '5. Account Actions & Suspensions' },
     { id: 'disclaimer', label: '6. Disclaimer of Warranties' }
@@ -110,10 +110,10 @@ const TermsOfService = () => {
             <section id="circulation-rules" className="scroll-mt-28 space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2.5 font-display font-serif">
                 <span className="text-indigo-600 font-body text-lg font-bold">3.0</span>
-                <span>Circulation &amp; Asset Management</span>
+                <span>Circulation &amp; Book Management</span>
               </h2>
               <p className="text-slate-600 text-sm leading-relaxed">
-                To guarantee equal access to academic volumes, borrowing cycles are subject to strict system limits and cron-audited return windows.
+                To guarantee equal access to academic books, borrowing cycles are subject to strict system limits and scheduled return windows.
               </p>
               
               {/* TABLE */}
@@ -129,7 +129,7 @@ const TermsOfService = () => {
                   <tbody className="divide-y divide-slate-200/60 text-slate-600 bg-white">
                     <tr>
                       <td className="p-4 font-bold text-slate-900">Max Concurrent Books</td>
-                      <td className="p-4">5 Physical Volumes</td>
+                      <td className="p-4">5 Physical Books</td>
                       <td className="p-4">Queue blocks further checkout calls instantly.</td>
                     </tr>
                     <tr>
@@ -148,7 +148,7 @@ const TermsOfService = () => {
 
               <blockquote className="border-l-4 border-indigo-600 bg-indigo-50/50 p-4 rounded-r-xl mt-4">
                 <p className="text-xs text-indigo-800 italic font-bold leading-relaxed font-body">
-                  <strong>Academic Note:</strong> All returned volumes must be checked in physical drop boxes. Librarians verify physical asset integrity (binding, page count, annotations) post-return prior to clearing pending borrowing records.
+                  <strong>Academic Note:</strong> All returned books must be checked in physical drop boxes. Librarians verify physical book condition (binding, page count, markings) after return before clearing pending borrowing records.
                 </p>
               </blockquote>
             </section>
@@ -181,8 +181,8 @@ const TermsOfService = () => {
                 <div className="bg-slate-50 p-5 border border-slate-200/80 rounded-xl flex gap-3">
                   <AlertTriangle className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5 animate-pulse" />
                   <div>
-                    <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide mb-1 font-body">Unreturned Critical Assets</h4>
-                    <p className="text-xs text-slate-600 leading-relaxed">Holding volumes past 30 days overdue triggers automatic deactivation of circulation privileges.</p>
+                    <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide mb-1 font-body">Unreturned Books</h4>
+                    <p className="text-xs text-slate-600 leading-relaxed">Holding books past 30 days overdue triggers automatic deactivation of borrowing privileges.</p>
                   </div>
                 </div>
                 <div className="bg-slate-50 p-5 border border-slate-200/80 rounded-xl flex gap-3">
@@ -202,7 +202,7 @@ const TermsOfService = () => {
                 <span>Disclaimer of Warranties</span>
               </h2>
               <p className="text-slate-600 text-sm leading-relaxed uppercase">
-                THE LUMINA LIBRARY PORTAL SERVICE IS DELIVERED ON AN "AS IS" AND "AS AVAILABLE" STRUCTURAL BASIS. WE DISCLAIM ALL REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESSED OR IMPLIED, COVERING PORTAL DOWNTIMES, CRON DEADBANDS, SYSTEM OUTAGES, OR LOSS OF DIGITAL BIBLIOGRAPHY LOGS.
+                THE LUMINA LIBRARY PORTAL SERVICE IS DELIVERED ON AN "AS IS" AND "AS AVAILABLE" STRUCTURAL BASIS. WE DISCLAIM ALL REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESSED OR IMPLIED, COVERING PORTAL DOWNTIMES, SCHEDULED MAINTENANCE DELAYS, SYSTEM OUTAGES, OR LOSS OF DIGITAL BORROWING LOGS.
               </p>
               <p className="text-slate-600 text-sm leading-relaxed uppercase">
                 IN NO EVENT SHALL LUMINA OR ITS COOPERATING CAMPUS DEPARTMENTS BE LIABLE FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, OR INDIRECT DAMAGES RESULTING FROM ACCOUNT ACCESS DISRUPTIONS OR LOSS OF SYSTEM METRICS.

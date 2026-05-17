@@ -37,7 +37,7 @@ const AdminDashboard = () => {
       setBooks(booksRes.data);
       setTransactions(transRes.data);
     } catch {
-      showToast('error', 'Failed to retrieve administrative datasets.');
+      showToast('error', 'Failed to retrieve library catalog data.');
     } finally {
       setLoading(false);
     }

@@ -10,10 +10,10 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   const linkClass = (path) =>
-    `flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 ${
+    `flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 border ${
       isActive(path)
-        ? 'bg-indigo-600/30 text-indigo-400 border border-indigo-500/30 shadow-lg shadow-indigo-500/10'
-        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 border border-transparent'
+        ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30 shadow-lg shadow-indigo-500/5'
+        : 'text-slate-400 hover:text-white hover:bg-slate-800/40 border-transparent'
     }`;
 
   const handleLogout = () => {
@@ -22,19 +22,23 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="glass-panel sticky top-0 z-50 px-6 py-4 flex items-center justify-between shadow-xl backdrop-blur-md">
+    <nav className="sticky top-4 mx-4 xl:mx-auto max-w-7xl z-50 glass-panel rounded-[24px] px-6 py-3.5 flex items-center justify-between shadow-2xl backdrop-blur-xl border border-white/5 transition-all duration-300">
+      
       {/* BRAND LOGO */}
-      <Link to={user ? "/catalog" : "/"} className="flex items-center gap-3 group">
-        <div className="p-2.5 bg-indigo-600/20 text-indigo-400 rounded-2xl border border-indigo-500/20 group-hover:scale-105 transition-all duration-200">
-          <Library className="w-6 h-6 animate-pulse" />
+      <Link to={user ? "/catalog" : "/"} className="flex items-center gap-2.5 group">
+        <div className="p-2 bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-xl shadow-lg shadow-indigo-500/20 group-hover:scale-105 active:scale-95 transition-all duration-300">
+          <Library className="w-5 h-5" />
         </div>
-        <span className="font-semibold text-lg tracking-wider bg-gradient-to-r from-indigo-300 via-indigo-100 to-indigo-400 bg-clip-text text-transparent group-hover:opacity-90 transition-opacity">
-          Lumina Library
+        <span className="font-display font-extrabold text-lg md:text-xl tracking-tight text-white flex items-center gap-1.5 select-none">
+          LUMINA
+          <span className="text-[10px] font-bold tracking-widest bg-indigo-500/20 text-indigo-400 px-1.5 py-0.5 rounded-md border border-indigo-500/30">
+            LIB
+          </span>
         </span>
       </Link>
 
       {/* CORE NAVIGATION */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         {user ? (
           <>
             <Link to="/catalog" className={linkClass('/catalog')}>
@@ -45,67 +49,67 @@ const Navbar = () => {
             {user.role === 'STUDENT' && (
               <Link to="/history" className={linkClass('/history')}>
                 <Clock className="w-4 h-4" />
-                <span>Borrowing History</span>
+                <span>Borrowing Logs</span>
               </Link>
             )}
 
             {user.role === 'ADMIN' && (
               <Link to="/admin" className={linkClass('/admin')}>
                 <Shield className="w-4 h-4" />
-                <span>Admin Control</span>
+                <span>Control Panel</span>
               </Link>
             )}
           </>
         ) : (
-          <div className="hidden lg:flex items-center gap-6">
-            <Link to="/login" className="text-slate-400 hover:text-indigo-400 font-medium text-sm transition-all flex items-center gap-1.5">
-              <BookOpen className="w-4 h-4 text-indigo-500/80" />
+          <div className="hidden lg:flex items-center gap-5">
+            <Link to="/login" className="text-slate-400 hover:text-indigo-400 font-bold text-xs uppercase tracking-widest transition-colors flex items-center gap-1.5">
+              <BookOpen className="w-3.5 h-3.5 text-indigo-500" />
               <span>Books</span>
             </Link>
-            <Link to="/login" className="text-slate-400 hover:text-indigo-400 font-medium text-sm transition-all flex items-center gap-1.5">
-              <Compass className="w-4 h-4 text-indigo-500/80" />
+            <Link to="/login" className="text-slate-400 hover:text-indigo-400 font-bold text-xs uppercase tracking-widest transition-colors flex items-center gap-1.5">
+              <Compass className="w-3.5 h-3.5 text-indigo-500" />
               <span>E-Resources</span>
             </Link>
-            <div className="w-px h-4 bg-slate-800" />
-            <div className="text-slate-400 font-medium text-xs flex items-center gap-1.5 select-none bg-slate-900/30 px-3 py-1.5 border border-slate-800/40 rounded-xl">
+            <div className="w-px h-3.5 bg-slate-800" />
+            <div className="text-slate-400 font-bold text-[10px] uppercase tracking-widest flex items-center gap-1.5 select-none bg-slate-900/40 px-3 py-1.5 border border-slate-800/80 rounded-xl">
               <Clock className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Mon - Sat: 8 AM - 10 PM</span>
+              <span>Mon - Sat: 8AM - 10PM</span>
             </div>
-            <div className="text-slate-400 font-medium text-xs flex items-center gap-1.5 select-none bg-slate-900/30 px-3 py-1.5 border border-slate-800/40 rounded-xl">
+            <div className="text-slate-400 font-bold text-[10px] uppercase tracking-widest flex items-center gap-1.5 select-none bg-slate-900/40 px-3 py-1.5 border border-slate-800/80 rounded-xl">
               <MapPin className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Central Campus</span>
+              <span>Campus Core</span>
             </div>
           </div>
         )}
       </div>
 
       {/* ACTION BLOCK */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         {user ? (
           <>
-            <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-slate-800/30 border border-slate-700/30 rounded-xl text-sm text-slate-400">
-              <User className="w-4 h-4 text-indigo-400" />
-              <span>{user.email}</span>
-              <span className="ml-1 px-1.5 py-0.5 text-[10px] font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-md">
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-900/40 border border-slate-800/80 rounded-xl text-xs font-semibold text-slate-300">
+              <User className="w-3.5 h-3.5 text-indigo-400" />
+              <span className="max-w-[120px] truncate">{user.email}</span>
+              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-widest bg-indigo-500/10 text-indigo-400 border border-indigo-500/25 rounded-md uppercase">
                 {user.role}
               </span>
             </div>
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 hover:border-rose-500/30 rounded-xl transition-all duration-200"
+              className="flex items-center gap-2 px-4 py-2 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 hover:border-rose-500/30 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-97"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Logout</span>
             </button>
           </>
         ) : (
           <Link
             to="/login"
-            className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold rounded-xl border border-indigo-400/20 shadow-lg hover:shadow-indigo-500/15 active:scale-97 transition-all duration-200 text-sm"
+            className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold rounded-xl border border-indigo-400/20 shadow-lg hover:shadow-indigo-500/15 active:scale-97 transition-all duration-300 text-xs uppercase tracking-wider"
           >
-            <User className="w-4 h-4" />
-            <span>Sign In / Register</span>
+            <User className="w-3.5 h-3.5" />
+            <span>Portal Access</span>
           </Link>
         )}
       </div>
@@ -114,4 +118,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

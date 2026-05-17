@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import BookCatalog from './pages/BookCatalog';
@@ -13,10 +14,11 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="min-h-screen bg-[#0b0f19] text-slate-100 font-sans flex flex-col">
+        <div className="min-h-screen bg-[#0b0f19] text-slate-100 font-sans flex flex-col animate-fade-in">
           <Navbar />
           <main className="flex-grow">
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route
@@ -43,7 +45,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              <Route path="*" element={<Navigate to="/catalog" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
         </div>
@@ -53,3 +55,4 @@ function App() {
 }
 
 export default App;
+

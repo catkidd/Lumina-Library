@@ -253,8 +253,8 @@ const AdminDashboard = () => {
             onClick={() => setActiveTab('inventory')}
             className={`py-2.5 px-6 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
               activeTab === 'inventory'
-                ? 'bg-stone-900 text-stone-100 shadow-md'
-                : 'text-stone-600 hover:text-stone-900'
+                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/10'
+                : 'text-stone-600 hover:text-indigo-600'
             }`}
           >
             Manage Inventory
@@ -263,8 +263,8 @@ const AdminDashboard = () => {
             onClick={() => setActiveTab('transactions')}
             className={`py-2.5 px-6 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
               activeTab === 'transactions'
-                ? 'bg-stone-900 text-stone-100 shadow-md'
-                : 'text-stone-600 hover:text-stone-900'
+                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/10'
+                : 'text-stone-600 hover:text-indigo-600'
             }`}
           >
             Transaction Logs
@@ -290,7 +290,7 @@ const AdminDashboard = () => {
               {/* Button-in-Button CTA Architecture */}
               <button
                 onClick={openAddModal}
-                className="group pl-6 pr-2 py-2 bg-stone-900 hover:bg-stone-850 text-stone-100 hover:text-white text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] flex items-center gap-4 active:scale-[0.98] border border-stone-900"
+                className="group pl-6 pr-2 py-2 bg-indigo-600 hover:bg-indigo-700 text-stone-100 hover:text-white text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] flex items-center gap-4 active:scale-[0.98] border border-indigo-500 shadow-md shadow-indigo-600/10"
               >
                 <span>Add Title</span>
                 <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
@@ -336,7 +336,7 @@ const AdminDashboard = () => {
                             <div className="flex justify-end gap-3 opacity-80 group-hover:opacity-100 transition-opacity">
                               <button
                                 onClick={() => openEditModal(b)}
-                                className="p-2 bg-white hover:bg-stone-50 border border-stone-200 text-stone-500 hover:text-stone-900 rounded-full transition-all duration-500 active:scale-[0.94] shadow-sm"
+                                className="p-2 bg-white hover:bg-indigo-50 border border-stone-200 hover:border-indigo-200 text-stone-500 hover:text-indigo-600 rounded-full transition-all duration-500 active:scale-[0.94] shadow-sm"
                                 title="Edit Entry"
                               >
                                 <Edit2 className="w-3.5 h-3.5 stroke-[1.5]" />
@@ -462,7 +462,7 @@ const AdminDashboard = () => {
                     type="text"
                     required
                     placeholder="e.g. Systems Design"
-                    className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-stone-900 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-stone-900/10 shadow-inner"
+                    className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-indigo-600 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-indigo-600/10 shadow-inner"
                     value={formTitle}
                     onChange={(e) => setFormTitle(e.target.value)}
                   />
@@ -477,7 +477,7 @@ const AdminDashboard = () => {
                     type="text"
                     required
                     placeholder="e.g. Martin Kleppmann"
-                    className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-stone-900 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-stone-900/10 shadow-inner"
+                    className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-indigo-600 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-indigo-600/10 shadow-inner"
                     value={formAuthor}
                     onChange={(e) => setFormAuthor(e.target.value)}
                   />
@@ -493,7 +493,7 @@ const AdminDashboard = () => {
                       type="text"
                       required
                       placeholder="e.g. 978-1449373320"
-                      className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-stone-900 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-xs font-mono focus:ring-1 focus:ring-stone-900/10 shadow-inner"
+                      className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-indigo-600 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-xs font-mono focus:ring-1 focus:ring-indigo-600/10 shadow-inner"
                       value={formIsbn}
                       onChange={(e) => setFormIsbn(e.target.value)}
                     />
@@ -508,7 +508,7 @@ const AdminDashboard = () => {
                       type="text"
                       required
                       placeholder="e.g. Distributed Systems"
-                      className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-stone-900 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-stone-900/10 shadow-inner"
+                      className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-indigo-600 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-indigo-600/10 shadow-inner"
                       value={formGenre}
                       onChange={(e) => setFormGenre(e.target.value)}
                     />
@@ -524,7 +524,7 @@ const AdminDashboard = () => {
                     type="number"
                     required
                     min="0"
-                    className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-stone-900 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-stone-900/10 shadow-inner"
+                    className="w-full px-4 py-3 bg-white border border-stone-200 focus:border-indigo-600 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none transition-all text-sm font-medium focus:ring-1 focus:ring-indigo-600/10 shadow-inner"
                     value={formTotalCopies}
                     onChange={(e) => setFormTotalCopies(e.target.value)}
                   />
@@ -542,7 +542,7 @@ const AdminDashboard = () => {
                   </button>
                   <button
                     type="submit"
-                    className="w-1/2 py-3 bg-stone-900 hover:bg-stone-850 text-stone-100 border border-stone-900 rounded-full font-bold uppercase tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
+                    className="w-1/2 py-3 bg-indigo-600 hover:bg-indigo-700 text-stone-100 border border-indigo-500 rounded-full font-bold uppercase tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96] shadow-md shadow-indigo-600/10"
                   >
                     Confirm Registry
                   </button>

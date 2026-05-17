@@ -165,7 +165,7 @@ const Home = () => {
       
       {/* SCROLL PROGRESS BAR */}
       <div 
-        className="fixed top-0 left-0 h-1 bg-stone-900 z-[100] transition-[width] duration-300 ease-out" 
+        className="fixed top-0 left-0 h-1 bg-indigo-600 z-[100] transition-[width] duration-300 ease-out" 
         style={{ width: `${scrollProgress}%` }}
       />
 
@@ -206,7 +206,7 @@ const Home = () => {
                 {/* BUTTON IN BUTTON Pattern */}
                 <button
                   type="submit"
-                  className="absolute right-3.5 px-5 py-3 bg-stone-900 hover:bg-stone-800 text-stone-100 hover:text-white rounded-[calc(1.8rem-0.5rem)] text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.97]"
+                  className="absolute right-3.5 px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-stone-100 hover:text-white rounded-[calc(1.8rem-0.5rem)] text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.97]"
                 >
                   Search
                 </button>
@@ -351,8 +351,8 @@ const Home = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                   activeCategory === cat
-                    ? 'bg-stone-900 text-stone-100 shadow-md'
-                    : 'text-stone-600 hover:text-stone-900'
+                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/10'
+                    : 'text-stone-600 hover:text-indigo-600'
                 }`}
               >
                 {cat}
@@ -407,7 +407,7 @@ const Home = () => {
                     
                     <button
                       onClick={handleBookClick}
-                      className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-stone-900 hover:text-stone-750 group-hover:translate-x-0.5 transition-transform"
+                      className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-indigo-600 hover:text-indigo-750 group-hover:translate-x-0.5 transition-transform"
                     >
                       <span>Borrow Book</span>
                       <ArrowRight className="w-3 h-3" />
@@ -471,7 +471,7 @@ const Home = () => {
                 <div className="pt-6 mt-6 border-t border-stone-100">
                   <Link
                     to="/login"
-                    className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-stone-900 hover:text-stone-750"
+                    className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-indigo-600 hover:text-indigo-750"
                   >
                     <span>View Details</span>
                     <ArrowRight className="w-3 h-3" />
@@ -672,7 +672,7 @@ const Home = () => {
                 <button
                   type="submit"
                   disabled={subscribed}
-                  className="px-6 py-4 bg-stone-900 hover:bg-stone-855 text-stone-100 hover:text-white font-bold rounded-xl border border-stone-800 shadow-md transition-all duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-3 active:scale-[0.98]"
+                  className="px-6 py-4 bg-indigo-600 hover:bg-indigo-700 text-stone-100 hover:text-white font-bold rounded-xl border border-indigo-500 shadow-md transition-all duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-3 active:scale-[0.98]"
                 >
                   <span>{subscribed ? 'Subscribed' : 'Subscribe Now'}</span>
                   <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0">
@@ -783,7 +783,7 @@ const Home = () => {
       {/* BACK TO TOP BUTTON */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 p-3.5 bg-stone-900/90 hover:bg-stone-950 text-stone-100 rounded-full border border-stone-800 shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 z-50 backdrop-blur-md ${
+        className={`fixed bottom-8 right-8 p-3.5 bg-indigo-600/90 hover:bg-indigo-700 text-stone-100 rounded-full border border-indigo-500 shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 z-50 backdrop-blur-md ${
           showBackToTop ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0 pointer-events-none'
         }`}
         aria-label="Back to top"

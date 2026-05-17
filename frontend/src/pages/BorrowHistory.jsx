@@ -198,7 +198,7 @@ const BorrowHistory = () => {
                           <div className="w-full h-1 bg-stone-100 rounded-full overflow-hidden border border-stone-200/50">
                             <div
                               className={`h-full rounded-full transition-all duration-300 ${
-                                isOverdue ? 'bg-amber-700' : 'bg-stone-900'
+                                isOverdue ? 'bg-amber-700' : 'bg-indigo-600'
                               }`}
                               style={{ width: `${progressPercent}%` }}
                             ></div>
@@ -213,7 +213,7 @@ const BorrowHistory = () => {
                           className="px-6 py-3.5 bg-white hover:bg-stone-50 text-stone-750 hover:text-stone-950 border border-stone-200 hover:border-stone-300 text-xs font-bold uppercase tracking-widest rounded-full flex items-center justify-center gap-2 transition-all active:scale-[0.98] w-full shadow-sm"
                         >
                           {returningId === t.id ? (
-                            <div className="w-4 h-4 border-2 border-stone-200 border-t-stone-900 rounded-full animate-spin"></div>
+                            <div className="w-4 h-4 border-2 border-stone-200 border-t-indigo-600 rounded-full animate-spin"></div>
                           ) : (
                             <>
                               <CheckSquare className="w-3.5 h-3.5 text-stone-500" />

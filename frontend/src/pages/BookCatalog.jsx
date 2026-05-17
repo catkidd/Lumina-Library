@@ -125,7 +125,7 @@ const BookCatalog = () => {
             </div>
             <button
               type="submit"
-              className="px-6 py-4 bg-stone-900 hover:bg-stone-800 text-stone-100 hover:text-white text-xs font-bold rounded-2xl transition-all duration-300 active:scale-[0.97] uppercase tracking-wider shadow-sm border border-stone-800"
+              className="px-6 py-4 bg-indigo-600 hover:bg-indigo-700 text-stone-100 hover:text-white text-xs font-bold rounded-2xl transition-all duration-300 active:scale-[0.97] uppercase tracking-wider shadow-sm border border-indigo-500"
             >
               Search
             </button>
@@ -140,8 +140,8 @@ const BookCatalog = () => {
               onClick={() => setSelectedGenre(g)}
               className={`px-4 py-2 rounded-full text-[10px] font-bold border uppercase tracking-wider transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                 selectedGenre === g
-                  ? 'bg-stone-900 text-stone-100 border-stone-900 shadow-sm'
-                  : 'bg-white text-stone-605 border-stone-200 hover:bg-stone-50 hover:text-stone-900'
+                  ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm shadow-indigo-600/10'
+                  : 'bg-white text-stone-605 border-stone-200 hover:bg-stone-50 hover:text-indigo-605'
               }`}
             >
               {g}
@@ -227,12 +227,12 @@ const BookCatalog = () => {
                           disabled={!isAvailable || borrowingId === b.id}
                           className={`w-full py-4 rounded-full text-xs font-bold flex items-center justify-center gap-3 transition-all duration-300 uppercase tracking-widest border ${
                             isAvailable
-                              ? 'bg-stone-900 hover:bg-stone-800 text-stone-100 hover:text-white border-stone-800 shadow-md active:scale-[0.98]'
+                              ? 'bg-indigo-600 hover:bg-indigo-700 text-stone-100 hover:text-white border-indigo-500 shadow-md active:scale-[0.98]'
                               : 'bg-stone-50 text-stone-400 border border-stone-200 cursor-not-allowed'
                           }`}
                         >
                           {borrowingId === b.id ? (
-                            <div className="w-4 h-4 border-2 border-stone-200 border-t-stone-900 rounded-full animate-spin"></div>
+                            <div className="w-4 h-4 border-2 border-stone-200 border-t-indigo-600 rounded-full animate-spin"></div>
                           ) : !isAvailable ? (
                             'Out of Stock'
                           ) : (

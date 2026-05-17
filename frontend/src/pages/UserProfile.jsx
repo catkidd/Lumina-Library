@@ -215,7 +215,7 @@ const UserProfile = () => {
 
                     <button
                       type="submit"
-                      className="px-6 py-3 bg-stone-900 hover:bg-stone-800 text-stone-100 hover:text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] flex items-center justify-between gap-4 group active:scale-[0.98] border border-stone-800 shadow-md shadow-stone-900/10"
+                      className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-stone-100 hover:text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] flex items-center justify-between gap-4 group active:scale-[0.98] border border-indigo-500 shadow-md shadow-indigo-600/10"
                     >
                       <span>Update Credentials</span>
                       <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-1 group-hover:-translate-y-[1px] transition-all duration-300">

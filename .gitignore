@@ -79,6 +79,9 @@ out/
 *.code-workspace
 .history/
 
+# AI Agents & Local Assistants
+.agent/
+
 # Generic Editors
 *.sublime-project
 *.sublime-workspace

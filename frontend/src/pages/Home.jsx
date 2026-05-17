@@ -39,7 +39,7 @@ const Home = () => {
 
   // High-fidelity local database of library books
   const catalogDatabase = useMemo(() => [
-    { id: 1, title: "The Art of Computer Programming", author: "Donald Knuth", category: "Computer Science", year: "2021", rating: 5, status: "Available", desc: "The definitive guide to classical computer science algorithms.", gradient: "from-indigo-650 to-blue-900" },
+    { id: 1, title: "The Art of Computer Programming", author: "Donald Knuth", category: "Computer Science", year: "2021", rating: 5, status: "Available", desc: "The definitive guide to classical computer science algorithms.", gradient: "from-indigo-600 to-blue-900" },
     { id: 2, title: "Clean Architecture", author: "Robert C. Martin", category: "Software Engineering", year: "2017", rating: 5, status: "Available", desc: "A craftsman's guide to software structure and design.", gradient: "from-teal-700 to-emerald-900" },
     { id: 3, title: "Introduction to Algorithms", author: "Thomas H. Cormen", category: "Algorithms", year: "2022", rating: 4.8, status: "Borrowed", desc: "The standard academic reference for modern algorithms.", gradient: "from-violet-700 to-indigo-900" },
     { id: 4, title: "Designing Data-Intensive Applications", author: "Martin Kleppmann", category: "Systems Design", year: "2017", rating: 4.9, status: "Available", desc: "An exhaustive guide to data systems architecture.", gradient: "from-purple-700 to-indigo-950" },
@@ -102,12 +102,12 @@ const Home = () => {
       
       {/* SCROLL PROGRESS BAR */}
       <div 
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-600 via-indigo-500 to-indigo-750 z-[100] transition-all duration-100" 
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-600 via-indigo-500 to-indigo-800 z-[100] transition-all duration-100" 
         style={{ width: `${scrollProgress}%` }}
       />
 
       {/* GLOWING AMBIENT BACKGROUND ORBS */}
-      <div className="absolute top-[-10%] left-[-15%] w-[600px] h-[600px] rounded-full bg-indigo-650/10 blur-[160px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute top-[-10%] left-[-15%] w-[600px] h-[600px] rounded-full bg-indigo-600/10 blur-[160px] pointer-events-none animate-pulse-slow" />
       <div className="absolute top-[35%] right-[-15%] w-[700px] h-[700px] rounded-full bg-indigo-900/5 blur-[170px] pointer-events-none animate-pulse-slow" style={{ animationDelay: '2.5s' }} />
 
       {/* ================= HERO SECTION ================= */}
@@ -145,7 +145,7 @@ const Home = () => {
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 px-5 py-3.5 bg-indigo-650 hover:bg-indigo-600 text-white font-bold rounded-xl text-xs uppercase tracking-widest border border-indigo-400/20 shadow-md active:scale-97 transition-all duration-200"
+                  className="absolute right-2 px-5 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs uppercase tracking-widest border border-indigo-400/20 shadow-md active:scale-97 transition-all duration-200"
                 >
                   Query Engine
                 </button>
@@ -162,7 +162,7 @@ const Home = () => {
                       setSearchQuery(tag);
                       setActiveCategory(tag === 'Systems Design' ? 'Systems Design' : tag === 'Algorithms' ? 'Algorithms' : 'AI / ML');
                     }}
-                    className="text-[10px] font-bold uppercase tracking-wider text-slate-400 hover:text-indigo-400 bg-slate-900/50 hover:bg-indigo-550/10 px-2.5 py-1 border border-slate-800/80 hover:border-indigo-500/30 rounded-md transition-colors"
+                    className="text-[10px] font-bold uppercase tracking-wider text-slate-400 hover:text-indigo-400 bg-slate-900/50 hover:bg-indigo-500/10 px-2.5 py-1 border border-slate-800/80 hover:border-indigo-500/30 rounded-md transition-colors"
                   >
                     {tag}
                   </button>
@@ -181,7 +181,7 @@ const Home = () => {
 
               {/* Front Floating Book Deck */}
               <div className="absolute transform translate-y-[-20px] translate-x-[-20px] rotate-[-5deg] z-30 transition-transform duration-500 hover:translate-y-[-40px] hover:rotate-[-1deg] cursor-pointer">
-                <div className="w-[200px] h-[280px] bg-gradient-to-br from-indigo-750 to-indigo-950 rounded-[20px] shadow-2xl border border-indigo-400/20 p-5 flex flex-col justify-between relative overflow-hidden">
+                <div className="w-[200px] h-[280px] bg-gradient-to-br from-indigo-900 to-slate-950 rounded-[20px] shadow-2xl border border-indigo-500/25 p-5 flex flex-col justify-between relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-white/5 rounded-full blur-xl pointer-events-none" />
                   <div className="flex justify-between items-start">
                     <span className="text-[9px] font-bold uppercase tracking-widest bg-white/10 text-white px-2 py-0.5 rounded border border-white/15">Volume I</span>
@@ -189,13 +189,13 @@ const Home = () => {
                   </div>
                   <div className="space-y-1.5">
                     <h4 className="font-display font-bold text-sm text-white leading-tight font-serif">THE ART OF COMPUTER PROGRAMMING</h4>
-                    <p className="text-[10px] text-indigo-300 font-semibold uppercase tracking-wider">Donald Knuth</p>
+                    <p className="text-[10px] text-indigo-300 font-bold uppercase tracking-wider">Donald Knuth</p>
                   </div>
                 </div>
               </div>
 
               <div className="absolute transform translate-y-[20px] translate-x-[30px] rotate-[7deg] z-20 transition-transform duration-500 hover:translate-y-[40px] hover:rotate-[3deg] cursor-pointer">
-                <div className="w-[200px] h-[280px] bg-gradient-to-br from-rose-700 to-indigo-950 rounded-[20px] shadow-2xl border border-rose-400/15 p-5 flex flex-col justify-between relative overflow-hidden">
+                <div className="w-[200px] h-[280px] bg-gradient-to-br from-rose-950 to-slate-950 rounded-[20px] shadow-2xl border border-rose-500/20 p-5 flex flex-col justify-between relative overflow-hidden">
                   <div className="absolute bottom-0 left-0 w-[120px] h-[120px] bg-white/5 rounded-full blur-lg pointer-events-none" />
                   <div className="flex justify-between items-start">
                     <span className="text-[9px] font-bold uppercase tracking-widest bg-white/10 text-white px-2 py-0.5 rounded border border-white/15">Core Manual</span>
@@ -203,7 +203,7 @@ const Home = () => {
                   </div>
                   <div className="space-y-1.5">
                     <h4 className="font-display font-bold text-sm text-white leading-tight font-serif">ARTIFICIAL INTELLIGENCE</h4>
-                    <p className="text-[10px] text-rose-300 font-semibold uppercase tracking-wider">Stuart Russell</p>
+                    <p className="text-[10px] text-rose-300 font-bold uppercase tracking-wider">Stuart Russell</p>
                   </div>
                 </div>
               </div>
@@ -382,7 +382,7 @@ const Home = () => {
                   <div className="p-3 bg-slate-950 border border-slate-900 text-indigo-400 rounded-2xl shadow-inner">
                     <service.icon className="w-6 h-6" />
                   </div>
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-indigo-400 bg-indigo-550/10 px-2 py-0.5 border border-indigo-500/20 rounded">
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-indigo-400 bg-indigo-500/10 px-2 py-0.5 border border-indigo-500/20 rounded">
                     {service.label}
                   </span>
                 </div>
@@ -562,7 +562,7 @@ const Home = () => {
       <section className="relative px-6 max-w-7xl mx-auto w-full mb-32 z-40">
         <div className="glass-panel p-10 md:p-16 rounded-[30px] border border-slate-900/70 shadow-2xl relative overflow-hidden text-center gradient-bg">
           {/* Decorative glowing gradient spheres */}
-          <div className="absolute top-[-100px] right-[-100px] w-[250px] h-[250px] rounded-full bg-indigo-650/15 blur-[60px] pointer-events-none" />
+          <div className="absolute top-[-100px] right-[-100px] w-[250px] h-[250px] rounded-full bg-indigo-600/15 blur-[60px] pointer-events-none" />
           <div className="absolute bottom-[-100px] left-[-100px] w-[250px] h-[250px] rounded-full bg-indigo-900/5 blur-[50px] pointer-events-none" />
           
           <div className="max-w-2xl mx-auto relative z-10">
@@ -590,7 +590,7 @@ const Home = () => {
               <button
                 type="submit"
                 disabled={subscribed}
-                className="px-6 py-4 bg-gradient-to-r from-indigo-600 to-indigo-750 hover:from-indigo-500 hover:to-indigo-650 text-white font-bold rounded-xl border border-indigo-400/20 shadow-lg hover:shadow-indigo-500/20 active:scale-97 transition-all duration-200 text-xs uppercase tracking-wider"
+                className="px-6 py-4 bg-gradient-to-r from-indigo-600 to-indigo-800 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold rounded-xl border border-indigo-400/20 shadow-lg hover:shadow-indigo-500/20 active:scale-97 transition-all duration-200 text-xs uppercase tracking-wider"
               >
                 {subscribed ? 'Subscribed Successfully' : 'Subscribe Now'}
               </button>
@@ -625,11 +625,11 @@ const Home = () => {
                 Providing comprehensive access to cutting-edge research databases, academic media booths, study infrastructures, and multi-disciplinary libraries since 1998.
               </p>
               <div className="space-y-2">
-                <a href="mailto:support@luminalibrary.edu" className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition-colors text-xs font-semibold">
+                <a href="mailto:support@luminalibrary.edu" className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition-colors text-xs font-bold">
                   <Mail className="w-4 h-4 text-indigo-500" />
                   <span>support@luminalibrary.edu</span>
                 </a>
-                <a href="tel:+15550198" className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition-colors text-xs font-semibold">
+                <a href="tel:+15550198" className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition-colors text-xs font-bold">
                   <Phone className="w-4 h-4 text-indigo-500" />
                   <span>+1 (555) 019-8234</span>
                 </a>
@@ -641,18 +641,18 @@ const Home = () => {
               <h3 className="font-bold text-xs uppercase tracking-widest text-indigo-400 mb-6">Operational Hours</h3>
               <ul className="space-y-3 text-xs text-slate-400">
                 <li className="flex justify-between border-b border-slate-900/40 pb-1.5">
-                  <span className="font-semibold text-slate-300">Mon - Fri:</span>
+                  <span className="font-bold text-slate-300">Mon - Fri:</span>
                   <span>8:00 AM - 10:00 PM</span>
                 </li>
                 <li className="flex justify-between border-b border-slate-900/40 pb-1.5">
-                  <span className="font-semibold text-slate-300">Saturday:</span>
+                  <span className="font-bold text-slate-300">Saturday:</span>
                   <span>9:00 AM - 6:00 PM</span>
                 </li>
                 <li className="flex justify-between pb-1.5">
-                  <span className="font-semibold text-slate-300">Sunday:</span>
-                  <span className="text-indigo-450 font-bold uppercase tracking-wider">Closed</span>
+                  <span className="font-bold text-slate-300">Sunday:</span>
+                  <span className="text-indigo-500 font-bold uppercase tracking-wider">Closed</span>
                 </li>
-                <li className="text-[10px] text-slate-550 italic mt-2">
+                <li className="text-[10px] text-slate-500 italic mt-2">
                   * Note: E-catalog is active 24/7. Holiday schedule shifts are broadcasted via announcements.
                 </li>
               </ul>
@@ -663,16 +663,16 @@ const Home = () => {
               <h3 className="font-bold text-xs uppercase tracking-widest text-indigo-400 mb-6">Quick Navigation</h3>
               <ul className="space-y-3 text-xs text-slate-400">
                 <li>
-                  <Link to="/catalog" className="hover:text-indigo-400 transition-colors font-semibold">Book Catalog</Link>
+                  <Link to="/catalog" className="hover:text-indigo-400 transition-colors font-bold">Book Catalog</Link>
                 </li>
                 <li>
-                  <Link to="/login" className="hover:text-indigo-400 transition-colors font-semibold">Study Booth Booking</Link>
+                  <Link to="/login" className="hover:text-indigo-400 transition-colors font-bold">Study Booth Booking</Link>
                 </li>
                 <li>
-                  <Link to="/login" className="hover:text-indigo-400 transition-colors font-semibold">Research Support</Link>
+                  <Link to="/login" className="hover:text-indigo-400 transition-colors font-bold">Research Support</Link>
                 </li>
                 <li>
-                  <Link to="/compliance" className="hover:text-indigo-400 transition-colors font-semibold">Compliance Audit</Link>
+                  <Link to="/compliance" className="hover:text-indigo-400 transition-colors font-bold">Compliance Audit</Link>
                 </li>
               </ul>
             </div>
@@ -684,7 +684,7 @@ const Home = () => {
             <div>
               © 2026 Lumina Academic Library Systems. All rights reserved.
             </div>
-            <div className="flex gap-6 font-semibold">
+            <div className="flex gap-6 font-bold">
               <Link to="/privacy" className="hover:text-indigo-400 transition-colors">Privacy Policy</Link>
               <Link to="/terms" className="hover:text-indigo-400 transition-colors">Terms of Service</Link>
               <Link to="/compliance" className="hover:text-indigo-400 transition-colors">Compliance</Link>
@@ -697,7 +697,7 @@ const Home = () => {
       {/* BACK TO TOP BUTTON */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 p-3.5 bg-indigo-650/90 hover:bg-indigo-600 text-white rounded-2xl border border-indigo-400/30 shadow-2xl shadow-indigo-500/20 hover:scale-105 active:scale-95 transition-all duration-300 z-50 backdrop-blur-md ${
+        className={`fixed bottom-8 right-8 p-3.5 bg-indigo-600/90 hover:bg-indigo-500 text-white rounded-2xl border border-indigo-400/30 shadow-2xl shadow-indigo-500/20 hover:scale-105 active:scale-95 transition-all duration-300 z-50 backdrop-blur-md ${
           showBackToTop ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0 pointer-events-none'
         }`}
         aria-label="Back to top"

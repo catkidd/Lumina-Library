@@ -21,7 +21,7 @@ const TermsOfService = () => {
     <div className="relative min-h-screen bg-[#04050a] text-slate-200 py-20 px-6 max-w-7xl mx-auto w-full font-body select-none">
       
       {/* BACKGROUND DECORATIONS */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-indigo-650/5 blur-[130px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-indigo-600/5 blur-[130px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-indigo-900/5 blur-[130px] pointer-events-none" />
 
       {/* HEADER SECTION */}
@@ -35,7 +35,7 @@ const TermsOfService = () => {
         <p className="text-slate-500 text-xs md:text-sm leading-relaxed uppercase tracking-wider font-semibold">
           Effective Date: May 17, 2026 • Document ID: L-TOS-2026-V1.0
         </p>
-        <div className="h-[1px] w-24 bg-gradient-to-r from-indigo-550 to-indigo-750 mx-auto mt-6 rounded-full" />
+        <div className="h-[1px] w-24 bg-gradient-to-r from-indigo-500 to-indigo-800 mx-auto mt-6 rounded-full" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 relative z-20">

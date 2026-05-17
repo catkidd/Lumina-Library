@@ -26,7 +26,7 @@ const Navbar = () => {
       
       {/* CLASSIC ACADEMIC LOGO */}
       <Link to={user ? "/catalog" : "/"} className="flex items-center gap-2.5 group">
-        <div className="p-2 bg-gradient-to-br from-indigo-600 to-indigo-850 text-white rounded-xl shadow-lg shadow-indigo-900/45 group-hover:scale-105 active:scale-95 transition-all duration-300 border border-indigo-400/20">
+        <div className="p-2 bg-gradient-to-br from-indigo-600 to-indigo-800 text-white rounded-xl shadow-lg shadow-indigo-900/45 group-hover:scale-105 active:scale-95 transition-all duration-300 border border-indigo-400/20">
           <Library className="w-5 h-5 text-indigo-200" />
         </div>
         <span className="font-display font-extrabold text-2xl tracking-normal text-white flex items-center gap-2 select-none">

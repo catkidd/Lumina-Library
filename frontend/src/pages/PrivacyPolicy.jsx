@@ -21,7 +21,7 @@ const PrivacyPolicy = () => {
     <div className="relative min-h-screen bg-[#04050a] text-slate-200 py-20 px-6 max-w-7xl mx-auto w-full font-body select-none">
       
       {/* BACKGROUND DECORATIONS */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-indigo-650/5 blur-[130px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-indigo-600/5 blur-[130px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-indigo-900/5 blur-[130px] pointer-events-none" />
 
       {/* HEADER SECTION */}
@@ -35,7 +35,7 @@ const PrivacyPolicy = () => {
         <p className="text-slate-500 text-xs md:text-sm leading-relaxed uppercase tracking-wider font-semibold">
           Effective Date: May 17, 2026 • Document ID: L-PRV-2026-V1.0
         </p>
-        <div className="h-[1px] w-24 bg-gradient-to-r from-indigo-550 to-indigo-750 mx-auto mt-6 rounded-full" />
+        <div className="h-[1px] w-24 bg-gradient-to-r from-indigo-500 to-indigo-800 mx-auto mt-6 rounded-full" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 relative z-20">
@@ -179,17 +179,17 @@ const PrivacyPolicy = () => {
                 As an academic user of Lumina, you maintain distinct privacy rights regarding your indexed record set:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                <div className="bg-slate-950/80 p-4 border border-slate-900/60 rounded-xl">
+                <div className="bg-slate-900/80 p-4 border border-slate-800/60 rounded-xl">
                   <h4 className="font-bold text-slate-200 text-xs uppercase tracking-wide mb-1">Right of Access</h4>
                   <p className="text-xs text-slate-500 leading-relaxed">You can audit your full active record, profile data, and checkouts live inside the Student Portal.</p>
                 </div>
-                <div className="bg-slate-950/80 p-4 border border-slate-900/60 rounded-xl">
+                <div className="bg-slate-900/80 p-4 border border-slate-800/60 rounded-xl">
                   <h4 className="font-bold text-slate-200 text-xs uppercase tracking-wide mb-1">Right of Correction</h4>
-                  <p className="text-xs text-slate-550 leading-relaxed">You can request immediate profile corrections by contacting the System Administrator via email.</p>
+                  <p className="text-xs text-slate-500 leading-relaxed">You can request immediate profile corrections by contacting the System Administrator via email.</p>
                 </div>
-                <div className="bg-slate-950/80 p-4 border border-slate-900/60 rounded-xl">
+                <div className="bg-slate-900/80 p-4 border border-slate-800/60 rounded-xl">
                   <h4 className="font-bold text-slate-200 text-xs uppercase tracking-wide mb-1">Right of Erasure</h4>
-                  <p className="text-xs text-slate-550 leading-relaxed">Upon graduation or termination, you can request full erasure of your historical account credentials from databases.</p>
+                  <p className="text-xs text-slate-500 leading-relaxed">Upon graduation or termination, you can request full erasure of your historical account credentials from databases.</p>
                 </div>
               </div>
             </section>
@@ -204,18 +204,18 @@ const PrivacyPolicy = () => {
                 Lumina's data processing boundaries are structured to ensure compliance with privacy laws:
               </p>
               <div className="space-y-3">
-                <div className="flex gap-3 items-start bg-slate-950/80 p-4 rounded-xl border border-slate-900/65">
+                <div className="flex gap-3 items-start bg-slate-900/80 p-4 rounded-xl border border-slate-800/65">
                   <Lock className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-bold text-sm text-slate-200">FERPA Alignment</h4>
                     <p className="text-xs text-slate-500 leading-relaxed">We strictly enforce the Family Educational Rights and Privacy Act (FERPA) by safeguarding student loan transactions and academic history against disclosures.</p>
                   </div>
                 </div>
-                <div className="flex gap-3 items-start bg-slate-950/80 p-4 rounded-xl border border-slate-900/65">
+                <div className="flex gap-3 items-start bg-slate-900/80 p-4 rounded-xl border border-slate-800/65">
                   <Eye className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-bold text-sm text-slate-200">GDPR Compliance</h4>
-                    <p className="text-xs text-slate-550 leading-relaxed">Under the General Data Protection Regulation (GDPR), we establish legal basis for data processing, honor request erasures, and encrypt authentication parameters.</p>
+                    <p className="text-xs text-slate-500 leading-relaxed">Under the General Data Protection Regulation (GDPR), we establish legal basis for data processing, honor request erasures, and encrypt authentication parameters.</p>
                   </div>
                 </div>
               </div>

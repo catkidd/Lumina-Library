@@ -142,330 +142,380 @@ const AdminDashboard = () => {
   const uniqueReaders = new Set(transactions.map(t => t.userEmail)).size;
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10 relative font-body select-none">
+    <div className="relative min-h-[100dvh] bg-[#FFFFFF] text-[#111111] font-sans py-16 px-6 md:px-12 select-none">
+      
+      {/* Dynamic Toast System */}
       {toast && (
-        <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 border rounded-2xl shadow-2xl transition-all duration-300 ${
+        <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 border rounded-lg transition-all duration-300 ${
           toast.type === 'success' 
-            ? 'bg-emerald-50 border border-emerald-200/60 text-emerald-600' 
-            : 'bg-rose-50 border border-rose-200/60 text-rose-600'
+            ? 'bg-[#EDF3EC] border-[#cce3cb] text-[#346538]' 
+            : 'bg-[#FDEBEC] border-[#f5c6c6] text-[#9F2F2D]'
         }`}>
-          {toast.type === 'success' ? <CheckSquare className="w-5 h-5 flex-shrink-0" /> : <AlertTriangle className="w-5 h-5 flex-shrink-0" />}
-          <span className="text-sm font-bold">{toast.text}</span>
+          {toast.type === 'success' ? <CheckSquare className="w-4 h-4 flex-shrink-0" /> : <AlertTriangle className="w-4 h-4 flex-shrink-0" />}
+          <span className="text-xs font-bold tracking-wide">{toast.text}</span>
         </div>
       )}
 
-      <div className="flex items-center justify-between mb-8 pb-6 border-b border-slate-200/60">
-        <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 font-serif">
-            Admin Management Console
-          </h1>
-          <p className="text-slate-600 mt-1.5 text-sm">
-            Control library systems, oversee inventory, and review borrow logs.
-          </p>
-        </div>
-        <button
-          onClick={fetchData}
-          className="p-3 bg-white hover:bg-slate-100/50 text-slate-600 hover:text-indigo-600 border border-slate-200 rounded-xl shadow-sm transition-all"
-        >
-          <RefreshCw className="w-4 h-4" />
-        </button>
-      </div>
-
-      {/* METRIC CARD PANELS */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-        <div className="bg-white/80 border border-slate-200/80 p-5 rounded-2xl relative overflow-hidden group shadow-md">
-          <BookOpen className="w-8 h-8 text-indigo-600 mb-3" />
-          <span className="block text-slate-500 text-[10px] font-bold uppercase tracking-wider">Total Titles</span>
-          <span className="block text-2xl font-extrabold text-slate-900 mt-1 font-serif">{totalBooks}</span>
-        </div>
-
-        <div className="bg-white/80 border border-slate-200/80 p-5 rounded-2xl relative overflow-hidden group shadow-md">
-          <ShoppingBag className="w-8 h-8 text-emerald-600 mb-3" />
-          <span className="block text-slate-500 text-[10px] font-bold uppercase tracking-wider">Active Borrows</span>
-          <span className="block text-2xl font-extrabold text-slate-900 mt-1 font-serif">{activeBorrows}</span>
-        </div>
-
-        <div className="bg-white/80 border border-slate-200/80 p-5 rounded-2xl relative overflow-hidden group shadow-md">
-          <AlertTriangle className="w-8 h-8 text-rose-600 mb-3" />
-          <span className="block text-slate-500 text-[10px] font-bold uppercase tracking-wider">Overdue Items</span>
-          <span className="block text-2xl font-extrabold text-slate-900 mt-1 font-serif">{overdueBorrows}</span>
-        </div>
-
-        <div className="bg-white/80 border border-slate-200/80 p-5 rounded-2xl relative overflow-hidden group shadow-md">
-          <Users className="w-8 h-8 text-indigo-600 mb-3" />
-          <span className="block text-slate-500 text-[10px] font-bold uppercase tracking-wider">Registered Readers</span>
-          <span className="block text-2xl font-extrabold text-slate-900 mt-1 font-serif">{uniqueReaders}</span>
-        </div>
-      </div>
-
-      <div className="flex gap-4 mb-8 border-b border-slate-200 pb-px">
-        <button
-          onClick={() => setActiveTab('inventory')}
-          className={`py-3 px-1 border-b-2 font-bold text-xs uppercase tracking-wider transition-all ${
-            activeTab === 'inventory'
-              ? 'border-indigo-600 text-indigo-600'
-              : 'border-transparent text-slate-500 hover:text-indigo-600'
-          }`}
-        >
-          Manage Inventory
-        </button>
-        <button
-          onClick={() => setActiveTab('transactions')}
-          className={`py-3 px-1 border-b-2 font-bold text-xs uppercase tracking-wider transition-all ${
-            activeTab === 'transactions'
-              ? 'border-indigo-600 text-indigo-600'
-              : 'border-transparent text-slate-500 hover:text-indigo-600'
-          }`}
-        >
-          System Transaction Logs
-        </button>
-      </div>
-
-      {loading ? (
-        <div className="bg-slate-200/40 border border-slate-200/60 p-8 rounded-3xl h-96 animate-pulse"></div>
-      ) : activeTab === 'inventory' ? (
-        <div>
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-bold text-slate-950 font-serif">Cataloged Books</h3>
-            <button
-              onClick={openAddModal}
-              className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold uppercase tracking-widest rounded-2xl shadow-md hover:shadow-indigo-500/10 border border-indigo-400/20 transition-all active:scale-[0.98]"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Add Book</span>
-            </button>
+      {/* Main Container constrained to Max width */}
+      <div className="max-w-7xl mx-auto flex flex-col gap-12">
+        
+        {/* Header Block - Meticulous Spacing */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#EAEAEA]">
+          <div className="flex flex-col gap-2">
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#787774]">Administrative Console</span>
+            <h1 className="text-3xl font-bold tracking-tight text-[#111111] font-serif leading-tight">
+              Control Panel
+            </h1>
+            <p className="text-[#787774] text-xs font-medium max-w-[65ch]">
+              Overview active inventory, manage title metadata catalogs, and supervise global checkout transactions.
+            </p>
           </div>
+          
+          <button
+            onClick={fetchData}
+            className="p-2.5 bg-white hover:bg-stone-50 border border-[#EAEAEA] text-[#787774] hover:text-[#111111] rounded-lg transition-all active:scale-[0.98]"
+            title="Refresh Logs"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
+        </div>
 
-          <div className="bg-white/80 border border-slate-200/80 rounded-3xl overflow-hidden shadow-xl">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse text-sm">
-                <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider text-[10px]">
-                    <th className="py-4 px-6">Book Title</th>
-                    <th className="py-4 px-6">Author</th>
-                    <th className="py-4 px-6">Genre</th>
-                    <th className="py-4 px-6">ISBN</th>
-                    <th className="py-4 px-6 text-center">Stock (Avail / Total)</th>
-                    <th className="py-4 px-6 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200/60 text-slate-700 font-medium">
-                  {books.map((b) => (
-                    <tr key={b.id} className="hover:bg-slate-50 transition-colors">
-                      <td className="py-4 px-6 font-extrabold text-slate-900 font-serif">{b.title}</td>
-                      <td className="py-4 px-6">{b.author}</td>
-                      <td className="py-4 px-6">
-                        <span className="px-2.5 py-1 text-[10px] font-bold bg-indigo-50 text-indigo-600 border border-indigo-200/60 rounded uppercase tracking-wider">
-                          {b.genre}
-                        </span>
-                      </td>
-                      <td className="py-4 px-6 font-mono text-xs text-slate-600">{b.isbn}</td>
-                      <td className="py-4 px-6 text-center font-bold text-slate-800">
-                        <span className={b.availableCopies === 0 ? 'text-rose-600' : 'text-slate-800'}>
-                          {b.availableCopies}
-                        </span>
-                        <span className="text-slate-400"> / </span>
-                        <span>{b.totalCopies}</span>
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <div className="flex justify-end gap-2">
-                          <button
-                            onClick={() => openEditModal(b)}
-                            className="p-2 bg-indigo-50 hover:bg-indigo-100/85 text-indigo-600 border border-indigo-200/50 rounded-xl transition-all shadow-sm"
-                            title="Edit Title"
-                          >
-                            <Edit2 className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(b.id, b.title)}
-                            className="p-2 bg-rose-50 hover:bg-rose-100/85 text-rose-600 border border-rose-200/50 rounded-xl transition-all shadow-sm"
-                            title="Delete Title"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+        {/* Bento Grid Metrics Panels - flat crisp boxes, no heavy shadows */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div className="bg-[#FBFBFA] border border-[#EAEAEA] p-6 rounded-xl flex flex-col gap-4">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#787774]">Total Cataloged</span>
+              <BookOpen className="w-4 h-4 text-[#787774]" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-3xl font-bold tracking-tight font-serif">{totalBooks}</span>
+              <span className="text-[10px] text-[#787774] font-medium">Distinct digital & physical titles</span>
             </div>
           </div>
-        </div>
-      ) : (
-        <div>
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-bold text-slate-950 font-serif">Global System Checkouts</h3>
+
+          <div className="bg-[#FBFBFA] border border-[#EAEAEA] p-6 rounded-xl flex flex-col gap-4">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#787774]">Circulation Out</span>
+              <ShoppingBag className="w-4 h-4 text-[#787774]" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-3xl font-bold tracking-tight font-serif">{activeBorrows}</span>
+              <span className="text-[10px] text-[#787774] font-medium">Active loans in campus registry</span>
+            </div>
           </div>
 
-          <div className="bg-white/80 border border-slate-200/80 rounded-3xl overflow-hidden shadow-xl">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse text-sm">
-                <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider text-[10px]">
-                    <th className="py-4 px-6">Reader Email</th>
-                    <th className="py-4 px-6">Book Title</th>
-                    <th className="py-4 px-6">Checkout Date</th>
-                    <th className="py-4 px-6">Due Date</th>
-                    <th className="py-4 px-6">Return Date</th>
-                    <th className="py-4 px-6 text-right">Status</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200/60 text-slate-700 font-medium">
-                  {transactions.map((t) => (
-                    <tr key={t.id} className="hover:bg-slate-50 transition-colors">
-                      <td className="py-4 px-6 font-bold text-slate-800">{t.userEmail}</td>
-                      <td className="py-4 px-6 font-extrabold text-slate-900 font-serif">{t.bookTitle}</td>
-                      <td className="py-4 px-6 font-mono text-xs text-slate-600">
-                        <span className="flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5 text-indigo-600" />
-                          {formatDate(t.checkoutDate)}
-                        </span>
-                      </td>
-                      <td className="py-4 px-6 font-mono text-xs text-slate-600">
-                        <span className="flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5 text-indigo-600" />
-                          {formatDate(t.dueDate)}
-                        </span>
-                      </td>
-                      <td className="py-4 px-6 font-mono text-xs">
-                        {t.returnDate ? (
-                          <span className="flex items-center gap-1.5 text-emerald-600 font-bold">
-                            <Calendar className="w-3.5 h-3.5" />
-                            {formatDate(t.returnDate)}
+          <div className="bg-[#FBFBFA] border border-[#EAEAEA] p-6 rounded-xl flex flex-col gap-4">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#787774]">Overdue Logs</span>
+              <AlertTriangle className="w-4 h-4 text-[#787774]" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-3xl font-bold tracking-tight font-serif text-[#9F2F2D]">{overdueBorrows}</span>
+              <span className="text-[10px] text-[#787774] font-medium">Requires immediate return alerts</span>
+            </div>
+          </div>
+
+          <div className="bg-[#FBFBFA] border border-[#EAEAEA] p-6 rounded-xl flex flex-col gap-4">
+            <div className="flex justify-between items-center">
+              <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#787774]">Registered Readers</span>
+              <Users className="w-4 h-4 text-[#787774]" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-3xl font-bold tracking-tight font-serif">{uniqueReaders}</span>
+              <span className="text-[10px] text-[#787774] font-medium">Unique active student accounts</span>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Tab Controls */}
+        <div className="flex gap-6 border-b border-[#EAEAEA] pb-px">
+          <button
+            onClick={() => setActiveTab('inventory')}
+            className={`py-3.5 px-1.5 border-b-2 font-bold text-xs uppercase tracking-wider transition-all ${
+              activeTab === 'inventory'
+                ? 'border-[#111111] text-[#111111]'
+                : 'border-transparent text-[#787774] hover:text-[#111111]'
+            }`}
+          >
+            Manage Inventory
+          </button>
+          <button
+            onClick={() => setActiveTab('transactions')}
+            className={`py-3.5 px-1.5 border-b-2 font-bold text-xs uppercase tracking-wider transition-all ${
+              activeTab === 'transactions'
+                ? 'border-[#111111] text-[#111111]'
+                : 'border-transparent text-[#787774] hover:text-[#111111]'
+            }`}
+          >
+            Transaction Logs
+          </button>
+        </div>
+
+        {/* Core Workspace Sections */}
+        {loading ? (
+          <div className="bg-stone-50 border border-[#EAEAEA] rounded-xl h-96 animate-pulse"></div>
+        ) : activeTab === 'inventory' ? (
+          
+          <div className="flex flex-col gap-6">
+            
+            {/* Catalog Subheading & Add Action */}
+            <div className="flex justify-between items-center">
+              <div className="flex flex-col gap-0.5">
+                <h3 className="text-base font-bold text-[#111111] font-serif">Cataloged Library Titles</h3>
+                <span className="text-[10px] text-[#787774] font-medium">Verify available inventory quantities below.</span>
+              </div>
+              <button
+                onClick={openAddModal}
+                className="flex items-center gap-2 px-4 py-2.5 bg-[#111111] hover:bg-[#2A2A2A] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all active:scale-[0.98] border border-[#111111]"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Title</span>
+              </button>
+            </div>
+
+            {/* Crisp Flat Table Container */}
+            <div className="bg-white border border-[#EAEAEA] rounded-xl overflow-hidden shadow-sm shadow-slate-100/10">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="bg-[#FBFBFA] border-b border-[#EAEAEA] text-[#787774] font-bold uppercase tracking-wider text-[9px]">
+                      <th className="py-4 px-6">Book Title</th>
+                      <th className="py-4 px-6">Author Name</th>
+                      <th className="py-4 px-6">Genre / Tag</th>
+                      <th className="py-4 px-6">ISBN Registry</th>
+                      <th className="py-4 px-6 text-center">Circulation Stock</th>
+                      <th className="py-4 px-6 text-right">Metadata Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#EAEAEA] text-[#111111] font-medium">
+                    {books.map((b) => (
+                      <tr key={b.id} className="hover:bg-[#FBFBFA]/50 transition-colors">
+                        <td className="py-4 px-6 font-bold text-[#111111] text-sm font-serif">{b.title}</td>
+                        <td className="py-4 px-6 text-[#2F3437]">{b.author}</td>
+                        <td className="py-4 px-6">
+                          <span className="px-2.5 py-1 text-[9px] font-bold bg-[#FBF3DB] border border-[#f0dfb8] text-[#956400] rounded uppercase tracking-wider">
+                            {b.genre}
                           </span>
-                        ) : (
-                          <span className="text-slate-450 font-bold">-</span>
-                        )}
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <span className={`px-2.5 py-0.5 text-[10px] font-bold border rounded-md uppercase tracking-wider ${
-                          t.status === 'RETURNED'
-                            ? 'bg-emerald-50 border border-emerald-200/60 text-emerald-600'
-                            : t.status === 'OVERDUE'
-                            ? 'bg-rose-50 border border-rose-200/60 text-rose-600 animate-pulse'
-                            : 'bg-indigo-50 border border-indigo-200/60 text-indigo-600'
-                        }`}>
-                          {t.status}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        </td>
+                        <td className="py-4 px-6 font-mono text-[10px] text-[#787774]">{b.isbn}</td>
+                        <td className="py-4 px-6 text-center font-mono font-bold">
+                          <span className={b.availableCopies === 0 ? 'text-[#9F2F2D] bg-[#FDEBEC] px-2 py-0.5 rounded border border-[#f5c6c6]' : 'text-[#111111]'}>
+                            {b.availableCopies}
+                          </span>
+                          <span className="text-[#787774] font-normal mx-1">/</span>
+                          <span className="text-[#787774]">{b.totalCopies}</span>
+                        </td>
+                        <td className="py-4 px-6 text-right">
+                          <div className="flex justify-end gap-2">
+                            <button
+                              onClick={() => openEditModal(b)}
+                              className="p-2 bg-white hover:bg-stone-50 border border-[#EAEAEA] text-[#787774] hover:text-[#111111] rounded-lg transition-colors shadow-none"
+                              title="Edit Entry"
+                            >
+                              <Edit2 className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              onClick={() => handleDelete(b.id, b.title)}
+                              className="p-2 bg-white hover:bg-[#FDEBEC]/40 border border-[#EAEAEA] hover:border-[#f5c6c6] text-[#787774] hover:text-[#9F2F2D] rounded-lg transition-colors shadow-none"
+                              title="Delete Entry"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
 
-      {/* POPUP CREATION/EDIT MODAL OVERLAY */}
+          </div>
+        ) : (
+          
+          <div className="flex flex-col gap-6">
+            
+            <div className="flex flex-col gap-0.5">
+              <h3 className="text-base font-bold text-[#111111] font-serif">Global Circulation Logs</h3>
+              <span className="text-[10px] text-[#787774] font-medium">Verify structural borrow logs across student files.</span>
+            </div>
+
+            <div className="bg-white border border-[#EAEAEA] rounded-xl overflow-hidden shadow-sm shadow-slate-100/10">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="bg-[#FBFBFA] border-b border-[#EAEAEA] text-[#787774] font-bold uppercase tracking-wider text-[9px]">
+                      <th className="py-4 px-6">Student Account</th>
+                      <th className="py-4 px-6">Book Title</th>
+                      <th className="py-4 px-6">Checkout Date</th>
+                      <th className="py-4 px-6">Due Registry Date</th>
+                      <th className="py-4 px-6">Return Logged Date</th>
+                      <th className="py-4 px-6 text-right">Circulation Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#EAEAEA] text-[#111111] font-medium">
+                    {transactions.map((t) => (
+                      <tr key={t.id} className="hover:bg-[#FBFBFA]/50 transition-colors">
+                        <td className="py-4 px-6 font-bold text-[#111111]">{t.userEmail}</td>
+                        <td className="py-4 px-6 font-bold text-[#111111] text-sm font-serif">{t.bookTitle}</td>
+                        <td className="py-4 px-6 text-[#787774] font-mono text-[10px]">
+                          <span className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5 text-[#787774]" />
+                            {formatDate(t.checkoutDate)}
+                          </span>
+                        </td>
+                        <td className="py-4 px-6 text-[#787774] font-mono text-[10px]">
+                          <span className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5 text-[#787774]" />
+                            {formatDate(t.dueDate)}
+                          </span>
+                        </td>
+                        <td className="py-4 px-6 text-[#787774] font-mono text-[10px]">
+                          {t.returnDate ? (
+                            <span className="flex items-center gap-1.5 text-[#346538] font-bold bg-[#EDF3EC] px-2 py-0.5 rounded border border-[#cce3cb] w-max">
+                              <Calendar className="w-3.5 h-3.5" />
+                              {formatDate(t.returnDate)}
+                            </span>
+                          ) : (
+                            <span className="text-[#787774] font-bold">-</span>
+                          )}
+                        </td>
+                        <td className="py-4 px-6 text-right">
+                          <span className={`px-2.5 py-0.5 text-[9px] font-bold border rounded uppercase tracking-wider ${
+                            t.status === 'RETURNED'
+                              ? 'bg-[#EDF3EC] border-[#cce3cb] text-[#346538]'
+                              : t.status === 'OVERDUE'
+                              ? 'bg-[#FDEBEC] border-[#f5c6c6] text-[#9F2F2D]'
+                              : 'bg-[#E1F3FE] border-[#bce3fc] text-[#1F6C9F]'
+                          }`}>
+                            {t.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        )}
+
+      </div>
+
+      {/* POPUP MODAL OVERLAY - Flat clean boxes, crisp buttons */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white border border-slate-200 w-full max-w-lg rounded-3xl p-6 relative shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/20 backdrop-blur-sm p-4">
+          <div className="bg-white border border-[#EAEAEA] w-full max-w-lg rounded-xl p-6 relative shadow-lg">
+            
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-indigo-600 transition-colors"
+              className="absolute top-4 right-4 p-2 text-[#787774] hover:text-[#111111] transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
-            <h3 className="text-xl font-extrabold text-slate-900 font-serif mb-6">
-              {modalMode === 'add' ? 'Add New Title' : 'Edit Title Information'}
+            <h3 className="text-lg font-bold text-[#111111] font-serif border-b border-[#EAEAEA] pb-3 mb-6">
+              {modalMode === 'add' ? 'Add New Catalog Title' : 'Edit Catalog Title Metadata'}
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 text-xs font-semibold">
+              
               <div>
-                <label htmlFor="book-title" className="block text-slate-750 text-xs font-bold uppercase tracking-wider mb-2">Book Title</label>
+                <label htmlFor="book-title" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">Book Title</label>
                 <input
                   id="book-title"
                   name="title"
                   type="text"
                   required
-                  placeholder="e.g. Clean Code"
-                  className="w-full px-4 py-2.5 bg-white border border-slate-200 focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none transition-all text-sm font-medium shadow-sm"
+                  placeholder="e.g. Systems Design"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-sm font-medium shadow-none"
                   value={formTitle}
                   onChange={(e) => setFormTitle(e.target.value)}
                 />
-                {formErrors.title && <span className="text-xs text-rose-600 font-bold mt-1 block">{formErrors.title}</span>}
+                {formErrors.title && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.title}</span>}
               </div>
 
               <div>
-                <label htmlFor="book-author" className="block text-slate-750 text-xs font-bold uppercase tracking-wider mb-2">Author Name</label>
+                <label htmlFor="book-author" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">Author Name</label>
                 <input
                   id="book-author"
                   name="author"
                   type="text"
                   required
-                  placeholder="e.g. Robert C. Martin"
-                  className="w-full px-4 py-2.5 bg-white border border-slate-200 focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none transition-all text-sm font-medium shadow-sm"
+                  placeholder="e.g. Martin Kleppmann"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-sm font-medium shadow-none"
                   value={formAuthor}
                   onChange={(e) => setFormAuthor(e.target.value)}
                 />
-                {formErrors.author && <span className="text-xs text-rose-600 font-bold mt-1 block">{formErrors.author}</span>}
+                {formErrors.author && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.author}</span>}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="book-isbn" className="block text-slate-750 text-xs font-bold uppercase tracking-wider mb-2">ISBN Number</label>
+                  <label htmlFor="book-isbn" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">ISBN Registry</label>
                   <input
                     id="book-isbn"
                     name="isbn"
                     type="text"
                     required
-                    placeholder="e.g. 978-0132350884"
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none transition-all text-sm font-mono font-bold shadow-sm"
+                    placeholder="e.g. 978-1449373320"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-xs font-mono shadow-none"
                     value={formIsbn}
                     onChange={(e) => setFormIsbn(e.target.value)}
                   />
-                  {formErrors.isbn && <span className="text-xs text-rose-600 font-bold mt-1 block">{formErrors.isbn}</span>}
+                  {formErrors.isbn && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.isbn}</span>}
                 </div>
 
                 <div>
-                  <label htmlFor="book-genre" className="block text-slate-750 text-xs font-bold uppercase tracking-wider mb-2">Genre / Tag</label>
+                  <label htmlFor="book-genre" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">Genre / Classification</label>
                   <input
                     id="book-genre"
                     name="genre"
                     type="text"
                     required
-                    placeholder="e.g. Technology"
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none transition-all text-sm font-medium shadow-sm"
+                    placeholder="e.g. Distributed Systems"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-sm font-medium shadow-none"
                     value={formGenre}
                     onChange={(e) => setFormGenre(e.target.value)}
                   />
-                  {formErrors.genre && <span className="text-xs text-rose-600 font-bold mt-1 block">{formErrors.genre}</span>}
+                  {formErrors.genre && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.genre}</span>}
                 </div>
               </div>
 
               <div>
-                <label htmlFor="book-copies" className="block text-slate-750 text-xs font-bold uppercase tracking-wider mb-2">Total Copies</label>
+                <label htmlFor="book-copies" className="block text-[#787774] uppercase tracking-wider mb-2 text-[9px]">Total Stock Copies</label>
                 <input
                   id="book-copies"
                   name="totalCopies"
                   type="number"
                   required
                   min="0"
-                  className="w-full px-4 py-2.5 bg-white border border-slate-200 focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none transition-all text-sm font-medium shadow-sm"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#EAEAEA] focus:border-[#111111] focus:ring-1 focus:ring-[#111111] rounded-lg text-[#111111] placeholder-stone-400 focus:outline-none transition-all text-sm font-medium shadow-none"
                   value={formTotalCopies}
                   onChange={(e) => setFormTotalCopies(e.target.value)}
                 />
-                {formErrors.totalCopies && <span className="text-xs text-rose-600 font-bold mt-1 block">{formErrors.totalCopies}</span>}
+                {formErrors.totalCopies && <span className="text-[10px] text-[#9F2F2D] mt-1 block">{formErrors.totalCopies}</span>}
               </div>
 
-              <div className="flex gap-3 mt-8">
+              <div className="flex gap-4 mt-8 pt-4 border-t border-[#EAEAEA]">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="w-1/2 py-3 bg-white hover:bg-slate-50 text-slate-700 hover:text-indigo-600 border border-slate-200 rounded-2xl font-bold uppercase tracking-widest text-xs transition-all active:scale-[0.98] shadow-sm"
+                  className="w-1/2 py-2.5 bg-white hover:bg-stone-50 text-[#787774] hover:text-[#111111] border border-[#EAEAEA] rounded-lg font-bold uppercase tracking-wider transition-all active:scale-[0.98]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="w-1/2 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-bold uppercase tracking-widest text-xs transition-all active:scale-[0.98] shadow-md border border-indigo-400/20"
+                  className="w-1/2 py-2.5 bg-[#111111] hover:bg-[#2A2A2A] text-white border border-[#111111] rounded-lg font-bold uppercase tracking-wider transition-all active:scale-[0.98]"
                 >
-                  {modalMode === 'add' ? 'Confirm Add' : 'Confirm Save'}
+                  Confirm Registry
                 </button>
               </div>
+
             </form>
           </div>
         </div>

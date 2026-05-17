@@ -11,6 +11,7 @@ import Register from './pages/Register';
 import BookCatalog from './pages/BookCatalog';
 import BorrowHistory from './pages/BorrowHistory';
 import AdminDashboard from './pages/AdminDashboard';
+import UserProfile from './pages/UserProfile';
 
 function App() {
   return (
@@ -47,6 +48,14 @@ function App() {
                 element={
                   <PrivateRoute allowedRoles={['ADMIN']}>
                     <AdminDashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute allowedRoles={['STUDENT', 'ADMIN']}>
+                    <UserProfile />
                   </PrivateRoute>
                 }
               />

@@ -60,6 +60,11 @@ const Navbar = () => {
                   <span>Control Panel</span>
                 </Link>
               )}
+
+              <Link to="/profile" className={linkClass('/profile')}>
+                <User className="w-4 h-4 text-indigo-600" />
+                <span>Profile</span>
+              </Link>
             </>
           ) : (
             <div className="hidden lg:flex items-center gap-5">
@@ -88,13 +93,13 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           {user ? (
             <>
-              <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-100/60 border border-slate-200/60 rounded-xl text-xs font-bold text-slate-700 font-body">
+              <Link to="/profile" className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-100/60 border border-slate-200/60 rounded-xl text-xs font-bold text-slate-700 font-body hover:bg-indigo-50/50 hover:border-indigo-200/60 transition-all duration-300">
                 <User className="w-3.5 h-3.5 text-indigo-500" />
                 <span className="max-w-[120px] truncate">{user.email}</span>
                 <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-widest bg-indigo-50 text-indigo-600 border border-indigo-200/50 rounded-md uppercase font-body">
                   {user.role}
                 </span>
-              </div>
+              </Link>
 
               <button
                 onClick={handleLogout}

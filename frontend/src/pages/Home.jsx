@@ -264,19 +264,19 @@ const Home = () => {
       <section className="relative px-6 max-w-7xl mx-auto w-full mb-36 z-40">
         
         {/* Editorial Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
           <div className="space-y-3">
-            <h3 className="text-indigo-600 text-xs font-bold uppercase tracking-widest font-body">Top Curations</h3>
+            <h3 className="text-indigo-600 text-xs font-bold uppercase tracking-widest font-body">Recommended Books</h3>
             <h2 className="font-display font-extrabold text-4xl md:text-5xl text-slate-900 tracking-tight leading-tight font-serif">
-              Scholarly Recommendations
+              Library Recommendations
             </h2>
             <p className="text-slate-600 text-sm max-w-lg leading-relaxed font-body">
-              Explore our highly-vetted acquisitions recommended by chief university researchers, organized into specialized categories.
+              Explore our top recommended books and study resources, curated by our librarians across key academic subjects.
             </p>
           </div>
 
           {/* Category Capsule Triggers */}
-          <div className="flex flex-wrap gap-2 bg-slate-100/80 p-2 rounded-2xl border border-slate-200/60 max-w-max">
+          <div className="flex flex-wrap gap-1.5 bg-slate-100/80 p-1.5 rounded-2xl border border-slate-200/60 w-full lg:w-auto max-w-full lg:max-w-3xl shadow-sm">
             {['All', 'Computer Science', 'AI / ML', 'Software Engineering', 'Systems Design'].map((cat) => (
               <button
                 key={cat}

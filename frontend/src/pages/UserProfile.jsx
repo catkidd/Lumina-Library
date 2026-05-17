@@ -206,7 +206,7 @@ const UserProfile = () => {
                   {/* PREMIUM BUTTON WITH BUTTON-IN-BUTTON PATTERN */}
                   <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-6 border-t border-stone-100">
                     <div className="flex flex-col">
-                      <span className="text-xs font-bold text-stone-850 flex items-center gap-1">
+                      <span className="text-xs font-bold text-stone-800 flex items-center gap-1">
                         <KeyRound className="w-3.5 h-3.5 text-stone-500" />
                         Credentials Secured
                       </span>
@@ -215,7 +215,7 @@ const UserProfile = () => {
 
                     <button
                       type="submit"
-                      className="px-6 py-3 bg-stone-900 hover:bg-stone-850 text-stone-100 hover:text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] flex items-center justify-between gap-4 group active:scale-[0.98] border border-stone-800 shadow-md shadow-stone-900/10"
+                      className="px-6 py-3 bg-stone-900 hover:bg-stone-800 text-stone-100 hover:text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] flex items-center justify-between gap-4 group active:scale-[0.98] border border-stone-800 shadow-md shadow-stone-900/10"
                     >
                       <span>Update Credentials</span>
                       <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-1 group-hover:-translate-y-[1px] transition-all duration-300">

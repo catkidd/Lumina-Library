@@ -125,7 +125,7 @@ const BookCatalog = () => {
             </div>
             <button
               type="submit"
-              className="px-6 py-4 bg-stone-900 hover:bg-stone-850 text-stone-100 hover:text-white text-xs font-bold rounded-2xl transition-all duration-300 active:scale-[0.97] uppercase tracking-wider shadow-sm border border-stone-800"
+              className="px-6 py-4 bg-stone-900 hover:bg-stone-800 text-stone-100 hover:text-white text-xs font-bold rounded-2xl transition-all duration-300 active:scale-[0.97] uppercase tracking-wider shadow-sm border border-stone-800"
             >
               Search
             </button>
@@ -227,7 +227,7 @@ const BookCatalog = () => {
                           disabled={!isAvailable || borrowingId === b.id}
                           className={`w-full py-4 rounded-full text-xs font-bold flex items-center justify-center gap-3 transition-all duration-300 uppercase tracking-widest border ${
                             isAvailable
-                              ? 'bg-stone-900 hover:bg-stone-850 text-stone-100 hover:text-white border-stone-800 shadow-md active:scale-[0.98]'
+                              ? 'bg-stone-900 hover:bg-stone-800 text-stone-100 hover:text-white border-stone-800 shadow-md active:scale-[0.98]'
                               : 'bg-stone-50 text-stone-400 border border-stone-200 cursor-not-allowed'
                           }`}
                         >

@@ -70,9 +70,9 @@ const BorrowHistory = () => {
       {toast && (
         <div className="fixed bottom-8 right-8 z-[100] bg-[#f2efe8]/90 p-1 rounded-[1.5rem] border border-stone-200/50 shadow-2xl backdrop-blur-md animate-slide-up">
           <div className={`px-5 py-4 rounded-[calc(1.5rem-0.25rem)] flex items-center gap-3 bg-white font-bold text-xs uppercase tracking-wider ${
-            toast.type === 'success' ? 'text-emerald-700' : 'text-amber-850'
+            toast.type === 'success' ? 'text-emerald-700' : 'text-amber-800'
           }`}>
-            {toast.type === 'success' ? <CheckCircle className="w-4 h-4 text-emerald-600" /> : <AlertTriangle className="w-4 h-4 text-amber-705" />}
+            {toast.type === 'success' ? <CheckCircle className="w-4 h-4 text-emerald-600" /> : <AlertTriangle className="w-4 h-4 text-amber-700" />}
             <span>{toast.text}</span>
           </div>
         </div>
@@ -113,7 +113,7 @@ const BorrowHistory = () => {
           <div className="bg-[#f2efe8]/80 p-2 rounded-[2.2rem] border border-stone-200/50 max-w-xl mx-auto w-full mt-10">
             <div className="bg-white p-12 text-center rounded-[calc(2.2rem-0.5rem)] shadow-inner space-y-4">
               <BookOpen className="w-10 h-10 text-stone-400 mx-auto stroke-[1.2]" />
-              <h3 className="text-base font-bold text-stone-850 uppercase tracking-wider">No Transactions Found</h3>
+              <h3 className="text-base font-bold text-stone-800 uppercase tracking-wider">No Transactions Found</h3>
               <p className="text-stone-600 text-xs leading-relaxed font-medium">
                 You haven't borrowed any books from our catalog yet. Go to the Catalog tab to choose your first book!
               </p>

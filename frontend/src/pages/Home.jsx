@@ -22,9 +22,9 @@ const Home = () => {
 
   // Fallback seed books matching the backend DataSeeder exactly
   const [books, setBooks] = useState([
-    { id: 1, title: "Introduction to Algorithms", author: "Thomas H. Cormen", category: "Technology", year: "2022", rating: 4.8, status: "Available", desc: "The standard academic reference for modern algorithms.", gradient: "from-stone-850 to-stone-900" },
+    { id: 1, title: "Introduction to Algorithms", author: "Thomas H. Cormen", category: "Technology", year: "2022", rating: 4.8, status: "Available", desc: "The standard academic reference for modern algorithms.", gradient: "from-stone-800 to-stone-950" },
     { id: 2, title: "Clean Code", author: "Robert C. Martin", category: "Technology", year: "2008", rating: 4.9, status: "Available", desc: "A craftsman's guide to software structure and design.", gradient: "from-stone-900 to-stone-950" },
-    { id: 3, title: "The Hobbit", author: "J.R.R. Tolkien", category: "Fantasy", year: "1937", rating: 4.8, status: "Available", desc: "A classical fantasy adventure following Bilbo Baggins.", gradient: "from-stone-850 to-stone-900" },
+    { id: 3, title: "The Hobbit", author: "J.R.R. Tolkien", category: "Fantasy", year: "1937", rating: 4.8, status: "Available", desc: "A classical fantasy adventure following Bilbo Baggins.", gradient: "from-stone-800 to-stone-900" },
     { id: 4, title: "A Brief History of Time", author: "Stephen Hawking", category: "Science", year: "1988", rating: 4.7, status: "Available", desc: "An exploration of cosmology, black holes, and the universe.", gradient: "from-stone-900 to-stone-950" },
     { id: 5, title: "1984", author: "George Orwell", category: "Dystopian", year: "1949", rating: 4.9, status: "Available", desc: "A classic dystopian novel exploring totalitarian surveillance.", gradient: "from-stone-800 to-stone-900" }
   ]);
@@ -35,9 +35,9 @@ const Home = () => {
       api.get('/api/books')
         .then((res) => {
           const gradients = [
-            "from-stone-850 to-stone-900",
+            "from-stone-800 to-stone-950",
             "from-stone-900 to-stone-950",
-            "from-stone-850 to-stone-900",
+            "from-stone-800 to-stone-900",
             "from-stone-900 to-stone-950",
             "from-stone-800 to-stone-900"
           ];
@@ -176,7 +176,7 @@ const Home = () => {
                 {/* BUTTON IN BUTTON Pattern */}
                 <button
                   type="submit"
-                  className="absolute right-3.5 px-5 py-3 bg-stone-900 hover:bg-stone-850 text-stone-100 hover:text-white rounded-[calc(1.8rem-0.5rem)] text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.97]"
+                  className="absolute right-3.5 px-5 py-3 bg-stone-900 hover:bg-stone-800 text-stone-100 hover:text-white rounded-[calc(1.8rem-0.5rem)] text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.97]"
                 >
                   Search
                 </button>
@@ -397,7 +397,7 @@ const Home = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto flex flex-col items-center gap-4">
           <div className="inline-flex p-3.5 bg-amber-50 text-amber-900 rounded-2xl border border-amber-900/10 shadow-sm">
-            <Award className="w-5 h-5 text-amber-850" />
+            <Award className="w-5 h-5 text-amber-800" />
           </div>
           <h2 className="font-serif font-extrabold text-4xl md:text-5xl text-stone-900 tracking-tight leading-tight">
             Core Academic Services
@@ -566,7 +566,7 @@ const Home = () => {
         {/* Header */}
         <div className="text-center flex flex-col items-center gap-4">
           <div className="w-12 h-12 bg-amber-50 text-amber-900 rounded-2xl flex items-center justify-center border border-amber-900/10 shadow-sm">
-            <HelpCircle className="w-5 h-5 text-amber-850" />
+            <HelpCircle className="w-5 h-5 text-amber-800" />
           </div>
           <h2 className="font-serif font-extrabold text-3xl text-stone-900 tracking-tight">Frequently Asked Questions</h2>
           <p className="text-stone-600 text-sm font-medium">Find fast solutions to common inquiries regarding digital library cards, borrow regulations, and E-Resources.</p>
@@ -617,7 +617,7 @@ const Home = () => {
             
             <div className="max-w-2xl mx-auto relative z-10 flex flex-col items-center gap-6">
               <div className="w-14 h-14 bg-amber-50 text-amber-900 rounded-2xl flex items-center justify-center border border-amber-900/10 shadow-sm">
-                <Mail className="w-6 h-6 text-amber-850" />
+                <Mail className="w-6 h-6 text-amber-800" />
               </div>
               
               <h2 className="font-serif text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight leading-tight">
@@ -716,16 +716,16 @@ const Home = () => {
               <h3 className="font-bold text-[10px] uppercase tracking-[0.2em] text-stone-500">Operational Hours</h3>
               <ul className="space-y-3 text-xs text-stone-650">
                 <li className="flex justify-between border-b border-stone-200/50 pb-2">
-                  <span className="font-bold text-stone-850">Mon - Fri:</span>
+                  <span className="font-bold text-stone-800">Mon - Fri:</span>
                   <span>8:00 AM - 10:00 PM</span>
                 </li>
                 <li className="flex justify-between border-b border-stone-200/50 pb-2">
-                  <span className="font-bold text-stone-850">Saturday:</span>
+                  <span className="font-bold text-stone-800">Saturday:</span>
                   <span>9:00 AM - 6:00 PM</span>
                 </li>
                 <li className="flex justify-between pb-2">
-                  <span className="font-bold text-stone-850">Sunday:</span>
-                  <span className="text-amber-850 font-bold uppercase tracking-wider text-[10px]">Closed</span>
+                  <span className="font-bold text-stone-800">Sunday:</span>
+                  <span className="text-amber-800 font-bold uppercase tracking-wider text-[10px]">Closed</span>
                 </li>
                 <li className="text-[10px] text-stone-500 italic mt-2 leading-relaxed">
                   * Note: E-catalog is active 24/7. Holiday schedule shifts are broadcasted via announcements.
